@@ -1,0 +1,67 @@
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+.navbar {
+  padding: 4px;
+}
+
+.navbar-nav li a {
+  color: white;
+  padding: 5px;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.navbar-nav li a:hover {
+  color: grey;
+}
+
+.navbar-brand {
+  padding-left: 20px;
+  font-size: 25px;
+}
+
+.navbar-collapse {
+  text-align: left;
+}
+
+.navbar-collapse li {
+  padding: 13px;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.expense {
+  width: 40%;
+  margin: 0 auto;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+input {
+  border-color: grey;
+}
+
+.dropdown li a {
+  color: black;
+}
+
+.error {
+  color: red;
+  font-size:  12px;
+  margin: 5px
+}
+
+@media(max-width: 767px){
+  .expense { 
+      width: 100%;
+  }
+}
