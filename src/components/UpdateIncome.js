@@ -33,7 +33,7 @@ const UpdateIncome = ({getIncome}) => {
                             validationSchema = {IncomeSchema}
                             onSubmit = {
                                 ({name, amount, description}) => {
-                                    axios.put(`http://127.0.0.1:8000/api/income/${getIncome.id}/`,
+                                    axios.put(`https://expense-tracker-yhk.herokuapp.com/api/income/${getIncome.id}/`,
                                     {
                                         name: name,
                                         amount:amount,

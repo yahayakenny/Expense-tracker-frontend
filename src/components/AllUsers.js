@@ -34,7 +34,7 @@ const AllUsers = () => {
     },[])
 
     const handleDelete = (id) => {
-        axios.delete(`http://127.0.0.1:8000/api/users/list/${id}/`, 
+        axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/users/list/${id}/`, 
             {headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`

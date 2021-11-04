@@ -1,5 +1,5 @@
 import React from 'react';
-import { NET_URL, URL, TOKEN, commas } from "./utils";
+import { NET_URL, TOKEN, commas } from "./utils";
 import { useEffect, useState } from "react"
 import axios from 'axios';
 

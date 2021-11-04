@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import { FetchExpenses } from './FetchExpenses';
+import { DATE_RANGE_URL } from './utils';
 
 export const FormData = () => {
     const [from_date, setFromDate] = useState('')
@@ -13,7 +14,6 @@ export const FormData = () => {
     const handleSubmit = (e) => {
         e.preventDefault() 
         const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM3NDg1OTg3LCJpYXQiOjE2MzQ4OTM5ODcsImp0aSI6Ijk5NDQxNTNlYzI2ZTRjYWFhZTExZThkMGE4Y2ExZDVlIiwidXNlcl9pZCI6MX0.F7O9Egk2VD72yiDmqE-JS9dicq1JASyNZ1-Mp3fqHE8'
-        const DATE_RANGE_URL = 'http://127.0.0.1:8000/api/query-date-range/'
         setIsLoading(true)
         axios.get(DATE_RANGE_URL, {
             params: {
