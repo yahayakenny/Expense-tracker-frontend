@@ -50,7 +50,7 @@ const AllIncome = ({getIncome}) => {
                     <div className= "container p-3">
                         <h5 className = "text-center">All Income</h5>
                     </div>
-                    <table className="table table-striped table-hover" >
+                    <table className="table table-hover" >
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>

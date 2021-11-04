@@ -23,7 +23,7 @@ const Table = () => {
                     <div className= "container p-3">
                         <h5 className = "text-center">Most Recent Expenses</h5>
                     </div>
-                    <table className="table table-striped table-hover" >
+                    <table className="table table-hover" >
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>

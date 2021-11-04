@@ -16,8 +16,8 @@ function NavBar() {
 
     return (
         <div>
-            <nav className = "navbar navbar-expand-md navbar-dark bg-dark sticky-top">    
-	            <h4 style = {{marginLeft: "25px"}}><b style = {{color: "rgb(213, 126, 126)"}}>Expense</b><b className = "text-white">Tracker</b></h4>
+            <nav className = "navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+	            <Link to= "/dashboard" style = {{marginLeft: "25px", fontSize: "28px" ,textDecoration: "none"}}><b style = {{color: "rgb(213, 126, 126)"}}>Expense</b> <b className = "text-white">Tracker</b></Link>
 	                <button
 	                type="button"
 	                className="navbar-toggler"
@@ -37,17 +37,18 @@ function NavBar() {
                             </h6>
                             <h6>
                                 <li className="nav-item">
-                                    <Link to="/dashboard">Dashboard </Link> 
+                                    <Link to="/dashboard"><i className= "fas fa-bookmark" style={{marginRight: "3px", color: "rgb(162, 205, 205)"}}> </i> Dashboard </Link> 
                                 </li>
                             </h6>   
                             <h6>
                                 <li className="nav-item">
-                                    <Link to="/search"> Search </Link> 
+                                    <Link to="/search"><i className= "fas fa-search" style={{marginRight: "2px", color: "rgb(162, 205, 205)"}}></i> Search </Link> 
                                 </li>
                             </h6>  
                             <h6> 
                                     <li className ="dropdown">
-                                    <a className ="dropdown-toggle" data-toggle="dropdown" href="#  ">Income
+                                    <i className= "fas fa-wallet" style={{marginRight: "2px", color: "rgb(162, 205, 205)"}}></i>
+                                    <a className ="dropdown-toggle" data-toggle="dropdown" href="#  " >Income 
                                     <span className ="caret"></span></a>
                                     <ul className ="dropdown-menu">
                                         <h6>
@@ -65,6 +66,7 @@ function NavBar() {
                             </h6>
                             <h6>
                                 <li className="dropdown">
+                                <i className= "fas fa-coins" style={{marginRight: "2px", color: "rgb(162, 205, 205)"}}></i>
                                     <a className="dropdown-toggle" data-toggle="dropdown" href="# ">Expense
                                     <span className="caret"></span></a>
                                     <ul className="dropdown-menu">
