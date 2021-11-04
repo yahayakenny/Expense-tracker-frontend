@@ -7,7 +7,6 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState(''); 
     const [userData, setUserData] = useState('')
-    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const history = useHistory()
 
@@ -43,9 +42,6 @@ const Login = () => {
                 }   
             }  
         )
-        .finally(() => {
-            setIsLoading(false)
-        })
         if (userData){
             history.push('/dashboard')
         }

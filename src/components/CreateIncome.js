@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
@@ -15,8 +15,6 @@ const IncomeSchema = Yup.object().shape({
   });
 
 const CreateIncome = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
     const history = useHistory();
 
     return (
@@ -33,7 +31,6 @@ const CreateIncome = () => {
                             validationSchema = {IncomeSchema}
                             onSubmit = {
                                 ({name, amount, description}) => {
-                                    setIsLoading(true)
                                     axios.post(ADD_INCOME_URL,
                                         {
                                                 name: name,
@@ -48,11 +45,8 @@ const CreateIncome = () => {
                                         ).then(res => 
                                             console.log(res.data)  
                                         )
-                                        .catch((error) => setError(error)
+                                        .catch((error) => console.log(error)
                                         )
-                                        .finally(() => {
-                                            setIsLoading(false)
-                                    }) 
                                     alert('Income Successfully added') 
                                         history.push('/all-income')            
                                 }

@@ -5,10 +5,8 @@ import { PolarAreaChart } from "./PolarAreaChart";
 
 export const FetchPolarAreaChart = () => {
     const [polarAreaData, setPolarAreaData] = useState({filtered: []});
-    const [isLoading, setIsLoading] = useState(false);
    
     useEffect(() => {
-        setIsLoading(true)
         axios.get(YEAR_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -37,7 +35,6 @@ export const FetchPolarAreaChart = () => {
                 ] 
             })
         ).catch(error => console.log(error))
-        setIsLoading(false);
         return () => {}
     },[])
     

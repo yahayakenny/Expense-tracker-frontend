@@ -11,8 +11,6 @@ const AllExpenses = ({getExpense}) => {
     const indexOfLastData = currentPage * dataPerPage
     const indexOfFirstData = indexOfLastData - dataPerPage
     const [tableData, setTableData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
    
@@ -20,7 +18,6 @@ const AllExpenses = ({getExpense}) => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        setIsLoading(true)
         axios.get(ALL_EXPENSES_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -28,7 +25,6 @@ const AllExpenses = ({getExpense}) => {
     
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
-        setIsLoading(false);
         history.push('/all-expenses')
         return () => {}
        
@@ -45,11 +41,8 @@ const AllExpenses = ({getExpense}) => {
                 alert('item deleted successfully')
                 setTableData(filtered_data)
             })
-            .catch((error) => setError(error)
+            .catch((error) => console.log(error)
             )
-            .finally(() => {
-                setIsLoading(false)
-        }) 
     }
  
     return (

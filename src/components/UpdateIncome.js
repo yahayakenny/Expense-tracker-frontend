@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useState } from 'react';
+import React from 'react';
 import { TOKEN } from './utils';
 import { useHistory } from 'react-router';
 import { Formik,} from 'formik';
@@ -15,8 +15,6 @@ const IncomeSchema = Yup.object().shape({
   });
 
 const UpdateIncome = ({getIncome}) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
     const history = useHistory();
 
     return (
@@ -47,11 +45,8 @@ const UpdateIncome = ({getIncome}) => {
                                     ).then(res => 
                                         console.log(res.data)  
                                     )
-                                    .catch((error) => setError(error)
+                                    .catch((error) => console.log(error)
                                     )
-                                    .finally(() => {
-                                        setIsLoading(false)
-                                })
                                 alert('Income Successfully updated') 
                                 history.push('/all-income')
                                 }

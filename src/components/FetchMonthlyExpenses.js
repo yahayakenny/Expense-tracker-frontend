@@ -5,10 +5,8 @@ import { MONTH_URL, TOKEN } from "./utils";
 
 export const FetchMontlyExpenses = () => {
     const [barChartData, setBarChartData] = useState({filtered: []});
-    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setIsLoading(true)
         axios.get(MONTH_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -53,7 +51,6 @@ export const FetchMontlyExpenses = () => {
                 ] 
             })
         ).catch(error => console.log(error))
-        setIsLoading(false);
         return () => {}
     },[])
     

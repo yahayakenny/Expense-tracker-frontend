@@ -5,10 +5,8 @@ import { CATEGORY_URL, TOKEN } from "./utils";
 
 export const FetchPieChart = () => {
     const [pieChartData, setPieChartData] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setIsLoading(true)
         axios.get(CATEGORY_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -39,7 +37,6 @@ export const FetchPieChart = () => {
                 ] 
             })
         ).catch(error => console.log(error))
-        setIsLoading(false);
         return () => {}
     },[])
     

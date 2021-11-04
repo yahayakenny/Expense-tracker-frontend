@@ -4,10 +4,8 @@ import axios from 'axios';
 
 const Table = () => {
     const [tableData, setTableData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
  
     useEffect(() => {
-        setIsLoading(true)
         axios.get(RECENT_EXPENSES_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -15,7 +13,6 @@ const Table = () => {
     
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
-        setIsLoading(false);
         return () => {}
     },[])
 

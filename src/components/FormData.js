@@ -1,20 +1,17 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import { FetchExpenses } from './FetchExpenses';
-import { DATE_RANGE_URL } from './utils';
+import { DATE_RANGE_URL, TOKEN } from './utils';
 
 export const FormData = () => {
     const [from_date, setFromDate] = useState('')
     const [to_date, setToDate] = useState('')
     const [select, setSelect] = useState('')
     const [data, setData] = useState({ filtered: [] })
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
+    const [error, setError] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault() 
-        const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM3NDg1OTg3LCJpYXQiOjE2MzQ4OTM5ODcsImp0aSI6Ijk5NDQxNTNlYzI2ZTRjYWFhZTExZThkMGE4Y2ExZDVlIiwidXNlcl9pZCI6MX0.F7O9Egk2VD72yiDmqE-JS9dicq1JASyNZ1-Mp3fqHE8'
-        setIsLoading(true)
         axios.get(DATE_RANGE_URL, {
             params: {
                 from_date: from_date,
@@ -39,11 +36,7 @@ export const FormData = () => {
                     alert('Invalid parameters')
                 }  
             }
-        )
-        .finally(() => {
-            setIsLoading(false)
-        })
-           
+        )     
     }
     return (
         <div className="container">

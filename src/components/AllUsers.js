@@ -2,9 +2,7 @@ import axios from "axios";
 import React, { useEffect }  from "react"
 import { useState } from "react/cjs/react.development";
 import {  ALL_USERS_URL, TOKEN } from "./utils";
-import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
-import { Link } from 'react-router-dom';
 
 const AllUsers = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -12,23 +10,18 @@ const AllUsers = () => {
     const indexOfLastData = currentPage * dataPerPage
     const indexOfFirstData = indexOfLastData - dataPerPage
     const [tableData, setTableData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        setIsLoading(true)
         axios.get(ALL_USERS_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`}
     
-        }).then(res => setTableData(res.data)  
-        ).catch(error => console.log(error))
-        setIsLoading(false);
+        }).then(res => setTableData(res.data))
         return () => {}
        
     },[])
@@ -43,12 +36,7 @@ const AllUsers = () => {
                 const filtered_data = tableData.filter((item) => item.id !== id);
                 alert('item deleted successfully')
                 setTableData(filtered_data)
-            })
-            .catch((error) => setError(error)
-            )
-            .finally(() => {
-                setIsLoading(false)
-        }) 
+        })
     }
  
     return (

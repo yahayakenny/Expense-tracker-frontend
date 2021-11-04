@@ -11,8 +11,6 @@ const AllIncome = ({getIncome}) => {
     const indexOfLastData = currentPage * dataPerPage
     const indexOfFirstData = indexOfLastData - dataPerPage
     const [tableData, setTableData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
    
@@ -20,7 +18,6 @@ const AllIncome = ({getIncome}) => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        setIsLoading(true)
         axios.get(ALL_INCOME_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -28,7 +25,6 @@ const AllIncome = ({getIncome}) => {
     
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
-        setIsLoading(false);
         history.push('/all-income')
         return () => {}
        
@@ -44,12 +40,7 @@ const AllIncome = ({getIncome}) => {
                 const filtered_data = tableData.filter((item) => item.id !== id);
                 alert('item deleted successfully')
                 setTableData(filtered_data)
-            })
-            .catch((error) => setError(error)
-            )
-            .finally(() => {
-                setIsLoading(false)
-        }) 
+            }).catch(error => console.log(error))
     }
  
     return (

@@ -5,10 +5,8 @@ import { DAY_URL, TOKEN } from "./utils";
 
 export const FetchLineGraph = () => {
     const [lineChartData, setLineChartData] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
   
     useEffect(() => {
-        setIsLoading(true)
         axios.get(DAY_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -37,7 +35,6 @@ export const FetchLineGraph = () => {
                 ] 
             })
         ).catch(error => console.log(error))
-        setIsLoading(false);
         return () => {}
     },[])
 

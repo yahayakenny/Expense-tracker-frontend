@@ -16,13 +16,10 @@ const ExpenseSchema = Yup.object().shape({
   });
 
 const CreateExpense = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
     const history = useHistory();
     const [getCategories, setGetCategories] = useState({filtered : []})
 
     useEffect(() => {
-        setIsLoading(true)
         axios.get(GET_CATEGORIES_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -31,7 +28,6 @@ const CreateExpense = () => {
         }).then(res => 
             setGetCategories(res.data)  
         ).catch(error => console.log(error))
-        setIsLoading(false);
         return () => {}
     },[])
 
@@ -50,7 +46,6 @@ const CreateExpense = () => {
                             validationSchema = {ExpenseSchema}
                             onSubmit = {
                                 ({name, amount, description, category}) => {
-                                    setIsLoading(true)
                                     axios.post(ADD_EXPENSE_URL,
                                     {
                                         name: name,
@@ -66,11 +61,9 @@ const CreateExpense = () => {
                                     ).then(res => 
                                         console.log(res.data)  
                                     )
-                                    .catch((error) => setError(error)
+                                    .catch((error) => console.log(error)
                                     )
-                                    .finally(() => {
-                                        setIsLoading(false)
-                                })
+                                  
                                 alert('Expense Successfully added') 
                                 history.push('/all-expenses')      
                                 }

@@ -5,11 +5,8 @@ import axios from 'axios';
 
 const Card = () => {
     const [cardData, setCardData] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-   
 
     useEffect(() => {
-        setIsLoading(true)
         axios.get(NET_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
@@ -18,7 +15,6 @@ const Card = () => {
             res => 
             setCardData(res.data) 
         ).catch(error => console.log(error))
-        setIsLoading(false);
         return () => {}
     },[])
 

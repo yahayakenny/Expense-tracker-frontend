@@ -31,8 +31,6 @@ const App = () => {
 
     const [getIncome, setGetIncome] = useState({})
     const [getExpense, setGetExpense] = useState({})
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
 
     const handleExpense = (id) => {
          axios.get(`http://127.0.0.1:8000/api/expense/${id}/`,{
@@ -43,7 +41,6 @@ const App = () => {
             res => 
             setGetExpense(res.data) 
         ).catch(error => console.log(error))
-        setIsLoading(false); 
     }
 
     const handleIncome = (id) => {
@@ -55,7 +52,6 @@ const App = () => {
             res => 
             setGetIncome(res.data) 
         ).catch(error => console.log(error))
-        setIsLoading(false); 
     }
 
     return(
