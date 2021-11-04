@@ -27,7 +27,7 @@ const App = () => {
         else {
             history.push('/')
         }
-    }, [])
+    }, [history])
 
     const [getIncome, setGetIncome] = useState({})
     const [getExpense, setGetExpense] = useState({})

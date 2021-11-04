@@ -38,7 +38,7 @@ const Login = () => {
             }
         )
         .catch((error) => {
-            if(error.response.status == 401){
+            if(error.response.status === 401){
                 setError('Error: Invalid Credentials')
                 }   
             }  

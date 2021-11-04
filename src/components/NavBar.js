@@ -32,7 +32,7 @@ function NavBar() {
                         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                             <h6>
                             <li className="nav-item ">
-                                <a href="#">Welcome {capitalize(user.username)}</a>
+                                <a href="# ">Welcome {capitalize(user.username)}</a>
                             </li>
                             </h6>
                             <h6>
@@ -47,7 +47,7 @@ function NavBar() {
                             </h6>  
                             <h6> 
                                     <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Income
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#  ">Income
                                     <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <h6>
@@ -65,7 +65,7 @@ function NavBar() {
                             </h6>
                             <h6>
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Expense
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="# ">Expense
                                     <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <h6>

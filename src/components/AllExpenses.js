@@ -32,7 +32,7 @@ const AllExpenses = ({getExpense}) => {
         history.push('/all-expenses')
         return () => {}
        
-    },[])
+    },[history])
 
     const handleDelete = (id) => {
         axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/expense/${id}/`, 

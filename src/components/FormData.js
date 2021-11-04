@@ -27,14 +27,14 @@ export const FormData = () => {
 
         }).then(res => {
                 setData(res.data)  
-                if (res.data.filtered.length == 0){
+                if (res.data.filtered.length === 0){
                     setError('No results found')
                     alert('No result found')
                 }   
             }   
         )
         .catch((error) => {
-                if(error.response.status == 404){
+                if(error.response.status === 404){
                     setError('Invalid parameters')
                     alert('Invalid parameters')
                 }  

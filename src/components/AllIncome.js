@@ -32,7 +32,7 @@ const AllIncome = ({getIncome}) => {
         history.push('/all-income')
         return () => {}
        
-    },[])
+    },[history])
 
     const handleDelete = (id) => {
         axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/income/${id}/`, 
