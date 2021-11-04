@@ -17,7 +17,7 @@ function NavBar() {
     return (
         <div>
             <nav className = "navbar navbar-expand-md navbar-dark bg-dark sticky-top">    
-	            <h4 style = {{marginLeft: "25px"}}><b style = {{color: "rgb(213, 126, 126)"}}>Expense</b> <b className = "text-white">Tracker</b></h4>
+	            <h4 style = {{marginLeft: "25px"}}><b style = {{color: "rgb(213, 126, 126)"}}>Expense</b><b className = "text-white">Tracker</b></h4>
 	                <button
 	                type="button"
 	                className="navbar-toggler"
@@ -81,13 +81,13 @@ function NavBar() {
                                     </ul>
                                 </li> 
                             </h6>
-                        {
+                        {/* {
                             user.isAdmin ? (<h6>
                                 <li className="nav-item">
                                     <Link to="/users"> Users </Link> 
                                 </li>
                             </h6> ) : ''
-                        }
+                        } */}
                         <h6>
                             <li className="nav-item">
                                 <Link to="/logout" onClick = {handleLogout}> Logout </Link> 
