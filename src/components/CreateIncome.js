@@ -76,7 +76,7 @@ const CreateIncome = () => {
                                     <div className = "error">
                                         {errors.description && touched.description ? (<div>{errors.description}</div>) : null}
                                     </div>
-                                    <button type="submit" class="btn btn-block  mb-0 mt-4" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Add</button>
+                                    <button type="submit" className="btn btn-block  mb-0 mt-4" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Add</button>
                                 </form>
                             )} 
                         </Formik>

@@ -46,7 +46,7 @@ const AllUsers = () => {
                     <div className= "container p-3">
                         <h5 className = "text-center">USERS</h5>
                     </div>
-                    <table class="table table-striped table-hover" >
+                    <table className="table table-striped table-hover" >
                         <thead>
                             <tr>
                                 <th scope="col">Username</th>

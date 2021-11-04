@@ -40,17 +40,17 @@ export const FormData = () => {
     }
     return (
         <div className="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-12 mb-4 mt-4 shadow-lg">
-                    <div class="container">
+            <div className="row">
+                <div className="col-md-4 col-sm-12 mb-4 mt-4 shadow-lg">
+                    <div className="container">
                         <form onSubmit = {handleSubmit}>
-                            <div class="form-outline mb-4" style = {{width: '100%'}}>
-                                <label class="form-label" for="from_date" >From:</label>
-                                <input type="date" id="from_date" class="form-control" onChange = {(e) => setFromDate(e.target.value)} value = {from_date}/>
+                            <div className="form-outline mb-4" style = {{width: '100%'}}>
+                                <label className="form-label" for="from_date" >From:</label>
+                                <input type="date" id="from_date" className="form-control" onChange = {(e) => setFromDate(e.target.value)} value = {from_date}/>
                             </div>
-                            <div class="form-outline mb-4"  style = {{width: '100%'}}>
-                                <label class="form-label" for="to_date">To:</label>
-                                <input type="date" id="to_date" class="form-control" onChange = {(e) => setToDate(e.target.value)} value = {to_date}/>
+                            <div className="form-outline mb-4"  style = {{width: '100%'}}>
+                                <label className = "form-label" for="to_date">To:</label>
+                                <input type="date" id="to_date" className = "form-control" onChange = {(e) => setToDate(e.target.value)} value = {to_date}/>
                             </div>
                             <br></br>
                             <select style={{width:'100%', height: '38px', borderWidth: 'none', padding: "3px"}}className="form-select" value={select} onChange = {(e) => setSelect(e.target.value)}>
@@ -59,12 +59,12 @@ export const FormData = () => {
                                 <option value="expense">Expense</option> 
                             </select>
                             <br></br><br></br>
-                            <button type="submit" class="btn btn-block mb-4" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Search</button>
+                            <button type="submit" className="btn btn-block mb-4" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Search</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-8 col-sm-12 mb-4 mt-4">
-                    <div class = "container">
+                <div className="col-md-8 col-sm-12 mb-4 mt-4">
+                    <div className = "container">
                         <FetchExpenses data = {data} error = {error}/> 
                     </div>
                 </div>

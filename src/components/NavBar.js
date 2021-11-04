@@ -17,7 +17,7 @@ function NavBar() {
     return (
         <div>
             <nav className = "navbar navbar-expand-md navbar-dark bg-dark sticky-top">    
-	            <h4 style = {{marginLeft: "25px"}}><b style = {{color: "rgb(213, 126, 126)"}}>Expense</b> <l className = "text-white">Tracker</l></h4>
+	            <h4 style = {{marginLeft: "25px"}}><b style = {{color: "rgb(213, 126, 126)"}}>Expense</b> <li className = "text-white">Tracker</li></h4>
 	                <button
 	                type="button"
 	                className="navbar-toggler"
@@ -46,10 +46,10 @@ function NavBar() {
                                 </li>
                             </h6>  
                             <h6> 
-                                    <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#  ">Income
-                                    <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
+                                    <li className ="dropdown">
+                                    <a className ="dropdown-toggle" data-toggle="dropdown" href="#  ">Income
+                                    <span className ="caret"></span></a>
+                                    <ul className ="dropdown-menu">
                                         <h6>
                                             <li className="nav-item">
                                                 <Link to="/add-income"> Add Income </Link> 
@@ -64,10 +64,10 @@ function NavBar() {
                                 </li> 
                             </h6>
                             <h6>
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="# ">Expense
-                                    <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
+                                <li className="dropdown">
+                                    <a className="dropdown-toggle" data-toggle="dropdown" href="# ">Expense
+                                    <span className="caret"></span></a>
+                                    <ul className="dropdown-menu">
                                         <h6>
                                             <li className="nav-item">
                                                 <Link to="/add-expense"> Add Expense </Link> 

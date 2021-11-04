@@ -59,9 +59,9 @@ const Login = () => {
                             </div>
                             <div className="form-outline mb-2  p-6"  style = {{width: '100%'}}>
                                 <label className="form-label" for="password"> Password: </label>
-                                <input type="password" class="form-control mb-4"  onChange = {handlePassword} value = {password}/>
+                                <input type="password" className="form-control mb-4"  onChange = {handlePassword} value = {password}/>
                             </div>
-                            <button type="submit" class="btn btn-block  mb-2 mt-2" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Login</button>
+                            <button type="submit" className="btn btn-block  mb-2 mt-2" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Login</button>
                         </form>
                         <h6 className = "text-danger text-center mt-4">{error}</h6>
                     </div>   

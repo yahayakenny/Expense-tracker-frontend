@@ -23,7 +23,7 @@ const Table = () => {
                     <div className= "container p-3">
                         <h5 className = "text-center">Most Recent Expenses</h5>
                     </div>
-                    <table class="table table-striped table-hover" >
+                    <table className="table table-striped table-hover" >
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
@@ -36,9 +36,9 @@ const Table = () => {
                         return(
                             <tbody>
                                 <tr>
-                                    <td key = {item.name}>{item.name}</td>
-                                    <td key = {item.category}>{item.category.name}</td>
-                                    <td key = {item.amount}>  £{item ? commas(item.amount) : item.amount}</td>
+                                    <td key = {item.index}>{item.name}</td>
+                                    <td key = {item.index}>{item.category.name}</td>
+                                    <td key = {item.index}>  £{item ? commas(item.amount) : item.amount}</td>
                                 </tr> 
                             </tbody>)
                         }): ''
