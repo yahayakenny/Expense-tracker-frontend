@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import { FetchExpenses } from './FetchExpenses';
-import { commas, DATE_RANGE_URL, TOKEN } from './utils';
+import { DATE_RANGE_URL, TOKEN } from './utils';
 
 export const FormData = () => {
     const [from_date, setFromDate] = useState('')
