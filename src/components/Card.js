@@ -38,7 +38,7 @@ const Card = () => {
                         <br></br><br></br>
                         <h1 className="card-text">£{cardData ? commas(cardData.income) : cardData.income}</h1>
                     </div>
-            </div> 
+                </div> 
             </div>
             <div className= "col-md-4 text-center">
                 <div className="card text-white mb-3 shadow-lg" style={{backgroundColor: "rgb(198, 213, 126)"}}>

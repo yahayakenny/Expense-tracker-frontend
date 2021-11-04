@@ -107,7 +107,7 @@ const UpdateExpense = ({getExpense}) => {
                                     <div className = "error">
                                         {errors.category && touched.category ? (<div>{errors.category}</div>) : null}
                                     </div>
-                                    <button type="submit" class="btn btn-block  mb-0 mt-4" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Add</button>
+                                    <button type="submit" className="btn btn-block  mb-0 mt-4" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Add</button>
                                 </form>
                             )} 
                         </Formik>

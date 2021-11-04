@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import { FetchExpenses } from './FetchExpenses';
-import { DATE_RANGE_URL, TOKEN } from './utils';
+import { commas, DATE_RANGE_URL, TOKEN } from './utils';
 
 export const FormData = () => {
     const [from_date, setFromDate] = useState('')
@@ -61,6 +61,12 @@ export const FormData = () => {
                             <br></br><br></br>
                             <button type="submit" className="btn btn-block mb-4" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Search</button>
                         </form>
+                        <div className="card text-white mb-3 shadow-lg text-center rounded" style = {{backgroundColor: "rgb(213, 126, 126)"}}>
+                            <div className="card-header">Total</div>
+                            <div className="card-body">
+                                <h1 className="card-text">£{data.total}</h1>
+                            </div>
+                        </div> 
                     </div>
                 </div>
                 <div className="col-md-8 col-sm-12 mb-4 mt-4">

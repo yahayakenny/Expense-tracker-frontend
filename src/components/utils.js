@@ -13,7 +13,6 @@ export const ALL_INCOME_URL = 'https://expense-tracker-yhk.herokuapp.com/api/inc
 export const ALL_USERS_URL = "https://expense-tracker-yhk.herokuapp.com/api/users/list/"
 export const NET_URL = 'https://expense-tracker-yhk.herokuapp.com/api/query-net/'
 
-
 export function commas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
