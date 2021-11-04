@@ -17,7 +17,7 @@ function NavBar() {
     return (
         <div>
             <nav className = "navbar navbar-expand-md navbar-dark bg-dark sticky-top">    
-	            <h4 style = {{marginLeft: "25px"}}><b style = {{color: "rgb(213, 126, 126)"}}>Expense</b> <li className = "text-white">Tracker</li></h4>
+	            <h4 style = {{marginLeft: "25px"}}><b style = {{color: "rgb(213, 126, 126)"}}>Expense</b> <b className = "text-white">Tracker</b></h4>
 	                <button
 	                type="button"
 	                className="navbar-toggler"
