@@ -55,7 +55,6 @@ const AllCategory= ({getCategory, TOKEN}) => {
                     <table className="table table-hover" >
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">Delete</th>
@@ -66,7 +65,6 @@ const AllCategory= ({getCategory, TOKEN}) => {
                         return(
                             <tbody>
                                 <tr>
-                                    <td>{item.id}</td>
                                     <td>{item.name}</td>
                                     <td onClick = {()=> getCategory(item.id)}><Link to = 'update-category/'><i class="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
                                     <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>

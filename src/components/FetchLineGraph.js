@@ -18,6 +18,16 @@ export const FetchLineGraph = ({TOKEN}) => {
                 labels: res.data.filtered.map((item)=> item.day),
                 datasets: [{
                     label: 'Last Seven Days',
+                    fill: false,
+                    lineTension: 0.1,
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBackgroundColor: '#fff',
+                    pointRadius: 1,
+                    pointHoverRadius: 1,
+                    pointHitRadius: 10,
                     data: res.data.filtered.map((item)=> item.amount),
                     backgroundColor: [
                         'rgb(162, 205, 205)',

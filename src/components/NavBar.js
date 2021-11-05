@@ -59,7 +59,7 @@ function NavBar() {
                             </h6>
                             <h6> 
                                  <li className ="dropdown">
-                                    <i className= "fas fa-layer-group" style={{marginRight: "2px", color: "rgb(162, 205, 205)"}}></i>
+                                    <i className= "fas fa-layer-gr" style={{marginRight: "2px", color: "rgb(162, 205, 205)"}}></i>
                                     <a className ="dropdown-toggle" data-toggle="dropdown" href="#  " >Category
                                     <span className ="caret"></span></a>
                                     <ul className ="dropdown-menu">
@@ -104,7 +104,7 @@ function NavBar() {
                         } */}
                         <h6>
                             <li className="nav-item">
-                                <Link to="/logout" onClick = {handleLogout}> Logout </Link> 
+                                <Link to="/logout" onClick = {handleLogout}> <i className= "fas fa-sign-out-alt" style={{marginRight: "3px", color: "rgb(162, 205, 205)"}}> </i> Logout </Link> 
                             </li>
                         </h6>   
                     </ul>) : ''

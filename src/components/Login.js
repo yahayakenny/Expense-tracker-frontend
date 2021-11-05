@@ -38,6 +38,7 @@ const Login = () => {
         )
         if (userData){
             history.push('/dashboard')
+            window.location.reload();
         }
     }
     return (
