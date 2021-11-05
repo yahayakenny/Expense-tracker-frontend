@@ -1,11 +1,5 @@
 html,
 body {
-  overflow-x: hidden;
-  position: relative;
-}
-
-html,
-body {
   position: relative;
   overflow-x: hidden;
   font-family: 'Nunito';

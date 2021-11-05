@@ -24,7 +24,7 @@ const Table = ({TOKEN}) => {
                         <h5 className = "text-center">Most Recent Expenses</h5>
                     </div>
                     <div className = "table-responsive">
-                        <table className="table table-hover" >
+                        <table className="table table-hover table-fixed" >
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>

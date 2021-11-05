@@ -53,7 +53,7 @@ const AllCategory= ({getCategory, TOKEN}) => {
                         <h5 className = "text-center">All Categories</h5>
                     </div>
                     <div className="table-responsive">
-                        <table className="table table-hover" >
+                        <table className="table table-hover table-fixed" >
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>

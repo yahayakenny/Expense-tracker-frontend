@@ -47,7 +47,7 @@ const AllUsers = ({TOKEN}) => {
                         <h5 className = "text-center">USERS</h5>
                     </div>
                     <div className="table-responsive">
-                        <table className="table table-striped table-hover" >
+                        <table className="table table-hover table-fixed" >
                             <thead>
                                 <tr>
                                     <th scope="col">Username</th>
