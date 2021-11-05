@@ -40,38 +40,40 @@ const AllUsers = ({TOKEN}) => {
     }
  
     return (
-        <div >
+        <div>
             <div className= "container">  
                 <div className = "p-1">
                     <div className= "container p-3">
                         <h5 className = "text-center">USERS</h5>
                     </div>
-                    <table className="table table-striped table-hover" >
-                        <thead>
-                            <tr>
-                                <th scope="col">Username</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Admin</th>
-                                <th scope="col">Delete</th>
-                            </tr>
-                        </thead>
-                        {currentData ?
-                       currentData.map(item => {
-                        return(
-                            <tbody>
+                    <div className="table-responsive">
+                        <table className="table table-striped table-hover" >
+                            <thead>
                                 <tr>
-                                    <td>{item.username}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.isAdmin ? 'YES' : 'NO'}</td>
-                                    <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>
-                                </tr> 
-                            </tbody>)
-                        }): ''
-                        }
-                        <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
-                    </table>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Admin</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            {currentData ?
+                        currentData.map(item => {
+                            return(
+                                <tbody>
+                                    <tr>
+                                        <td>{item.username}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.isAdmin ? 'YES' : 'NO'}</td>
+                                        <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>
+                                    </tr> 
+                                </tbody>)
+                            }): ''
+                            }
+                            <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
+                        </table>
+                    </div>
                 </div>     
             </div>
         </div>  

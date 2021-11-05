@@ -23,27 +23,29 @@ const Table = ({TOKEN}) => {
                     <div className= "container p-3">
                         <h5 className = "text-center">Most Recent Expenses</h5>
                     </div>
-                    <table className="table table-hover" >
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Amount</th>
-                            </tr>
-                        </thead>
-                        { tableData ?
-                        tableData.map(item => {
-                        return(
-                            <tbody>
+                    <div className = "table-responsive">
+                        <table className="table table-hover" >
+                            <thead>
                                 <tr>
-                                    <td key = {item.index}>{item.name}</td>
-                                    <td key = {item.index}>{item.category.name}</td>
-                                    <td key = {item.index}>  £{item ? commas(item.amount) : item.amount}</td>
-                                </tr> 
-                            </tbody>)
-                        }): ''
-                        }
-                    </table>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+                            </thead>
+                            { tableData ?
+                            tableData.map(item => {
+                            return(
+                                <tbody>
+                                    <tr>
+                                        <td key = {item.index}>{item.name}</td>
+                                        <td key = {item.index}>{item.category.name}</td>
+                                        <td key = {item.index}>  £{item ? commas(item.amount) : item.amount}</td>
+                                    </tr> 
+                                </tbody>)
+                            }): ''
+                            }
+                        </table>
+                    </div>
                 </div>     
             </div>
         </div>  

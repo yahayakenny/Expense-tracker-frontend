@@ -52,28 +52,30 @@ const AllCategory= ({getCategory, TOKEN}) => {
                     <div className= "container p-3">
                         <h5 className = "text-center">All Categories</h5>
                     </div>
-                    <table className="table table-hover" >
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Edit</th>
-                                <th scope="col">Delete</th>
-                            </tr>
-                        </thead>
-                        {currentData ?
-                       currentData.map(item => {
-                        return(
-                            <tbody>
+                    <div className="table-responsive">
+                        <table className="table table-hover" >
+                            <thead>
                                 <tr>
-                                    <td>{item.name}</td>
-                                    <td onClick = {()=> getCategory(item.id)}><Link to = 'update-category/'><i class="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
-                                    <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>
-                                </tr> 
-                            </tbody>)
-                        }): ''
-                        }
-                        <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
-                    </table>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            {currentData ?
+                        currentData.map(item => {
+                            return(
+                                <tbody>
+                                    <tr>
+                                        <td>{item.name}</td>
+                                        <td onClick = {()=> getCategory(item.id)}><Link to = 'update-category/'><i class="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
+                                        <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>
+                                    </tr> 
+                                </tbody>)
+                            }): ''
+                            }
+                            <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
+                        </table>
+                    </div>
                 </div>     
             </div>
         </div>  
