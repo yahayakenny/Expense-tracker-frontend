@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import { TOKEN } from './utils';
 import { useHistory } from 'react-router';
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
@@ -14,7 +13,7 @@ const IncomeSchema = Yup.object().shape({
     description: Yup.string().required('The description is required'),
   });
 
-const UpdateIncome = ({getIncome}) => {
+const UpdateIncome = ({getIncome, TOKEN}) => {
     const history = useHistory();
 
     return (
@@ -55,7 +54,7 @@ const UpdateIncome = ({getIncome}) => {
                             {({values, errors, touched, handleChange, handleBlur, handleSubmit}) => (
                                 <form onSubmit = {handleSubmit}>
                                     <div className="form-outline mb-2 p-6" style = {{width: '100%'}}>
-                                        <label className="form-label" for="name"> Name: </label>
+                                        <label className="form-label" htmlFor="name"> Name: </label>
                                         <input type="text" id="name"  name = "name" className="form-control" onChange = {handleChange} value = {values.name} placeholder={getIncome.name}/>
                                     </div>
                                     <h6 className = "error">
@@ -63,14 +62,14 @@ const UpdateIncome = ({getIncome}) => {
                                     </h6>
                                    
                                     <div  className="form-outline mb-2  p-6"  style = {{width: '100%'}}>
-                                        <label className="form-label" for="amount"> Amount (pounds): </label>
+                                        <label className="form-label" htmlFor="amount"> Amount (pounds): </label>
                                         <input type="text" id="amount"  name = "amount" className="form-control" onChange = {handleChange} value = {values.amount} placeholder={getIncome.amount} />
                                     </div>
                                     <div className="error">
                                         {errors.amount && touched.amount ? (<div>{errors.amount}</div>) : null} 
                                     </div>
                                     <div className="form-outline p-6"  style = {{width: '100%'}}>
-                                        <label className="form-label" for="description"> Description:</label>
+                                        <label className="form-label" htmlFor="description"> Description:</label>
                                         <input type="text" id="description" name = "description" className="form-control" onChange = {handleChange} value = {values.description} placeholder={getIncome.description}/>
                                     </div>
                                     <div className = "error">

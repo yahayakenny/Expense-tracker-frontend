@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import './App.css';
-import {ADD_INCOME_URL, TOKEN } from './utils';
+import {ADD_INCOME_URL} from './utils';
 
 const IncomeSchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
@@ -14,9 +14,8 @@ const IncomeSchema = Yup.object().shape({
     description: Yup.string().required('The description is required'),
   });
 
-const CreateIncome = () => {
+const CreateIncome = ({TOKEN}) => {
     const history = useHistory();
-
     return (
         <div>
             <div className="container">

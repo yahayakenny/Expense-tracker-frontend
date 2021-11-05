@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import axios from 'axios';
-import { TOKEN, YEAR_URL } from "./utils";
+import { YEAR_URL } from "./utils";
 import { PolarAreaChart } from "./PolarAreaChart";
 
-export const FetchPolarAreaChart = () => {
+export const FetchPolarAreaChart = ({TOKEN}) => {
     const [polarAreaData, setPolarAreaData] = useState({filtered: []});
    
     useEffect(() => {
@@ -36,7 +36,7 @@ export const FetchPolarAreaChart = () => {
             })
         ).catch(error => console.log(error))
         return () => {}
-    },[])
+    },[TOKEN])
     
     return (
         <div className="shadow-lg rounded">  

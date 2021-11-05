@@ -1,6 +1,6 @@
 import React, { useState, useEffect}  from 'react';
 import axios from 'axios';
-import { ADD_EXPENSE_URL, GET_CATEGORIES_URL, TOKEN } from './utils';
+import { ADD_EXPENSE_URL, GET_CATEGORIES_URL} from './utils';
 import './App.css'
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
@@ -15,7 +15,7 @@ const ExpenseSchema = Yup.object().shape({
     category: Yup.string().required('The category is required')
   });
 
-const CreateExpense = () => {
+const CreateExpense = ({TOKEN}) => {
     const history = useHistory();
     const [getCategories, setGetCategories] = useState({filtered : []})
 
@@ -28,8 +28,9 @@ const CreateExpense = () => {
         }).then(res => 
             setGetCategories(res.data)  
         ).catch(error => console.log(error))
+
         return () => {}
-    },[])
+    },[TOKEN])
 
     return (
         <div>

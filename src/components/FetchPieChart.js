@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import {PieChart} from './PieChart';
 import axios from 'axios';
-import { CATEGORY_URL, TOKEN } from "./utils";
+import { CATEGORY_URL } from "./utils";
 
-export const FetchPieChart = () => {
+export const FetchPieChart = ({TOKEN}) => {
     const [pieChartData, setPieChartData] = useState({});
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export const FetchPieChart = () => {
             })
         ).catch(error => console.log(error))
         return () => {}
-    },[])
+    },[TOKEN])
     
     return (
         <div className="shadow-lg rounded">  

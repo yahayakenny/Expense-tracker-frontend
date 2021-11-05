@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import {BarChart} from './BarChart';
 import axios from 'axios';
-import { MONTH_URL, TOKEN } from "./utils";
+import { MONTH_URL} from "./utils";
 
-export const FetchMontlyExpenses = () => {
+export const FetchMontlyExpenses = ({TOKEN}) => {
     const [barChartData, setBarChartData] = useState({filtered: []});
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export const FetchMontlyExpenses = () => {
             })
         ).catch(error => console.log(error))
         return () => {}
-    },[])
+    },[TOKEN])
     
     return (
         <div className="shadow-lg rounded">  

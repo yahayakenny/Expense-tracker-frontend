@@ -1,6 +1,6 @@
 import React, { useState, useEffect}  from 'react';
 import axios from 'axios';
-import {GET_CATEGORIES_URL, TOKEN } from './utils';
+import {GET_CATEGORIES_URL } from './utils';
 import './App.css'
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
@@ -15,7 +15,7 @@ const ExpenseSchema = Yup.object().shape({
     category: Yup.string().required('The category is required')
   });
 
-const UpdateExpense = ({getExpense}) => {
+const UpdateExpense = ({getExpense, TOKEN}) => {
     const history = useHistory();
     const [getCategories, setGetCategories] = useState({filtered : []})
 
@@ -29,7 +29,7 @@ const UpdateExpense = ({getExpense}) => {
             setGetCategories(res.data)  
         ).catch(error => console.log(error))
         return () => {}
-    },[])
+    },[TOKEN])
 
     return (
         <div>
@@ -46,7 +46,7 @@ const UpdateExpense = ({getExpense}) => {
                             validationSchema = {ExpenseSchema}
                             onSubmit = {
                                 ({name, amount, description, category}) => {
-                                axios.put(`http://127.0.0.1:8000/api/expense/${getExpense.id}/`,
+                                axios.put(`https://expense-tracker-yhk.herokuapp.com/api/expense/${getExpense.id}/`,
                                     {
                                             name: name,
                                             amount:amount,

@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect }  from "react"
 import { useState } from "react/cjs/react.development";
-import {  ALL_USERS_URL, TOKEN } from "./utils";
+import {  ALL_USERS_URL } from "./utils";
 import Pagination from "./Pagination";
 
-const AllUsers = () => {
+const AllUsers = ({TOKEN}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(2)
     const indexOfLastData = currentPage * dataPerPage
@@ -24,7 +24,7 @@ const AllUsers = () => {
         }).then(res => setTableData(res.data))
         return () => {}
        
-    },[])
+    },[TOKEN])
 
     const handleDelete = (id) => {
         axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/users/list/${id}/`, 

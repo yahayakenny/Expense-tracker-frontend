@@ -6,40 +6,55 @@ import { FetchMontlyExpenses } from "./FetchMonthlyExpenses";
 import './App.css'
 import { FetchPolarAreaChart } from "./FetchPolarAreaChart";
 import Side from "./Side";
+import './App.css'
 
-const Dashboard = () => {
+const Dashboard = ({TOKEN, name}) => {
     return (
         <div className="container" >
             <br></br> <br></br> 
+            <div className = "hero padding">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-6 col-sm-12 hero-text d-flex align-items-center">
+                            <div>
+                                <h3>Welcome {name}</h3>
+                                <h5>Here is a summary of your spending this month..</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br></br> <br></br> 
             <div className="row">
+           
                 <div className="col-md-9">
                     <div>
-                        <Card/>
+                        <Card TOKEN = {TOKEN}/>
                     </div>
                     <div className="row">
                         <div className=" col-md-5 col-sm-12 mb-4 mt-4 ">
-                            <FetchPieChart/>
+                            <FetchPieChart TOKEN = {TOKEN}/>
                         </div>
                         <div className="col-md-7 col-sm-12 mb-4 mb-4 mt-4 ">
-                            <FetchLineGraph/>
+                            <FetchLineGraph TOKEN = {TOKEN}/>
                         </div> 
                     </div> 
                     <br></br> 
                 </div>
                 <div className="col-md-3">
-                    <Side/>
+                    <Side TOKEN = {TOKEN}/>
                 </div>
             </div>
             <div className= "shadow-lg">
-                <Table/>
+                <Table TOKEN = {TOKEN}/>
             </div>
             <br></br> 
             <div className="row">
                 <div className=" col-md-5 col-sm-12 mb-4 mt-4 ">
-                    <FetchMontlyExpenses/>
+                    <FetchMontlyExpenses TOKEN = {TOKEN}/>
                 </div>
                 <div className="col-md-7 col-sm-12 mb-4 mb-4 mt-4 ">
-                    <FetchPolarAreaChart/>
+                    <FetchPolarAreaChart TOKEN = {TOKEN}/>
                 </div> 
             </div> 
             <br></br>

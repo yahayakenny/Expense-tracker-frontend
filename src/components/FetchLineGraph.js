@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { LineChart } from './LineChart';
 import axios from 'axios';
-import { DAY_URL, TOKEN } from "./utils";
+import { DAY_URL} from "./utils";
 
-export const FetchLineGraph = () => {
+//LINE GRAPH NOT USING TOKEN, ANOTHER JUSTIFICATION FOR REDUX
+export const FetchLineGraph = ({TOKEN}) => {
     const [lineChartData, setLineChartData] = useState({});
   
     useEffect(() => {
@@ -36,7 +37,7 @@ export const FetchLineGraph = () => {
             })
         ).catch(error => console.log(error))
         return () => {}
-    },[])
+    },[TOKEN])
 
     return (
         <div className="shadow-lg rounded">  

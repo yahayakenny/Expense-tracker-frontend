@@ -4,9 +4,7 @@ import { useHistory } from 'react-router';
 function NavBar() {
     const history = useHistory()
     let user = JSON.parse(localStorage.getItem('userInfo'))
-    function capitalize(s){
-        return s[0].toUpperCase() + s.slice(1);
-    }
+   
    
     const handleLogout = () => {
         localStorage.removeItem('userInfo') 
@@ -31,11 +29,6 @@ function NavBar() {
                         user  ? (
                         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                             <h6>
-                            <li className="nav-item ">
-                                <a href="# ">Welcome {capitalize(user.username)}</a>
-                            </li>
-                            </h6>
-                            <h6>
                                 <li className="nav-item">
                                     <Link to="/dashboard"><i className= "fas fa-bookmark" style={{marginRight: "3px", color: "rgb(162, 205, 205)"}}> </i> Dashboard </Link> 
                                 </li>
@@ -46,7 +39,7 @@ function NavBar() {
                                 </li>
                             </h6>  
                             <h6> 
-                                    <li className ="dropdown">
+                                 <li className ="dropdown">
                                     <i className= "fas fa-wallet" style={{marginRight: "2px", color: "rgb(162, 205, 205)"}}></i>
                                     <a className ="dropdown-toggle" data-toggle="dropdown" href="#  " >Income 
                                     <span className ="caret"></span></a>
@@ -59,6 +52,25 @@ function NavBar() {
                                         <h6>
                                             <li className="nav-item">
                                                 <Link to="/all-income">View Income </Link> 
+                                            </li>
+                                        </h6>  
+                                    </ul>
+                                </li> 
+                            </h6>
+                            <h6> 
+                                 <li className ="dropdown">
+                                    <i className= "fas fa-layer-group" style={{marginRight: "2px", color: "rgb(162, 205, 205)"}}></i>
+                                    <a className ="dropdown-toggle" data-toggle="dropdown" href="#  " >Category
+                                    <span className ="caret"></span></a>
+                                    <ul className ="dropdown-menu">
+                                        <h6>
+                                            <li className="nav-item">
+                                                <Link to="/add-category"> Add Category </Link> 
+                                            </li>
+                                        </h6>   
+                                        <h6>
+                                            <li className="nav-item">
+                                                <Link to="/all-category">View Categories </Link> 
                                             </li>
                                         </h6>  
                                     </ul>

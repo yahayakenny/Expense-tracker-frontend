@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState }  from "react"
-import { ALL_INCOME_URL, commas, TOKEN } from "./utils";
+import { ALL_INCOME_URL, commas, } from "./utils";
 import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
 
-const AllIncome = ({getIncome}) => {
+const AllIncome = ({getIncome, TOKEN}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(10)
     const indexOfLastData = currentPage * dataPerPage
@@ -26,9 +26,10 @@ const AllIncome = ({getIncome}) => {
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
         history.push('/all-income')
+
         return () => {}
        
-    },[history])
+    },[history, TOKEN])
 
     const handleDelete = (id) => {
         axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/income/${id}/`, 

@@ -1,8 +1,8 @@
-import { commas, RECENT_EXPENSES_URL, TOKEN } from "./utils";
+import { commas, RECENT_EXPENSES_URL, } from "./utils";
 import { useEffect, useState } from "react"
 import axios from 'axios';
 
-const Table = () => {
+const Table = ({TOKEN}) => {
     const [tableData, setTableData] = useState([]);
  
     useEffect(() => {
@@ -14,7 +14,7 @@ const Table = () => {
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
         return () => {}
-    },[])
+    },[TOKEN])
 
     return (
         <div >

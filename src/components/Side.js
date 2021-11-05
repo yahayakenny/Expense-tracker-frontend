@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState  } from 'react'
-import { NET_URL, TOKEN } from './utils';
+import { NET_URL } from './utils';
 
-const Side = () => {
+const Side = ({TOKEN}) => {
     const [cardData, setCardData] = useState('');
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const Side = () => {
             setCardData(res.data) 
         ).catch(error => console.log(error))
         return () => {}
-    },[])
+    },[TOKEN])
 
     return (
         <div className="container">

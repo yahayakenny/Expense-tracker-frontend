@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState} from "react";
-import { TOKEN } from "./utils";
 import { useHistory } from 'react-router';
 
 const Login = () => {
@@ -25,11 +24,6 @@ const Login = () => {
             username: username,
             password: password,  
             },
-            {headers:{
-                "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`
-            }}
-
         ).then(res =>
             {
                 setUserData(res.data)
@@ -54,11 +48,11 @@ const Login = () => {
                         <h5 className = "text-center mb-4">LOGIN</h5>
                         <form onSubmit = {handleSubmit}>
                             <div className="form-outline mb-2 p-6" style = {{width: '100%'}}>
-                                <label className="form-label" for="name"> Username: </label>
-                                <input type="text" class="form-control mb-4"  onChange = {handleUsername} value = {username}/>
+                                <label className="form-label" htmlFor="name"> Username: </label>
+                                <input type="text" className="form-control mb-4"  onChange = {handleUsername} value = {username}/>
                             </div>
                             <div className="form-outline mb-2  p-6"  style = {{width: '100%'}}>
-                                <label className="form-label" for="password"> Password: </label>
+                                <label className="form-label" htmlFor="password"> Password: </label>
                                 <input type="password" className="form-control mb-4"  onChange = {handlePassword} value = {password}/>
                             </div>
                             <button type="submit" className="btn btn-block  mb-2 mt-2" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Login</button>

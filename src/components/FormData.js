@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import { FetchExpenses } from './FetchExpenses';
-import { DATE_RANGE_URL, TOKEN } from './utils';
+import { DATE_RANGE_URL} from './utils';
 
-export const FormData = () => {
+export const FormData = ({TOKEN}) => {
     const [from_date, setFromDate] = useState('')
     const [to_date, setToDate] = useState('')
     const [select, setSelect] = useState('')
     const [data, setData] = useState({ filtered: [] })
     const [error, setError] = useState('')
-
+    
     const handleSubmit = (e) => {
         e.preventDefault() 
         axios.get(DATE_RANGE_URL, {
