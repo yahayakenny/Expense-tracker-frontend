@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import './App.css'
+import { BASE_URL } from './utils';
 
 const IncomeSchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
@@ -30,7 +31,7 @@ const UpdateIncome = ({getIncome, TOKEN}) => {
                             validationSchema = {IncomeSchema}
                             onSubmit = {
                                 ({name, amount, description}) => {
-                                    axios.put(`https://expense-tracker-yhk.herokuapp.com/api/income/${getIncome.id}/`,
+                                    axios.put(`${BASE_URL}/income/${getIncome.id}/`,
                                     {
                                         name: name,
                                         amount:amount,

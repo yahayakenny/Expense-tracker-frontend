@@ -1,12 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 export const lightTheme = {
-    body: '#fff',
-    fontColor: '#000'
+    body: '	#FFFFFF',
+    fontColor: 'black'
 }
 
 export const darkTheme = {
-    body: '#000',
-    fontColor: 'white'
+    body: 'black',
+    fontColor: '	#FFFFFF'
 
 }
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState} from "react";
 import { useHistory } from 'react-router';
+import { BASE_URL } from "./utils";
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ const Login = () => {
  
      const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('https://expense-tracker-yhk.herokuapp.com/api/users/login',
+        axios.post(`${BASE_URL}/users/login`,
         {
             username: username,
             password: password,  

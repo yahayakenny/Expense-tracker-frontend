@@ -19,6 +19,7 @@ import AllCategory from "./components/AllCategories";
 import UpdateCategory from "./components/UpdateCategory";
 import {ThemeProvider} from 'styled-components';
 import {lightTheme, darkTheme, GlobalStyles} from './components/Themes';
+import { BASE_URL } from "./components/utils";
 
 const App = () => {
     const history = useHistory()
@@ -48,7 +49,7 @@ const App = () => {
     const [getCategory, setGetCategory] = useState({})
 
     const handleExpense = (id) => {
-         axios.get(`https://expense-tracker-yhk.herokuapp.com/api/expense/${id}/`,{
+         axios.get(`${BASE_URL}/expense/${id}/`,{
             headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`}
@@ -59,7 +60,7 @@ const App = () => {
     }
 
     const handleIncome = (id) => {
-         axios.get(`https://expense-tracker-yhk.herokuapp.com/api/income/${id}/`,{
+         axios.get(`${BASE_URL}/income/${id}/`,{
             headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`}
@@ -70,7 +71,7 @@ const App = () => {
     }
 
     const handleCategory= (id) => {
-         axios.get(`https://expense-tracker-yhk.herokuapp.com/api/category/${id}/`,{
+         axios.get(`${BASE_URL}/category/${id}/`,{
             headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`}

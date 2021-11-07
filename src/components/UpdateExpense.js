@@ -1,6 +1,6 @@
 import React, { useState, useEffect}  from 'react';
 import axios from 'axios';
-import {GET_CATEGORIES_URL } from './utils';
+import {BASE_URL, GET_CATEGORIES_URL } from './utils';
 import './App.css'
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
@@ -46,7 +46,7 @@ const UpdateExpense = ({getExpense, TOKEN}) => {
                             validationSchema = {ExpenseSchema}
                             onSubmit = {
                                 ({name, amount, description, category}) => {
-                                axios.put(`https://expense-tracker-yhk.herokuapp.com/api/expense/${getExpense.id}/`,
+                                axios.put(`${BASE_URL}/expense/${getExpense.id}/`,
                                     {
                                             name: name,
                                             amount:amount,

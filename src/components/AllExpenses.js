@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef }  from "react"
-import { ALL_EXPENSES_URL, commas,EXPORT_CSV_URL, EXPORT_EXCEL_URL, EXPORT_PDF_URL} from "./utils";
+import { ALL_EXPENSES_URL, BASE_URL, commas,EXPORT_CSV_URL, EXPORT_EXCEL_URL, EXPORT_PDF_URL} from "./utils";
 import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
@@ -33,7 +33,7 @@ const AllExpenses = ({getExpense, TOKEN}) => {
     },[history, TOKEN])
 
     const handleDelete = (id) => {
-        axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/expense/${id}/`, 
+        axios.delete(`${BASE_URL}/expense/${id}/`, 
             {headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`
