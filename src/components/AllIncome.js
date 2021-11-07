@@ -76,8 +76,8 @@ const AllIncome = ({getIncome, TOKEN}) => {
                                 </tbody>)
                             }): ''
                             }
-                            <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                         </table>
+                        <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                     </div>
                 </div>     
             </div>
