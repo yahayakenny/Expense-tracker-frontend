@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState }  from "react"
-import { GET_CATEGORIES_URL} from "./utils";
+import { BASE_URL, GET_CATEGORIES_URL} from "./utils";
 import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
@@ -33,7 +33,7 @@ const AllCategory= ({getCategory, TOKEN}) => {
     },[history, TOKEN])
 
     const handleDelete = (id) => {
-        axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/category/${id}/`, 
+        axios.delete(`${BASE_URL}/category/${id}/`, 
             {headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`
@@ -67,14 +67,14 @@ const AllCategory= ({getCategory, TOKEN}) => {
                                 <tbody>
                                     <tr>
                                         <td>{item.name}</td>
-                                        <td onClick = {()=> getCategory(item.id)}><Link to = 'update-category/'><i class="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
+                                        <td onClick = {()=> getCategory(item.id)}><Link to = 'update-category/'><i className="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
                                         <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>
                                     </tr> 
                                 </tbody>)
                             }): ''
                             }
-                            <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                         </table>
+                        <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                     </div>
                 </div>     
             </div>

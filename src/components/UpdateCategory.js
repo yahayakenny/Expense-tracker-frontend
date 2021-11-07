@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import './App.css'
+import { BASE_URL } from './utils';
 
 const CategorySchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
@@ -24,7 +25,7 @@ const UpdateCategory = ({getCategory, TOKEN}) => {
                             validationSchema = {CategorySchema}
                             onSubmit = {
                                 ({name}) => {
-                                    axios.put(`https://expense-tracker-yhk.herokuapp.com/api/category/${getCategory.id}/`,
+                                    axios.put(`${BASE_URL}/category/${getCategory.id}/`,
                                     {
                                         name: name,
                                     },

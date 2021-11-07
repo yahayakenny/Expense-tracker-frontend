@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState }  from "react"
-import { ALL_INCOME_URL, commas, } from "./utils";
+import { ALL_INCOME_URL, BASE_URL, commas, } from "./utils";
 import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
@@ -32,7 +32,7 @@ const AllIncome = ({getIncome, TOKEN}) => {
     },[history, TOKEN])
 
     const handleDelete = (id) => {
-        axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/income/${id}/`, 
+        axios.delete(`${BASE_URL}/income/${id}/`, 
             {headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`

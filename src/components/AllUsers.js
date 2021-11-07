@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect }  from "react"
 import { useState } from "react/cjs/react.development";
-import {  ALL_USERS_URL } from "./utils";
+import {  ALL_USERS_URL, BASE_URL } from "./utils";
 import Pagination from "./Pagination";
 
 const AllUsers = ({TOKEN}) => {
@@ -27,7 +27,7 @@ const AllUsers = ({TOKEN}) => {
     },[TOKEN])
 
     const handleDelete = (id) => {
-        axios.delete(`https://expense-tracker-yhk.herokuapp.com/api/users/list/${id}/`, 
+        axios.delete(`${BASE_URL}/users/list/${id}/`, 
             {headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`
