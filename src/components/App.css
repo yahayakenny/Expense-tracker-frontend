@@ -82,10 +82,45 @@ input {
   line-height: 1.7rem;
   letter-spacing: 0rem;
   text-align: left;
-  /* background: linear-gradient(94.25deg, #5cb102 5.78%, #f58634 83.23%);
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text; */
 }
+
+.btn-toggle {
+  position: relative;
+  background-color: #4CAF50;
+  border: none;
+  font-size: 12px;
+  color: #FFFFFF;
+  padding: 5px;
+  width: 60px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  margin-top: -10px !important;
+}
+
+.btn-toggle:after {
+  content: "";
+  background: #f1f1f1;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.btn-toggle:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+
 
 @media(max-width: 767px){
   .expense { 

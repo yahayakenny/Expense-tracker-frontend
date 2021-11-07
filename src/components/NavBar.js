@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 
-function NavBar() {
+function NavBar({themeToggler, theme}) {
     const history = useHistory()
     let user = JSON.parse(localStorage.getItem('userInfo'))
    
@@ -105,6 +105,11 @@ function NavBar() {
                         <h6>
                             <li className="nav-item">
                                 <Link to="/logout" onClick = {handleLogout}> <i className= "fas fa-sign-out-alt" style={{marginRight: "3px", color: "rgb(162, 205, 205)"}}> </i> Logout </Link> 
+                            </li>
+                        </h6>   
+                        <h6>
+                            <li className="nav-item">
+                                <button className = 'btn-toggle' onClick={() => themeToggler()}>{theme === 'dark' ? 'Light':  'Dark'}</button>
                             </li>
                         </h6>   
                     </ul>) : ''

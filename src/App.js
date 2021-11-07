@@ -17,11 +17,19 @@ import { useEffect } from "react";
 import CreateCategory from "./components/CreateCategory";
 import AllCategory from "./components/AllCategories";
 import UpdateCategory from "./components/UpdateCategory";
+import {ThemeProvider} from 'styled-components';
+import {lightTheme, darkTheme, GlobalStyles} from './components/Themes';
 
 const App = () => {
     const history = useHistory()
     const [TOKEN, getToken] = useState('');
     const [name, getName] = useState('');
+    const [theme, setTheme] = useState('light');
+
+    const themeToggler = () => {
+        theme === 'light' ? setTheme('dark') : setTheme('light');
+
+    }
 
     useEffect(() => {
         let getUser = JSON.parse(localStorage.getItem('userInfo'))
@@ -73,24 +81,27 @@ const App = () => {
     }
 
     return(
-        <div >
-            <NavBar/>
-            <Switch>
-                <Route path="/dashboard" component={() => (<Dashboard TOKEN = {TOKEN} name ={name}/>)} exact /> 
-                <Route path="/search" component={() => (<FormData TOKEN = {TOKEN}/>)}  />     
-                <Route path="/add-expense" component={() => (<CreateExpense TOKEN = {TOKEN}/>)} />     
-                <Route path="/add-income" component={() => (<CreateIncome TOKEN = {TOKEN}/>)}/>     
-                <Route path="/add-category" component={() => (<CreateCategory TOKEN = {TOKEN}/>)}/>     
-                <Route path="/all-expenses" component={()=> (<AllExpenses getExpense={handleExpense} TOKEN = {TOKEN}/>)}  />     
-                <Route path="/all-income" component={() => (<AllIncome getIncome = {handleIncome} TOKEN = {TOKEN}/>) }  />     
-                <Route path="/all-category" component={() => (<AllCategory getCategory = {handleCategory} TOKEN = {TOKEN}/>) }  />     
-                <Route path="/update-expense" component={()=> (<UpdateExpense getExpense={getExpense} TOKEN = {TOKEN}/>)}  />     
-                <Route path="/update-income" component={()=> (<UpdateIncome getIncome={getIncome} TOKEN = {TOKEN}/>)}  />  
-                <Route path="/update-category" component={()=> (<UpdateCategory getCategory={getCategory} TOKEN = {TOKEN}/>)}  />  
-                <Route path="/users" component={() => (<AllUsers TOKEN = {TOKEN}/>)}  />     
-                <Route path="/" component={Login}  />     
-            </Switch>
-        </div>
+        <ThemeProvider theme = {theme === 'light' ? lightTheme : darkTheme}>
+            <GlobalStyles/>
+            <div>
+                <NavBar themeToggler = {themeToggler} theme = {theme}/>
+                <Switch>
+                    <Route path="/dashboard" component={() => (<Dashboard TOKEN = {TOKEN} name ={name}/>)} exact /> 
+                    <Route path="/search" component={() => (<FormData TOKEN = {TOKEN}/>)}  />     
+                    <Route path="/add-expense" component={() => (<CreateExpense TOKEN = {TOKEN}/>)} />     
+                    <Route path="/add-income" component={() => (<CreateIncome TOKEN = {TOKEN}/>)}/>     
+                    <Route path="/add-category" component={() => (<CreateCategory TOKEN = {TOKEN}/>)}/>     
+                    <Route path="/all-expenses" component={()=> (<AllExpenses getExpense={handleExpense} TOKEN = {TOKEN}/>)}  />     
+                    <Route path="/all-income" component={() => (<AllIncome getIncome = {handleIncome} TOKEN = {TOKEN}/>) }  />     
+                    <Route path="/all-category" component={() => (<AllCategory getCategory = {handleCategory} TOKEN = {TOKEN}/>) }  />     
+                    <Route path="/update-expense" component={()=> (<UpdateExpense getExpense={getExpense} TOKEN = {TOKEN}/>)}  />     
+                    <Route path="/update-income" component={()=> (<UpdateIncome getIncome={getIncome} TOKEN = {TOKEN}/>)}  />  
+                    <Route path="/update-category" component={()=> (<UpdateCategory getCategory={getCategory} TOKEN = {TOKEN}/>)}  />  
+                    <Route path="/users" component={() => (<AllUsers TOKEN = {TOKEN}/>)}  />     
+                    <Route path="/" component={Login}  />     
+                </Switch>
+            </div>
+        </ThemeProvider>
     )
 }
 export default App;

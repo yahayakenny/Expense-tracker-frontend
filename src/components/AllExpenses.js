@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState }  from "react"
-import { ALL_EXPENSES_URL, commas} from "./utils";
+import React, { useEffect, useState, useRef }  from "react"
+import { ALL_EXPENSES_URL, commas,EXPORT_CSV_URL, EXPORT_EXCEL_URL, EXPORT_PDF_URL} from "./utils";
 import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
+import {CSVLink} from 'react-csv'
 
 const AllExpenses = ({getExpense, TOKEN}) => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -11,6 +12,8 @@ const AllExpenses = ({getExpense, TOKEN}) => {
     const indexOfLastData = currentPage * dataPerPage
     const indexOfFirstData = indexOfLastData - dataPerPage
     const [tableData, setTableData] = useState([]);
+    const [csv, setCsv] = useState('')
+    const csvLink = useRef() 
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
    
@@ -43,7 +46,61 @@ const AllExpenses = ({getExpense, TOKEN}) => {
             .catch((error) => console.log(error)
             )
     }
- 
+
+    // https://stackoverflow.com/questions/53504924/reactjs-download-csv-file-on-button-click
+    const handleCsv = () => {
+        axios.get(EXPORT_CSV_URL, {
+            headers:{
+                "Content-Type": 'application/json' ,
+                'Authorization':`Bearer ${TOKEN}`}
+    
+        }).then(res => setCsv(res.data)  
+        ).catch(error => console.log(error))
+        csvLink.current.link.click()
+    }
+
+    // https://stackoverflow.com/questions/68356665/how-to-download-excel-file-with-axios-vuejs
+    const handleExcel = () => {
+        axios.get(EXPORT_EXCEL_URL,
+            {   responseType : 'blob',
+                headers:{
+                    "Content-Type": 'application/json' ,
+                    'Authorization':`Bearer ${TOKEN}`}
+            }
+            ).then(res =>{
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+            const a = document.createElement("a");
+            a.href = url;
+            const filename = `expenses.xls`;
+            a.setAttribute('download', filename);
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        } 
+        ).catch(error => console.log(error))
+    }
+
+    const handlePdf = () => {
+        axios.get(EXPORT_PDF_URL,
+            {   responseType : 'blob',
+                headers:{
+                    "Content-Type": 'application/json' ,
+                    'Authorization':`Bearer ${TOKEN}`}
+            }
+            ).then(res =>{
+            console.log(res.data)
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+            const a = document.createElement("a");
+            a.href = url;
+            const filename = 'expenses.pdf';
+            a.setAttribute('download', filename);
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        } 
+        ).catch(error => console.log(error))
+    }
+
     return (
         <div >
             <div className= "container">  
@@ -52,6 +109,27 @@ const AllExpenses = ({getExpense, TOKEN}) => {
                         <h5 className = "text-center">All Expenses</h5>
                     </div>
                     <div className="table-responsive">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-4 col-sm-4 text-center">
+                                    <button style={{color: "white" , backgroundColor: "rgb(162, 205, 205)"}}onClick = {handleCsv} className = "btn ">Export CSV</button>
+                                    <CSVLink
+                                    data = {csv}
+                                    filename='expenses.csv'
+                                    className='hidden'
+                                    ref={csvLink}
+                                    target='_blank'
+                                    />   
+                                </div>
+                                <div className="col-md-4 col-sm-4 text-center">
+                                    <button style = {{backgroundColor: "rgb(213, 126, 126)", color: "white"}}onClick = {handleExcel} className = "btn">Export Excel</button>
+                                </div>
+                                <div className="col-md-4 col-sm-4 text-center">
+                                    <button style = {{backgroundColor: "rgb(198, 213, 126)", color: "white"}} onClick = {handlePdf} className = "btn">Export PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br></br>  <br></br>
                         <table className="table table-hover table-fixed" >
                             <thead>
                                 <tr>
@@ -70,14 +148,14 @@ const AllExpenses = ({getExpense, TOKEN}) => {
                                         <td>{item.name}</td>
                                         <td>{item.category.name}</td>
                                         <td>£{item ? commas(item.amount) : item.amount}</td>
-                                        <td onClick = {()=> getExpense(item.id)}><Link to = 'update-expense/'><i class="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
+                                        <td onClick = {()=> getExpense(item.id)}><Link to = 'update-expense/'><i className="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
                                         <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>
                                     </tr> 
                                 </tbody>)
                             }): ''
                             }
-                            <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                         </table>
+                        <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                     </div>
                 </div>     
             </div>
