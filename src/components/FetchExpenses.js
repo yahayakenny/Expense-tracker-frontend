@@ -14,8 +14,14 @@ export const FetchExpenses = ({data, error}) => {
     return (
         <div>
             <div className= "container"> 
-                { error && <div className="text-danger text-center container mb-2">{error}</div> 
-                }
+                {
+                error  &&   <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                                {error}
+                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                } 
                 <table className="table" >
                     <thead>
                         <tr>
