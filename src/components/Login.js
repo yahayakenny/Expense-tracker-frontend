@@ -42,6 +42,8 @@ const Login = () => {
         if (userData){
             history.push('/dashboard')
             window.location.reload();
+        } else {
+            setLoading(true)
         }
         setLoading(false);
     }
@@ -51,7 +53,7 @@ const Login = () => {
                 <div className="col-md-12 col-sm-12 mb-4 mt-4 p-4 shadow-lg expense">
                     <div className = "container ">
                         <h5 className = "text-center mb-4">LOGIN</h5>
-                        <form onSubmit = {handleSubmit}>
+                        <form onSubmit = { handleSubmit}>
                             <div className="form-outline mb-2 p-6" style = {{width: '100%'}}>
                                 <label className="form-label" htmlFor="name"> Username: </label>
                                 <input type="text" className="form-control mb-4"  onChange = {handleUsername} value = {username}/>
