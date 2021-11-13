@@ -1,4 +1,4 @@
-import './App.css'
+import '../css/App.css'
 import {  useState} from 'react'
 import Pagination from './Pagination'
 import { commas } from './utils';

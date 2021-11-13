@@ -8,6 +8,7 @@ const Login = () => {
     const [password, setPassword] = useState(''); 
     const [userData, setUserData] = useState('')
     const [error, setError] = useState();
+    const [loading, setLoading] = useState(false)
     const history = useHistory()
 
     const handleUsername = (e) => {
@@ -20,6 +21,7 @@ const Login = () => {
  
      const handleSubmit = (e) => {
         e.preventDefault()
+        setLoading(true)
         axios.post(`${BASE_URL}/users/login`,
         {
             username: username,
@@ -41,6 +43,7 @@ const Login = () => {
             history.push('/dashboard')
             window.location.reload();
         }
+        setLoading(false);
     }
     return (
         <div>
@@ -53,11 +56,17 @@ const Login = () => {
                                 <label className="form-label" htmlFor="name"> Username: </label>
                                 <input type="text" className="form-control mb-4"  onChange = {handleUsername} value = {username}/>
                             </div>
-                            <div className="form-outline mb-2  p-6"  style = {{width: '100%'}}>
+                            <div className="form-outline mb-2 p-6"  style = {{width: '100%'}}>
                                 <label className="form-label" htmlFor="password"> Password: </label>
                                 <input type="password" className="form-control mb-4"  onChange = {handlePassword} value = {password}/>
                             </div>
-                            <button type="submit" className="btn btn-block  mb-2 mt-2" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Login</button>
+                            <button type="submit" className="btn btn-block  mb-2 mt-2" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>
+                            {
+                                loading ? (<div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                                </div>): 'Login'
+                            }
+                            </button>
                         </form>
                         <h6 className = "text-danger text-center mt-4">{error}</h6>
                     </div>   
@@ -68,5 +77,3 @@ const Login = () => {
 }
 
 export default Login;
-
-

@@ -1,4 +1,4 @@
-import {  PolarArea  } from "react-chartjs-2";
+import {PolarArea  } from "react-chartjs-2";
 
 export const PolarAreaChart = ({ chartData }) => {
     return (

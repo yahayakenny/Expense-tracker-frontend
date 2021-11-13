@@ -3,10 +3,10 @@ import {FetchPieChart } from "./FetchPieChart";
 import Card from "./Card";
 import Table from "./Table";
 import { FetchMontlyExpenses } from "./FetchMonthlyExpenses";
-import './App.css'
+import '../css/App.css'
 import { FetchPolarAreaChart } from "./FetchPolarAreaChart";
 import Side from "./Side";
-import './App.css'
+
 
 const Dashboard = ({TOKEN, name}) => {
     return (
@@ -26,7 +26,6 @@ const Dashboard = ({TOKEN, name}) => {
             </div>
             <br></br> <br></br> 
             <div className="row">
-           
                 <div className="col-md-9">
                     <div>
                         <Card TOKEN = {TOKEN}/>
