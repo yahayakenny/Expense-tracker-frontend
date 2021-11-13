@@ -26,7 +26,7 @@ const Dashboard = ({TOKEN, name}) => {
             </div>
             <br></br> <br></br> 
             <div className="row">
-                <div className="col-md-9">
+                <div className="col-md-12">
                     <div>
                         <Card TOKEN = {TOKEN}/>
                     </div>
@@ -39,11 +39,12 @@ const Dashboard = ({TOKEN, name}) => {
                         </div> 
                     </div> 
                     <br></br> 
-                </div>
-                <div className="col-md-3">
-                    <Side TOKEN = {TOKEN}/>
-                </div>
+                </div> 
             </div>
+            <div>
+                <Side TOKEN = {TOKEN}/>
+            </div>
+            <br></br> <br></br> 
             <div className= "shadow-lg">
                 <Table TOKEN = {TOKEN}/>
             </div>

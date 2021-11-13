@@ -33,3 +33,4 @@ export const LineChart = ({ chartData }) => {
       </div>
     );
   };;
+  

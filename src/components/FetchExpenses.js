@@ -42,4 +42,3 @@ export const FetchExpenses = ({data, error}) => {
         </div>
     ) 
 }
-

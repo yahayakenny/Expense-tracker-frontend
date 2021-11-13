@@ -87,4 +87,3 @@ const CreateIncome = ({TOKEN}) => {
 }
 
 export default CreateIncome;
-

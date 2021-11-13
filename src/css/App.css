@@ -5,6 +5,11 @@ body {
   font-family: 'Nunito';
 }
 
+.navbar {
+  width: 100% !important;
+  height: 65px !important
+}
+
 .navbar-nav li a {
   color: white;
   font-size: 15px;
@@ -111,7 +116,7 @@ input {
 }
 
 .logo {
-  width: 30%;
+  width: 27%;
 }
 
 @media(max-width: 767px){
