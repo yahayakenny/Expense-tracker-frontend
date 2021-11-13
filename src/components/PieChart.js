@@ -24,3 +24,4 @@ export const PieChart = ({ chartData }) => {
       </div>
     );
   };;
+  

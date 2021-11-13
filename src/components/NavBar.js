@@ -7,7 +7,6 @@ function NavBar({themeToggler, theme}) {
     const history = useHistory()
     let user = JSON.parse(localStorage.getItem('userInfo'))
    
-   
     const handleLogout = () => {
         localStorage.removeItem('userInfo') 
         history.push('/')
@@ -82,7 +81,6 @@ function NavBar({themeToggler, theme}) {
                                        
                                     </ul>
                                 </li> 
-                            
                             {/* {
                                 user.isAdmin ? (<h6>
                                     <li className="nav-item">
