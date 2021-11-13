@@ -3,7 +3,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
-import './App.css';
+import '../css/App.css'
 import {ADD_INCOME_URL} from './utils';
 
 const IncomeSchema = Yup.object().shape({

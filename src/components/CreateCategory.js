@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {ADD_CATEGORY_URL} from './utils';
-import './App.css'
+import '../css/App.css'
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router';

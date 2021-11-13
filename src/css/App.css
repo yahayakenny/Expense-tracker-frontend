@@ -5,24 +5,14 @@ body {
   font-family: 'Nunito';
 }
 
-.navbar {
-  padding: 4px;
-}
-
 .navbar-nav li a {
   color: white;
-  padding: 5px;
-  font-size: 13px;
+  font-size: 15px;
   text-decoration: none;
 }
 
 .navbar-nav li a:hover {
   color: grey;
-}
-
-.navbar-brand {
-  padding-left: 20px;
-  font-size: 25px;
 }
 
 .navbar-collapse {
@@ -120,7 +110,9 @@ input {
   transition: 0s
 }
 
-
+.logo {
+  width: 30%;
+}
 
 @media(max-width: 767px){
   .expense { 

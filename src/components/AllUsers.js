@@ -1,7 +1,6 @@
 import axios from "axios";
-import React, { useEffect }  from "react"
-import { useState } from "react/cjs/react.development";
-import {  ALL_USERS_URL, BASE_URL } from "./utils";
+import React, { useEffect, useState }  from "react"
+import { ALL_USERS_URL, BASE_URL } from "./utils";
 import Pagination from "./Pagination";
 
 const AllUsers = ({TOKEN}) => {
