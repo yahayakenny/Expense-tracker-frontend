@@ -31,7 +31,7 @@ const Dashboard = ({TOKEN, name, settings}) => {
                                 <h3>Welcome {name}</h3>
                                 <h5>Here is a summary of your spending this month..</h5>
                             {
-                                Number(settings.limit) > Number(setExpense) ? (
+                                setExpense > settings.limit ? (
                                 <div className="alert alert-danger alert-dismissible fade show" role="alert">
                                     You have reached your spending limit for the month
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
