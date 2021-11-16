@@ -1,5 +1,5 @@
 import React from 'react';
-import { NET_URL, commas, SETTINGS_URL } from "./utils";
+import { NET_URL, commas} from "./utils";
 import { useEffect, useState } from "react"
 import axios from 'axios';
 import '../css/App.css'
