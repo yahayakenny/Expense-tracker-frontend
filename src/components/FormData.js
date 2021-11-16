@@ -2,13 +2,18 @@ import React, {useState} from 'react'
 import axios from 'axios';
 import { FetchExpenses } from './FetchExpenses';
 import { DATE_RANGE_URL} from './utils';
+import styled from "styled-components";
 
-export const FormData = ({TOKEN}) => {
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
+
+export const FormData = ({TOKEN, settings}) => {
     const [from_date, setFromDate] = useState('')
     const [to_date, setToDate] = useState('')
     const [select, setSelect] = useState('')
     const [data, setData] = useState({ filtered: [] })
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
     
     const handleSubmit = (e) => {
         e.preventDefault() 
@@ -37,7 +42,8 @@ export const FormData = ({TOKEN}) => {
         )     
     }
     return (
-        <div className="container">
+        <StyledApp>
+            <div className="container">
             <div className="row">
                 <div className="col-md-4 col-sm-12 mb-4 mt-4 shadow-lg">
                     <div className="container">
@@ -64,7 +70,7 @@ export const FormData = ({TOKEN}) => {
                             ( <div className="card text-white mb-3 shadow-lg text-center rounded" style = {{backgroundColor: "rgb(213, 126, 126)"}}>
                                 <div className="card-header">Total</div>
                                 <div className="card-body">
-                                    <h1 className="card-text">£{data.total}</h1>
+                                    <h1 className="card-text">{settings.currency  ? settings.currency: '£'}{data.total}</h1>
                                 </div>
                                 </div> 
                             ): null
@@ -73,10 +79,13 @@ export const FormData = ({TOKEN}) => {
                 </div>
                 <div className="col-md-8 col-sm-12 mb-4 mt-4">
                     <div className = "container">
-                        <FetchExpenses data = {data} error = {error}/> 
+                        <FetchExpenses data = {data} error = {error} settings = {settings} /> 
                     </div>
                 </div>
             </div>
         </div> 
+
+        </StyledApp>
+        
     )
 }

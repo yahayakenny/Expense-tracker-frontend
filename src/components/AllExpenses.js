@@ -5,8 +5,13 @@ import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
 import {CSVLink} from 'react-csv'
+import styled from "styled-components";
 
-const AllExpenses = ({getExpense, TOKEN}) => {
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
+
+const AllExpenses = ({getExpense, TOKEN, settings}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(10)
     const indexOfLastData = currentPage * dataPerPage
@@ -16,6 +21,7 @@ const AllExpenses = ({getExpense, TOKEN}) => {
     const csvLink = useRef() 
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
+    let currency = localStorage.getItem('currency')
    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -102,17 +108,18 @@ const AllExpenses = ({getExpense, TOKEN}) => {
     }
 
     return (
-        <div >
+        <StyledApp>
             <div className= "container">  
-                <div className = "p-1">
+                <div className = "p-4 mt-5 mb-4 shadow-lg">
                     <div className= "container p-3">
                         <h5 className = "text-center">All Expenses</h5>
                     </div>
                     <div className="table-responsive">
                         <div className="container">
-                            <div className="row">
+                            <div className="row d-grid gap-2">
                                 <div className="col-md-4 col-sm-4 text-center">
-                                    <button style={{color: "white" , backgroundColor: "rgb(162, 205, 205)"}}onClick = {handleCsv} className = "btn ">Export CSV</button>
+                                <br></br>
+                                    <button style={{color: "white",width: "100%" ,backgroundColor: "rgb(162, 205, 205)"}}onClick = {handleCsv} className = "btn btn-lg">Export CSV</button>
                                     <CSVLink
                                     data = {csv}
                                     filename='expenses.csv'
@@ -122,15 +129,17 @@ const AllExpenses = ({getExpense, TOKEN}) => {
                                     />   
                                 </div>
                                 <div className="col-md-4 col-sm-4 text-center">
-                                    <button style = {{backgroundColor: "rgb(213, 126, 126)", color: "white"}}onClick = {handleExcel} className = "btn">Export Excel</button>
+                                <br></br>
+                                    <button style = {{backgroundColor: "rgb(213, 126, 126)", color: "white", width: "100%"}}onClick = {handleExcel} className = "btn btn-lg">Export Excel</button>
                                 </div>
                                 <div className="col-md-4 col-sm-4 text-center">
-                                    <button style = {{backgroundColor: "rgb(198, 213, 126)", color: "white"}} onClick = {handlePdf} className = "btn">Export PDF</button>
+                                <br></br>
+                                    <button style = {{backgroundColor: "rgb(198, 213, 126)", width: "100%", color: "white"}} onClick = {handlePdf} className = "btn btn-lg">Export PDF</button>
                                 </div>
                             </div>
                         </div>
                         <br></br>  <br></br>
-                        <table className="table table-hover table-fixed" >
+                        <table>
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -147,7 +156,7 @@ const AllExpenses = ({getExpense, TOKEN}) => {
                                     <tr>
                                         <td>{item.name}</td>
                                         <td>{item.category.name}</td>
-                                        <td>£{item ? commas(item.amount) : item.amount}</td>
+                                        <td>{settings.currency  ? settings.currency: '£'}{item ? commas(item.amount) : item.amount}</td>
                                         <td onClick = {()=> getExpense(item.id)}><Link to = 'update-expense/'><i className="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
                                         <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>
                                     </tr> 
@@ -155,11 +164,12 @@ const AllExpenses = ({getExpense, TOKEN}) => {
                             }): ''
                             }
                         </table>
+                        <br></br>
                         <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                     </div>
                 </div>     
             </div>
-        </div>  
+        </StyledApp>  
     )
 }
 

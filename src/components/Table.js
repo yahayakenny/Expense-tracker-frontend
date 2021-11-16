@@ -1,9 +1,16 @@
 import { commas, RECENT_EXPENSES_URL, } from "./utils";
 import { useEffect, useState } from "react"
 import axios from 'axios';
+import styled from "styled-components";
+import '../css/App.css'
 
-const Table = ({TOKEN}) => {
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
+
+const Table = ({TOKEN, settings}) => {
     const [tableData, setTableData] = useState([]);
+   
  
     useEffect(() => {
         axios.get(RECENT_EXPENSES_URL, {
@@ -17,14 +24,14 @@ const Table = ({TOKEN}) => {
     },[TOKEN])
 
     return (
-        <div >
+        <StyledApp>
+            <div >
             <div className= "container">  
                 <div className = "p-3">
                     <div className= "container p-3">
                         <h5 className = "text-center">Most Recent Expenses</h5>
                     </div>
-                    <div className = "table-responsive">
-                        <table className="table table-hover table-fixed" >
+                        <table  >
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -39,16 +46,18 @@ const Table = ({TOKEN}) => {
                                     <tr>
                                         <td key = {item.index}>{item.name}</td>
                                         <td key = {item.index}>{item.category.name}</td>
-                                        <td key = {item.index}>  £{item ? commas(item.amount) : item.amount}</td>
+                                        <td key = {item.index}>  {settings.currency  ? settings.currency: '£'}{item ? commas(item.amount) : item.amount}</td>
                                     </tr> 
                                 </tbody>)
                             }): ''
                             }
                         </table>
-                    </div>
+                        <br></br>
                 </div>     
             </div>
         </div>  
+        </StyledApp>
+        
     )
 }
 

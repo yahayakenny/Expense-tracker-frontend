@@ -4,6 +4,11 @@ import '../css/App.css'
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router';
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
 
 const CategorySchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
@@ -12,7 +17,7 @@ const CategorySchema = Yup.object().shape({
 const CreateCategory = ({TOKEN}) => {
     const history = useHistory();
     return (
-        <div>
+        <StyledApp>
             <div className="container">
                 <div className="col-md-12 col-sm-12 mb-4 mt-5 p-4 shadow-lg expense">
                     <div className = "container ">
@@ -59,7 +64,7 @@ const CreateCategory = ({TOKEN}) => {
                     </div>   
                 </div>
             </div> 
-        </div>
+        </StyledApp>
     )
 }
 

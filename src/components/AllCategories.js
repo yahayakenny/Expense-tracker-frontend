@@ -4,6 +4,11 @@ import { BASE_URL, GET_CATEGORIES_URL} from "./utils";
 import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
 
 const AllCategory= ({getCategory, TOKEN}) => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -47,13 +52,14 @@ const AllCategory= ({getCategory, TOKEN}) => {
  
     return (
         <div >
+            <StyledApp>
             <div className= "container">  
-                <div className = "p-1">
+                <div className = "p-4 mt-4 mb-4 shadow-lg">
                     <div className= "container p-3">
                         <h5 className = "text-center">All Categories</h5>
                     </div>
                     <div className="table-responsive">
-                        <table className="table table-hover table-fixed" >
+                        <table className="" >
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -74,10 +80,13 @@ const AllCategory= ({getCategory, TOKEN}) => {
                             }): ''
                             }
                         </table>
+                        <br></br>
                         <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                     </div>
                 </div>     
             </div>
+            </StyledApp>
+           
         </div>  
     )
 }

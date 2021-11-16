@@ -18,6 +18,7 @@ export const NET_URL = `${BASE_URL}/query-net/`
 export const EXPORT_CSV_URL = `${BASE_URL}/expense/export-csv`
 export const EXPORT_EXCEL_URL = `${BASE_URL}/expense/export-excel`
 export const EXPORT_PDF_URL = `${BASE_URL}/expense/export-pdf`
+export const SETTINGS_URL = `${BASE_URL}/settings/`
 
 export function commas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

@@ -4,8 +4,13 @@ import { ALL_INCOME_URL, BASE_URL, commas, } from "./utils";
 import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
 
-const AllIncome = ({getIncome, TOKEN}) => {
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
+
+const AllIncome = ({getIncome, TOKEN, settings}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(10)
     const indexOfLastData = currentPage * dataPerPage
@@ -13,6 +18,7 @@ const AllIncome = ({getIncome, TOKEN}) => {
     const [tableData, setTableData] = useState([]);
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
+    let currency = localStorage.getItem('currency')
    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -45,14 +51,15 @@ const AllIncome = ({getIncome, TOKEN}) => {
     }
  
     return (
-        <div >
-            <div className= "container">  
-                <div className = "p-1">
-                    <div className= "container p-3">
+        <StyledApp >
+            <div className= "container"> 
+            <br></br> 
+                <div className = "p-4 mt-4 mb-4 shadow-lg">
+                    <div className= "container p-3 ">
                         <h5 className = "text-center">All Income</h5>
                     </div>
                     <div className ="table-responsive">
-                        <table className="table table-hover table-fixed" >
+                        <table >
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -69,7 +76,7 @@ const AllIncome = ({getIncome, TOKEN}) => {
                                     <tr>
                                         <td>{item.name}</td>
                                         <td>{item.description}</td>
-                                        <td>£{item ? commas(item.amount) : item.amount}</td>
+                                        <td>{settings.currency  ? settings.currency: '£'}{item ? commas(item.amount) : item.amount}</td>
                                         <td onClick = {()=> getIncome(item.id)}><Link to = 'update-income/'><i class="fas fa-edit" style = {{color:  "rgb(198, 213, 126)"}}></i></Link></td>
                                         <td onClick = {()=> handleDelete(item.id)}><i className="fas fa-trash" style = {{color: "rgb(213, 126, 126)"}}></i></td>
                                     </tr> 
@@ -77,11 +84,12 @@ const AllIncome = ({getIncome, TOKEN}) => {
                             }): ''
                             }
                         </table>
+                        <br></br>
                         <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                     </div>
                 </div>     
             </div>
-        </div>  
+        </StyledApp>  
     )
 }
 

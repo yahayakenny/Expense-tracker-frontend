@@ -2,18 +2,25 @@ import '../css/App.css'
 import {  useState} from 'react'
 import Pagination from './Pagination'
 import { commas } from './utils';
+import styled from "styled-components";
 
-export const FetchExpenses = ({data, error}) => {
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
+
+
+export const FetchExpenses = ({data, error, settings}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(10)
     const indexOfLastData = currentPage * dataPerPage
     const indexOfFirstData = indexOfLastData - dataPerPage
     const currentData = data.filtered.slice(indexOfFirstData, indexOfLastData)
     const paginate = pageNumber => setCurrentPage(pageNumber);
+    let currency = localStorage.getItem('currency')
 
     return (
-        <div>
-            <div className= "container"> 
+        <StyledApp>
+            <div className= "container p-4  mb-4 shadow-lg"> 
                 {
                 error  &&   <div className="alert alert-warning alert-dismissible fade show" role="alert">
                                 {error}
@@ -22,7 +29,7 @@ export const FetchExpenses = ({data, error}) => {
                                 </button>
                             </div>
                 } 
-                <table className="table" >
+                <table >
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -37,14 +44,15 @@ export const FetchExpenses = ({data, error}) => {
                             <tr>
                                 <td>{item.name}</td>
                                 <td>{item.description}</td>
-                                <td>£{item ? commas(item.amount) : item.amount}</td>
+                                <td>{settings.currency  ? settings.currency: '£'}{item ? commas(item.amount) : item.amount}</td>
                             </tr> 
                         </tbody>)
                     }) :''
                     }
-                    <Pagination totalData={data.filtered.length} dataPerPage={dataPerPage} paginate={paginate}/>
                 </table>
+                <br></br>
+                <Pagination totalData={data.filtered.length} dataPerPage={dataPerPage} paginate={paginate}/>
             </div>
-        </div>
+        </StyledApp>
     ) 
 }

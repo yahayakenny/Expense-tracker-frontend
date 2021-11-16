@@ -19,17 +19,21 @@ import AllCategory from "./components/AllCategories";
 import UpdateCategory from "./components/UpdateCategory";
 import {ThemeProvider} from 'styled-components';
 import {lightTheme, darkTheme, GlobalStyles} from './components/Themes';
-import { BASE_URL } from "./components/utils";
+import { BASE_URL, SETTINGS_URL } from "./components/utils";
+import Settings from "./components/Settings";
 
 const App = () => {
     const history = useHistory()
     const [TOKEN, getToken] = useState('');
     const [name, getName] = useState('');
     const [theme, setTheme] = useState('light');
+    const [getIncome, setGetIncome] = useState({});
+    const [getExpense, setGetExpense] = useState({});
+    const [getCategory, setGetCategory] = useState({});
+    const [settings, setSettings]  = useState({});
 
     const themeToggler = () => {
         theme === 'light' ? setTheme('dark') : setTheme('light');
-
     }
 
     useEffect(() => {
@@ -44,9 +48,21 @@ const App = () => {
         }
     }, [history])
 
-    const [getIncome, setGetIncome] = useState({})
-    const [getExpense, setGetExpense] = useState({})
-    const [getCategory, setGetCategory] = useState({})
+    useEffect (() => {
+        axios.get(SETTINGS_URL, {
+            headers:{
+                "Content-Type": 'application/json' ,
+                'Authorization':`Bearer ${TOKEN}`}
+        }).then(
+            res => {
+                setSettings(res.data[0]) 
+                console.log(res.data)
+            }
+          
+        ).catch(error => console.log(error))
+        return () => {}
+    }, [TOKEN])
+    
 
     const handleExpense = (id) => {
          axios.get(`${BASE_URL}/expense/${id}/`,{
@@ -54,8 +70,7 @@ const App = () => {
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${TOKEN}`}
         }).then(
-            res => 
-            setGetExpense(res.data) 
+            res => setGetExpense(res.data) 
         ).catch(error => console.log(error))
     }
 
@@ -81,25 +96,27 @@ const App = () => {
         ).catch(error => console.log(error))
     }
 
+
     return(
         <ThemeProvider theme = {theme === 'light' ? lightTheme : darkTheme}>
             <GlobalStyles/>
             <div>
                 <NavBar themeToggler = {themeToggler} theme = {theme}/>
                 <Switch>
-                    <Route path="/dashboard" component={() => (<Dashboard TOKEN = {TOKEN} name ={name}/>)} exact /> 
-                    <Route path="/search" component={() => (<FormData TOKEN = {TOKEN}/>)}  />     
-                    <Route path="/add-expense" component={() => (<CreateExpense TOKEN = {TOKEN}/>)} />     
-                    <Route path="/add-income" component={() => (<CreateIncome TOKEN = {TOKEN}/>)}/>     
+                    <Route path="/dashboard" component={() => (<Dashboard TOKEN = {TOKEN} name ={name} settings = {settings}/>)} exact /> 
+                    <Route path="/search" component={() => (<FormData TOKEN = {TOKEN} settings = {settings}/>)}  />     
+                    <Route path="/add-expense" component={() => (<CreateExpense TOKEN = {TOKEN} settings = {settings}/>)} />     
+                    <Route path="/add-income" component={() => (<CreateIncome TOKEN = {TOKEN} settings = {settings} />)}/>     
                     <Route path="/add-category" component={() => (<CreateCategory TOKEN = {TOKEN}/>)}/>     
-                    <Route path="/all-expenses" component={()=> (<AllExpenses getExpense={handleExpense} TOKEN = {TOKEN}/>)}  />     
-                    <Route path="/all-income" component={() => (<AllIncome getIncome = {handleIncome} TOKEN = {TOKEN}/>) }  />     
+                    <Route path="/all-expenses" component={()=> (<AllExpenses getExpense={handleExpense} TOKEN = {TOKEN} settings = {settings}/>)}  />     
+                    <Route path="/all-income" component={() => (<AllIncome getIncome = {handleIncome} TOKEN = {TOKEN} settings = {settings}/>) }  />     
                     <Route path="/all-category" component={() => (<AllCategory getCategory = {handleCategory} TOKEN = {TOKEN}/>) }  />     
                     <Route path="/update-expense" component={()=> (<UpdateExpense getExpense={getExpense} TOKEN = {TOKEN}/>)}  />     
                     <Route path="/update-income" component={()=> (<UpdateIncome getIncome={getIncome} TOKEN = {TOKEN}/>)}  />  
                     <Route path="/update-category" component={()=> (<UpdateCategory getCategory={getCategory} TOKEN = {TOKEN}/>)}  />  
                     <Route path="/users" component={() => (<AllUsers TOKEN = {TOKEN}/>)}  />     
-                    <Route path="/" component={Login}  />     
+                    <Route path="/settings" component={() => (<Settings TOKEN = {TOKEN}/>)}  />  
+                    <Route path="/" component={Login}  />  
                 </Switch>
             </div>
         </ThemeProvider>

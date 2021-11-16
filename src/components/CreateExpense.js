@@ -5,6 +5,11 @@ import '../css/App.css'
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router';
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
 
 const ExpenseSchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
@@ -15,9 +20,10 @@ const ExpenseSchema = Yup.object().shape({
     category: Yup.string().required('The category is required')
   });
 
-const CreateExpense = ({TOKEN}) => {
+const CreateExpense = ({TOKEN, settings}) => {
     const history = useHistory();
     const [getCategories, setGetCategories] = useState({filtered : []})
+    let currency = localStorage.getItem('currency')
 
     useEffect(() => {
         axios.get(GET_CATEGORIES_URL, {
@@ -33,7 +39,7 @@ const CreateExpense = ({TOKEN}) => {
     },[TOKEN])
 
     return (
-        <div>
+        <StyledApp>
             <div className="container">
                 <div className="col-md-12 col-sm-12 mb-4 mt-5 p-4 shadow-lg expense">
                     <div className = "container ">
@@ -80,7 +86,7 @@ const CreateExpense = ({TOKEN}) => {
                                         {errors.name && touched.name ? (<div>{errors.name}</div>) : null}
                                     </h6>
                                     <div  className="form-outline mb-2  p-6"  style = {{width: '100%'}}>
-                                        <label className="form-label" for="amount"> Amount (pounds): </label>
+                                        <label className="form-label" for="amount"> Amount({settings.currency  ? settings.currency: '£'}): </label>
                                         <input type="text" id="amount"  name = "amount" className="form-control" onChange = {handleChange} value = {values.amount} />
                                     </div>
                                     <div className="error">
@@ -116,7 +122,7 @@ const CreateExpense = ({TOKEN}) => {
                     </div>   
                 </div>
             </div> 
-        </div>
+        </StyledApp>
     )
 }
 

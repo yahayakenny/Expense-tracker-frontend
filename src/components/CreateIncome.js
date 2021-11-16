@@ -5,6 +5,11 @@ import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import '../css/App.css'
 import {ADD_INCOME_URL} from './utils';
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
 
 const IncomeSchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
@@ -14,10 +19,12 @@ const IncomeSchema = Yup.object().shape({
     description: Yup.string().required('The description is required'),
   });
 
-const CreateIncome = ({TOKEN}) => {
+const CreateIncome = ({TOKEN, settings}) => {
     const history = useHistory();
+    let currency = localStorage.getItem('currency')
+
     return (
-        <div>
+        <StyledApp>
             <div className="container">
                 <div className="col-md-12 col-sm-12 mb-4 mt-5 p-4 shadow-lg expense">
                     <div className = "container ">
@@ -42,11 +49,11 @@ const CreateIncome = ({TOKEN}) => {
                                             }}
                             
                                         ).then(res => 
-                                            console.log(res.data)  
+                                            console.log(res.data) 
                                         )
                                         .catch((error) => console.log(error)
                                         )
-                                    alert('Income Successfully added') 
+                                        alert('Income Successfully added') 
                                         history.push('/all-income')            
                                 }
                             }
@@ -62,7 +69,7 @@ const CreateIncome = ({TOKEN}) => {
                                     </h6>
                                    
                                     <div  className="form-outline mb-2  p-6"  style = {{width: '100%'}}>
-                                        <label className="form-label" for="amount"> Amount (pounds): </label>
+                                        <label className="form-label" for="amount"> Amount ({settings.currency  ? settings.currency: '£'}): </label>
                                         <input type="text" id="amount"  name = "amount" className="form-control" onChange = {handleChange} value = {values.amount} />
                                     </div>
                                     <div className="error">
@@ -77,12 +84,13 @@ const CreateIncome = ({TOKEN}) => {
                                     </div>
                                     <button type="submit" className="btn btn-block  mb-0 mt-4" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>Add</button>
                                 </form>
+                               
                             )} 
                         </Formik>
                     </div>   
                 </div>
             </div> 
-        </div>
+        </StyledApp>
     )
 }
 

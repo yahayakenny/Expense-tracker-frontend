@@ -6,29 +6,51 @@ import { FetchMontlyExpenses } from "./FetchMonthlyExpenses";
 import '../css/App.css'
 import { FetchPolarAreaChart } from "./FetchPolarAreaChart";
 import Side from "./Side";
+import styled from "styled-components";
+import { useState } from "react/cjs/react.development";
 
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
 
-const Dashboard = ({TOKEN, name}) => {
+const Dashboard = ({TOKEN, name, settings}) => {
+    const [setExpense, setGetExpense] = useState('')
+    const handleExpense = (expense) => {
+        setGetExpense(expense)
+    }
+
     return (
-        <div className="container" >
+        <StyledApp>
+            <div className="container" >
             <br></br> <br></br> 
             <div className = "hero padding">
-                <div className="container">
+                <div>
                     <div className="row">
-                        <div className="col-md-6 col-sm-12 hero-text d-flex align-items-center">
+                        <div className="col-md-12 col-sm-12 hero-text d-flex align-items-center">
                             <div>
                                 <h3>Welcome {name}</h3>
                                 <h5>Here is a summary of your spending this month..</h5>
+                            {
+                                Number(settings.limit) > Number(setExpense) ? (
+                                <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                                    You have reached your spending limit for the month
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>) : ''
+                            }
                             </div>
+                        </div>
+                        <div>     
                         </div>
                     </div>
                 </div>
             </div>
-            <br></br> <br></br> 
+            <br></br>
             <div className="row">
                 <div className="col-md-12">
                     <div>
-                        <Card TOKEN = {TOKEN}/>
+                        <Card TOKEN = {TOKEN} getExpense={handleExpense} settings = {settings}/>
                     </div>
                     <div className="row">
                         <div className=" col-md-5 col-sm-12 mb-4 mt-4 ">
@@ -46,7 +68,7 @@ const Dashboard = ({TOKEN, name}) => {
             </div>
             <br></br> <br></br> 
             <div className= "shadow-lg">
-                <Table TOKEN = {TOKEN}/>
+                <Table TOKEN = {TOKEN} settings = {settings}/>
             </div>
             <br></br> 
             <div className="row">
@@ -59,6 +81,8 @@ const Dashboard = ({TOKEN, name}) => {
             </div> 
             <br></br>
         </div>       
+        </StyledApp>
+        
     )
 }
 

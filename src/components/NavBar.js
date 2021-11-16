@@ -81,19 +81,22 @@ function NavBar({themeToggler, theme}) {
                                        
                                     </ul>
                                 </li> 
-                            {/* {
-                                user.isAdmin ? (<h6>
-                                    <li className="nav-item">
-                                        <Link to="/users"> Users </Link> 
-                                    </li>
-                                </h6> ) : ''
-                            } */}
-                            <li className="nav-item">
-                                <Link to="/logout" onClick = {handleLogout}> Logout </Link> 
-                            </li>
-                            <li className="nav-item">
-                                <button className = 'btn-toggle' onClick={() => themeToggler()}>{theme === 'dark' ? 'Light':  'Dark'}</button>
-                            </li>
+                                {
+                                    user.isAdmin ? (
+                                        <li className="nav-item">
+                                            <Link to="/users"> Users </Link> 
+                                        </li>
+                                     ) : ''
+                                }
+                                <li className="nav-item">
+                                    <Link to="/settings" > Settings </Link> 
+                                </li>
+                                <li className="nav-item">
+                                    <Link to="/logout" onClick = {handleLogout}> Logout </Link> 
+                                </li>
+                                <li className="nav-item">
+                                    <button className = 'btn-toggle' onClick={() => themeToggler()}>{theme === 'dark' ? <i class="fas fa-sun"></i>: <i class="fas fa-moon"></i> }</button>
+                                </li>
                     </ul>) : ''
                     }
                 </div>

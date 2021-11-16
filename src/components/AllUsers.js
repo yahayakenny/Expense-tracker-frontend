@@ -2,10 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState }  from "react"
 import { ALL_USERS_URL, BASE_URL } from "./utils";
 import Pagination from "./Pagination";
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
 
 const AllUsers = ({TOKEN}) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage] = useState(2)
+    const [dataPerPage] = useState(10)
     const indexOfLastData = currentPage * dataPerPage
     const indexOfFirstData = indexOfLastData - dataPerPage
     const [tableData, setTableData] = useState([]);
@@ -39,14 +44,14 @@ const AllUsers = ({TOKEN}) => {
     }
  
     return (
-        <div>
+        <StyledApp>
             <div className= "container">  
                 <div className = "p-1">
                     <div className= "container p-3">
                         <h5 className = "text-center">USERS</h5>
                     </div>
                     <div className="table-responsive">
-                        <table className="table table-hover table-fixed" >
+                        <table>
                             <thead>
                                 <tr>
                                     <th scope="col">Username</th>
@@ -71,11 +76,12 @@ const AllUsers = ({TOKEN}) => {
                             }): ''
                             }
                         </table>
+                        <br></br>
                         <Pagination totalData={tableData.length} dataPerPage={dataPerPage} paginate={paginate}/>
                     </div>
                 </div>     
             </div>
-        </div>  
+        </StyledApp>  
     )
 }
 
