@@ -21,7 +21,6 @@ const AllExpenses = ({getExpense, TOKEN, settings}) => {
     const csvLink = useRef() 
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
-    let currency = localStorage.getItem('currency')
    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);

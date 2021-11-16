@@ -18,7 +18,6 @@ const AllIncome = ({getIncome, TOKEN, settings}) => {
     const [tableData, setTableData] = useState([]);
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
-    let currency = localStorage.getItem('currency')
    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);

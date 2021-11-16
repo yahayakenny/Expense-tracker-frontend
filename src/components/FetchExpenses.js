@@ -16,7 +16,6 @@ export const FetchExpenses = ({data, error, settings}) => {
     const indexOfFirstData = indexOfLastData - dataPerPage
     const currentData = data.filtered.slice(indexOfFirstData, indexOfLastData)
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    let currency = localStorage.getItem('currency')
 
     return (
         <StyledApp>

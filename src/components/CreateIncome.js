@@ -21,7 +21,6 @@ const IncomeSchema = Yup.object().shape({
 
 const CreateIncome = ({TOKEN, settings}) => {
     const history = useHistory();
-    let currency = localStorage.getItem('currency')
 
     return (
         <StyledApp>

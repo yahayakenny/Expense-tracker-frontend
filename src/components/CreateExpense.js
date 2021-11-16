@@ -23,8 +23,6 @@ const ExpenseSchema = Yup.object().shape({
 const CreateExpense = ({TOKEN, settings}) => {
     const history = useHistory();
     const [getCategories, setGetCategories] = useState({filtered : []})
-    let currency = localStorage.getItem('currency')
-
     useEffect(() => {
         axios.get(GET_CATEGORIES_URL, {
             headers:{
