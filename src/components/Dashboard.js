@@ -82,7 +82,6 @@ const Dashboard = ({TOKEN, name, settings}) => {
             <br></br>
         </div>       
         </StyledApp>
-        
     )
 }
 

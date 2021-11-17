@@ -14,7 +14,7 @@ const IncomeSchema = Yup.object().shape({
     description: Yup.string().required('The description is required'),
   });
 
-const UpdateIncome = ({getIncome, TOKEN}) => {
+const UpdateIncome = ({getIncome, TOKEN, settings}) => {
     const history = useHistory();
 
     return (
@@ -56,22 +56,21 @@ const UpdateIncome = ({getIncome, TOKEN}) => {
                                 <form onSubmit = {handleSubmit}>
                                     <div className="form-outline mb-2 p-6" style = {{width: '100%'}}>
                                         <label className="form-label" htmlFor="name"> Name: </label>
-                                        <input type="text" id="name"  name = "name" className="form-control" onChange = {handleChange} value = {values.name} placeholder={getIncome.name}/>
+                                        <input type="text" id="name"  name = "name" className="form-control" onChange = {handleChange} defaultValue={getIncome.name}/>
                                     </div>
                                     <h6 className = "error">
                                         {errors.name && touched.name ? (<div>{errors.name}</div>) : null}
                                     </h6>
-                                   
                                     <div  className="form-outline mb-2  p-6"  style = {{width: '100%'}}>
-                                        <label className="form-label" htmlFor="amount"> Amount (pounds): </label>
-                                        <input type="text" id="amount"  name = "amount" className="form-control" onChange = {handleChange} value = {values.amount} placeholder={getIncome.amount} />
+                                        <label className="form-label" htmlFor="amount"> Amount ({settings.currency  ? settings.currency: '£'}): </label>
+                                        <input type="text" id="amount"  name = "amount" className="form-control" onChange = {handleChange} defaultValue ={getIncome.amount} />
                                     </div>
                                     <div className="error">
                                         {errors.amount && touched.amount ? (<div>{errors.amount}</div>) : null} 
                                     </div>
                                     <div className="form-outline p-6"  style = {{width: '100%'}}>
                                         <label className="form-label" htmlFor="description"> Description:</label>
-                                        <input type="text" id="description" name = "description" className="form-control" onChange = {handleChange} value = {values.description} placeholder={getIncome.description}/>
+                                        <input type="text" id="description" name = "description" className="form-control" onChange = {handleChange} defaultValue={getIncome.description}/>
                                     </div>
                                     <div className = "error">
                                         {errors.description && touched.description ? (<div>{errors.description}</div>) : null}

@@ -51,8 +51,7 @@ const AllCategory= ({getCategory, TOKEN}) => {
     }
  
     return (
-        <div >
-            <StyledApp>
+        <StyledApp>
             <div className= "container">  
                 <div className = "p-4 mt-4 mb-4 shadow-lg">
                     <div className= "container p-3">
@@ -85,9 +84,7 @@ const AllCategory= ({getCategory, TOKEN}) => {
                     </div>
                 </div>     
             </div>
-            </StyledApp>
-           
-        </div>  
+        </StyledApp>
     )
 }
 

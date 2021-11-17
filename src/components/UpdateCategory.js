@@ -48,7 +48,7 @@ const UpdateCategory = ({getCategory, TOKEN}) => {
                                 <form onSubmit = {handleSubmit}>
                                     <div className="form-outline mb-2 p-6" style = {{width: '100%'}}>
                                         <label className="form-label" for="name"> Name: </label>
-                                        <input type="text" id="name"  name = "name" className="form-control" onChange = {handleChange} value = {values.name} placeholder={getCategory.name}/>
+                                        <input type="text" id="name"  name = "name" className="form-control" onChange = {handleChange} defaultValue={getCategory.name}/>
                                     </div>
                                     <h6 className = "error">
                                         {errors.name && touched.name ? (<div>{errors.name}</div>) : null}

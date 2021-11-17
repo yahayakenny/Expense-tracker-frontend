@@ -111,8 +111,8 @@ const App = () => {
                     <Route path="/all-expenses" component={()=> (<AllExpenses getExpense={handleExpense} TOKEN = {TOKEN} settings = {settings}/>)}  />     
                     <Route path="/all-income" component={() => (<AllIncome getIncome = {handleIncome} TOKEN = {TOKEN} settings = {settings}/>) }  />     
                     <Route path="/all-category" component={() => (<AllCategory getCategory = {handleCategory} TOKEN = {TOKEN}/>) }  />     
-                    <Route path="/update-expense" component={()=> (<UpdateExpense getExpense={getExpense} TOKEN = {TOKEN}/>)}  />     
-                    <Route path="/update-income" component={()=> (<UpdateIncome getIncome={getIncome} TOKEN = {TOKEN}/>)}  />  
+                    <Route path="/update-expense" component={()=> (<UpdateExpense getExpense={getExpense} TOKEN = {TOKEN} settings = {settings}/>)}  />     
+                    <Route path="/update-income" component={()=> (<UpdateIncome getIncome={getIncome} TOKEN = {TOKEN} settings = {settings}/>)}  />  
                     <Route path="/update-category" component={()=> (<UpdateCategory getCategory={getCategory} TOKEN = {TOKEN}/>)}  />  
                     <Route path="/users" component={() => (<AllUsers TOKEN = {TOKEN}/>)}  />     
                     <Route path="/settings" component={() => (<Settings TOKEN = {TOKEN}/>)}  />  

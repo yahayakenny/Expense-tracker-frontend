@@ -15,7 +15,7 @@ const ExpenseSchema = Yup.object().shape({
     category: Yup.string().required('The category is required')
   });
 
-const UpdateExpense = ({getExpense, TOKEN}) => {
+const UpdateExpense = ({getExpense, TOKEN, settings}) => {
     const history = useHistory();
     const [getCategories, setGetCategories] = useState({filtered : []})
 
@@ -36,7 +36,7 @@ const UpdateExpense = ({getExpense, TOKEN}) => {
             <div className="container">
                 <div className="col-md-12 col-sm-12 mb-4 mt-5 p-4 shadow-lg expense">
                     <div className = "container ">
-                        <h5 className = "text-center mb-4">Add Expense</h5>
+                        <h5 className = "text-center mb-4">Update Expense</h5>
                         <Formik initialValues = {{
                                 name: '',
                                 amount: '',
@@ -72,28 +72,34 @@ const UpdateExpense = ({getExpense, TOKEN}) => {
                                 <form onSubmit = {handleSubmit}>
                                     <div className="form-outline mb-2 p-6" style = {{width: '100%'}}>
                                         <label className="form-label" for="name"> Name: </label>
-                                        <input type="text" id="name"  name = "name" className="form-control" onChange = {handleChange} value = {values.name} placeholder={getExpense.name}/>
+                                        <input type="text" id="name" 
+                                        defaultValue={getExpense.name}  name = "name" className="form-control"
+                                        onChange = {handleChange} 
+                                        />
                                     </div>
                                     <h6 className = "error">
                                         {errors.name && touched.name ? (<div>{errors.name}</div>) : null}
                                     </h6>
                                     <div  className="form-outline mb-2  p-6"  style = {{width: '100%'}}>
-                                        <label className="form-label" for="amount"> Amount (pounds): </label>
-                                        <input type="text" id="amount"  name = "amount" className="form-control" onChange = {handleChange} value = {values.amount}  placeholder={getExpense.amount}/>
+                                        <label className="form-label" for="amount"> Amount ({settings.currency  ? settings.currency: '£'}): </label>
+                                        <input type="text" id="amount"  name = "amount" className="form-control" onChange = {handleChange}
+                                        defaultValue={getExpense.amount}/>
                                     </div>
                                     <div className="error">
                                         {errors.amount && touched.amount ? (<div>{errors.amount}</div>) : null} 
                                     </div>
                                     <div className="form-outline p-6"  style = {{width: '100%'}}>
                                         <label className="form-label" for="description"> Description:</label>
-                                        <input type="text" id="description" name = "description" className="form-control" onChange = {handleChange} value = {values.description}  placeholder={getExpense.description}/>
+                                        <input type="text" id="description" name = "description" className="form-control" onChange = {handleChange} 
+                                        defaultValue={getExpense.description}/>
                                     </div>
                                     <div className = "error">
                                         {errors.description && touched.description ? (<div>{errors.description}</div>) : null}
                                     </div>
                                     <div className = "mt-2 mb-4 p-6">
                                         <label className="form-label" for="category"> Category: </label>
-                                        <select style={{width:'100%', height: '38px', borderWidth: 'none', padding: "3px"}} className="form-select" name = "category" id = "category" value={values.category} onChange = {handleChange} placeholder={getExpense.category}> 
+                                        <select style={{width:'100%', height: '38px', borderWidth: 'none', padding: "3px"}} className="form-select" name = "category" id = "category"
+                                        onChange = {handleChange} defaultValue={getExpense.category}> 
                                                 <option selected> select a category</option>
                                                 {
                                                     getCategories.filtered.map((item) => (

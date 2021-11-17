@@ -3,6 +3,11 @@ import * as Yup from 'yup';
 import { useHistory } from 'react-router';
 import axios from 'axios';
 import { SETTINGS_URL } from './utils';
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+        color: ${(props) => props.theme.fontColor}
+    `;
 
 const SettingsSchema = Yup.object().shape({
     currency: Yup.string().required('Error: The currency is required'),
@@ -14,7 +19,7 @@ const SettingsSchema = Yup.object().shape({
 const Settings = ({TOKEN}) => {
     const history = useHistory()
     return (
-        <div>
+        <StyledApp>
               <div className="container">
                 <div className="col-md-12 col-sm-12 mb-4 mt-5 p-4 shadow-lg expense">
                     <div className = "container ">
@@ -78,7 +83,7 @@ const Settings = ({TOKEN}) => {
                     </div>   
                 </div>
             </div> 
-        </div>
+        </StyledApp>
     )
 }
 
