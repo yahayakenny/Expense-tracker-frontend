@@ -35,7 +35,7 @@ export const FetchPolarAreaChart = ({TOKEN}) => {
                 ] 
             })
         ).catch(error => console.log(error))
-        return () => {}
+        return () => {setPolarAreaData({}); }
     },[TOKEN])
     
     return (

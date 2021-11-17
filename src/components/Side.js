@@ -14,7 +14,7 @@ const Side = ({TOKEN}) => {
             res => 
             setCardData(res.data) 
         ).catch(error => console.log(error))
-        return () => {}
+        return () => {setCardData({})}
     },[TOKEN])
 
     return (

@@ -95,7 +95,7 @@ function NavBar({themeToggler, theme}) {
                                     <Link to="/logout" onClick = {handleLogout}> Logout </Link> 
                                 </li>
                                 <li className="nav-item">
-                                    <button className = 'btn-toggle' onClick={() => themeToggler()}>{theme === 'dark' ? <i class="fas fa-sun"></i>: <i class="fas fa-moon"></i> }</button>
+                                    <button className = 'btn-toggle' onClick={() => themeToggler()}>{theme === 'dark' ? <i className="fas fa-sun"></i>: <i className="fas fa-moon"></i> }</button>
                                 </li>
                     </ul>) : ''
                     }

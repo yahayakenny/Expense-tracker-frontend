@@ -51,7 +51,7 @@ export const FetchMontlyExpenses = ({TOKEN}) => {
                 ] 
             })
         ).catch(error => console.log(error))
-        return () => {}
+        return () => {setBarChartData({})}
     },[TOKEN])
     
     return (

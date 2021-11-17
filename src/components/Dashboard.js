@@ -14,7 +14,8 @@ const StyledApp = styled.div`
     `;
 
 const Dashboard = ({TOKEN, name, settings}) => {
-    const [setExpense, setGetExpense] = useState('')
+    const [setExpense, setGetExpense] = useState('');
+
     const handleExpense = (expense) => {
         setGetExpense(expense)
     }
@@ -34,7 +35,7 @@ const Dashboard = ({TOKEN, name, settings}) => {
                                 setExpense > settings.limit ? (
                                 <div className="alert alert-danger alert-dismissible fade show" role="alert">
                                     You have reached your spending limit for the month
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>) : ''

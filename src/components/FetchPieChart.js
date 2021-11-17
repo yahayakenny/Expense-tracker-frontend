@@ -37,7 +37,7 @@ export const FetchPieChart = ({TOKEN}) => {
                 ] 
             })
         ).catch(error => console.log(error))
-        return () => {}
+        return () => {setPieChartData({})}
     },[TOKEN])
     
     return (

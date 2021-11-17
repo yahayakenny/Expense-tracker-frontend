@@ -20,7 +20,7 @@ const Table = ({TOKEN, settings}) => {
     
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
-        return () => {}
+        return () => {setTableData({})}
     },[TOKEN])
 
     return (
