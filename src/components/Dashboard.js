@@ -7,7 +7,7 @@ import '../css/App.css'
 import { FetchPolarAreaChart } from "./FetchPolarAreaChart";
 import Side from "./Side";
 import styled from "styled-components";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
@@ -38,7 +38,7 @@ const Dashboard = ({TOKEN, name, settings}) => {
                                     <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
-                                </div>) : ''
+                                </div>) : null
                             }
                             </div>
                         </div>
