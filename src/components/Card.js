@@ -22,7 +22,7 @@ const Card = ({TOKEN, getExpense, settings}) => {
         return () => {}
     },[TOKEN, ])
 
-    useEffect(() => {getExpense(cardData.expense) ; return () => {}},[cardData, getExpense] )
+    // useEffect(() => {getExpense(cardData.expense) ; return () => {}},[cardData, getExpense] )
     
     return (
         <div className = "row"> 
