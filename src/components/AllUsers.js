@@ -14,7 +14,8 @@ const AllUsers = ({TOKEN}) => {
     const indexOfLastData = currentPage * dataPerPage
     const indexOfFirstData = indexOfLastData - dataPerPage
     const [tableData, setTableData] = useState([]);
-    const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
+    const currentData = tableData.slice(indexOfFirstData, indexOfLastData);
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -23,12 +24,12 @@ const AllUsers = ({TOKEN}) => {
         axios.get(ALL_USERS_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => setTableData(res.data))
         return () => {}
        
-    },[TOKEN])
+    },[getUser.token])
 
     const handleDelete = (id) => {
         axios.delete(`${BASE_URL}/users/list/${id}/`, 

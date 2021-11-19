@@ -3,14 +3,15 @@ import {BarChart} from './BarChart';
 import axios from 'axios';
 import { MONTH_URL} from "./utils";
 
-export const FetchMontlyExpenses = ({TOKEN}) => {
+export const FetchMontlyExpenses = () => {
     const [barChartData, setBarChartData] = useState({filtered: []});
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
 
     useEffect(() => {
         axios.get(MONTH_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => 
             setBarChartData({
@@ -52,7 +53,7 @@ export const FetchMontlyExpenses = ({TOKEN}) => {
             })
         ).catch(error => console.log(error))
         return () => {setBarChartData({})}
-    },[TOKEN])
+    },[getUser.token])
     
     return (
         <div className="shadow-lg rounded">  

@@ -1,19 +1,22 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import { FetchExpenses } from './FetchExpenses';
-import { DATE_RANGE_URL} from './utils';
+import { commas, DATE_RANGE_URL} from './utils';
 import styled from "styled-components";
+import { useSelector } from 'react-redux';
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
     `;
 
-export const FormData = ({TOKEN, settings}) => {
+export const FormData = () => {
     const [from_date, setFromDate] = useState('')
     const [to_date, setToDate] = useState('')
     const [select, setSelect] = useState('')
     const [data, setData] = useState({ filtered: [] })
     const [error, setError] = useState('');
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
+    const settings = useSelector(state => state.settings)
     
     const handleSubmit = (e) => {
         e.preventDefault() 
@@ -25,7 +28,7 @@ export const FormData = ({TOKEN, settings}) => {
             },
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
 
         }).then(res => {
                 setData(res.data)  
@@ -70,7 +73,7 @@ export const FormData = ({TOKEN, settings}) => {
                             ( <div className="card text-white mb-3 shadow-lg text-center rounded" style = {{backgroundColor: "rgb(213, 126, 126)"}}>
                                 <div className="card-header">Total</div>
                                 <div className="card-body">
-                                    <h1 className="card-text">{settings.currency  ? settings.currency: '£'}{data.total}</h1>
+                                    <h1 className="card-text">{settings.currency  ? settings.currency: '£'}{commas(data.total)}</h1>
                                 </div>
                                 </div> 
                             ): null
@@ -84,7 +87,6 @@ export const FormData = ({TOKEN, settings}) => {
                 </div>
             </div>
         </div> 
-
         </StyledApp>
         
     )

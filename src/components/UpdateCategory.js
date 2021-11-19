@@ -10,8 +10,9 @@ const CategorySchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
   });
 
-const UpdateCategory = ({getCategory, TOKEN}) => {
+const UpdateCategory = ({getCategory}) => {
     const history = useHistory();
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
 
     return (
         <div>
@@ -32,7 +33,7 @@ const UpdateCategory = ({getCategory, TOKEN}) => {
                                     {
                                         headers:{
                                             "Content-Type": 'application/json' ,
-                                            'Authorization':`Bearer ${TOKEN}`
+                                            'Authorization':`Bearer ${getUser.token}`
                                     }}
                                     ).then(res => 
                                         console.log(res.data)  

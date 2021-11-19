@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import '../css/App.css'
 import {ADD_INCOME_URL} from './utils';
 import styled from "styled-components";
+import { useSelector } from 'react-redux';
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
@@ -19,8 +20,10 @@ const IncomeSchema = Yup.object().shape({
     description: Yup.string().required('The description is required'),
   });
 
-const CreateIncome = ({TOKEN, settings}) => {
+const CreateIncome = () => {
     const history = useHistory();
+    let getUser = JSON.parse(localStorage.getItem('userInfo'));
+    const settings = useSelector(state => state.settings)
 
     return (
         <StyledApp>
@@ -44,7 +47,7 @@ const CreateIncome = ({TOKEN, settings}) => {
                                             },
                                             {headers:{
                                                 "Content-Type": 'application/json' ,
-                                                'Authorization':`Bearer ${TOKEN}`
+                                                'Authorization':`Bearer ${getUser.token}`
                                             }}
                             
                                         ).then(res => 

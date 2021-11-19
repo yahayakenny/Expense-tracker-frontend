@@ -5,6 +5,7 @@ import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import '../css/App.css'
 import { BASE_URL } from './utils';
+import { useSelector } from 'react-redux';
 
 const IncomeSchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
@@ -14,8 +15,10 @@ const IncomeSchema = Yup.object().shape({
     description: Yup.string().required('The description is required'),
   });
 
-const UpdateIncome = ({getIncome, TOKEN, settings}) => {
+const UpdateIncome = ({getIncome}) => {
     const history = useHistory();
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
+    const settings = useSelector(state => state.settings)
 
     return (
         <div>
@@ -40,7 +43,7 @@ const UpdateIncome = ({getIncome, TOKEN, settings}) => {
                                     {
                                         headers:{
                                             "Content-Type": 'application/json' ,
-                                            'Authorization':`Bearer ${TOKEN}`
+                                            'Authorization':`Bearer ${getUser.token}`
                                     }}
                                     ).then(res => 
                                         console.log(res.data)  
