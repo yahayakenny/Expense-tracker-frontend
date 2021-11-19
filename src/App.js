@@ -56,7 +56,6 @@ const App = () => {
         }).then(
             res => {
                 setSettings(res.data[0]) 
-                console.log(res.data)
             }
           
         ).catch(error => console.log(error))
