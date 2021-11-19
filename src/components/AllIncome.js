@@ -5,12 +5,13 @@ import { useHistory } from 'react-router'
 import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
     `;
 
-const AllIncome = ({getIncome, TOKEN, settings}) => {
+const AllIncome = ({getIncome}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(10)
     const indexOfLastData = currentPage * dataPerPage
@@ -18,6 +19,8 @@ const AllIncome = ({getIncome, TOKEN, settings}) => {
     const [tableData, setTableData] = useState([]);
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
+    let getUser = JSON.parse(localStorage.getItem('userInfo'));
+    const settings = useSelector(state => state.settings)
    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -26,7 +29,7 @@ const AllIncome = ({getIncome, TOKEN, settings}) => {
         axios.get(ALL_INCOME_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
@@ -34,13 +37,13 @@ const AllIncome = ({getIncome, TOKEN, settings}) => {
 
         return () => {}
        
-    },[history, TOKEN])
+    },[history, getUser.token])
 
     const handleDelete = (id) => {
         axios.delete(`${BASE_URL}/income/${id}/`, 
             {headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`
+                'Authorization':`Bearer ${getUser.token}`
             }}
             ).then(res => {
                 const filtered_data = tableData.filter((item) => item.id !== id);

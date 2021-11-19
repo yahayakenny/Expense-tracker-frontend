@@ -3,14 +3,16 @@ import axios from 'axios';
 import { YEAR_URL } from "./utils";
 import { PolarAreaChart } from "./PolarAreaChart";
 
-export const FetchPolarAreaChart = ({TOKEN}) => {
+
+export const FetchPolarAreaChart = () => {
     const [polarAreaData, setPolarAreaData] = useState({filtered: []});
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
    
     useEffect(() => {
         axios.get(YEAR_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => 
             setPolarAreaData({
@@ -36,7 +38,7 @@ export const FetchPolarAreaChart = ({TOKEN}) => {
             })
         ).catch(error => console.log(error))
         return () => {setPolarAreaData({}); }
-    },[TOKEN])
+    },[getUser.token])
     
     return (
         <div className="shadow-lg rounded">  

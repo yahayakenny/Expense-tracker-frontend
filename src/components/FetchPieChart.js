@@ -3,14 +3,15 @@ import {PieChart} from './PieChart';
 import axios from 'axios';
 import { CATEGORY_URL } from "./utils";
 
-export const FetchPieChart = ({TOKEN}) => {
+export const FetchPieChart = () => {
     const [pieChartData, setPieChartData] = useState({});
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
 
     useEffect(() => {
         axios.get(CATEGORY_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => 
             setPieChartData({
@@ -38,7 +39,7 @@ export const FetchPieChart = ({TOKEN}) => {
             })
         ).catch(error => console.log(error))
         return () => {setPieChartData({})}
-    },[TOKEN])
+    },[getUser.token])
     
     return (
         <div className="shadow-lg rounded">  

@@ -1,9 +1,9 @@
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router';
+import styled from "styled-components";
 import axios from 'axios';
 import { SETTINGS_URL } from './utils';
-import styled from "styled-components";
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
@@ -16,7 +16,8 @@ const SettingsSchema = Yup.object().shape({
     .required('Error : The spending limit is required!'),
   });
 
-const Settings = ({TOKEN}) => {
+const Settings = () => {
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
     const history = useHistory()
     return (
         <StyledApp>
@@ -39,18 +40,19 @@ const Settings = ({TOKEN}) => {
                                     },
                                     {headers:{
                                         "Content-Type": 'application/json' ,
-                                        'Authorization':`Bearer ${TOKEN}`
+                                        'Authorization':`Bearer ${getUser.token}`
                                     }}
 
                                     ).then(res => 
                                         console.log(res.data)  
+                                        
                                     )
                                     .catch((error) => console.log(error)
                                     )
                                   
-                                alert('Settings Successfully Updated') 
-                                history.push('/dashboard')      
-                                window.location.reload();
+                                    alert('Settings Successfully Updated') 
+                                    history.push('/dashboard')      
+                                    window.location.reload();
                                 }
                             }  
                         >

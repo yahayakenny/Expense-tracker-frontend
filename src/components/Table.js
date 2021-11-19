@@ -8,20 +8,20 @@ const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
     `;
 
-const Table = ({TOKEN, settings}) => {
+const Table = ({ settings}) => {
     const [tableData, setTableData] = useState([]);
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
    
- 
     useEffect(() => {
         axios.get(RECENT_EXPENSES_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
         return () => {setTableData({})}
-    },[TOKEN])
+    },[getUser.token])
 
     return (
         <StyledApp>
@@ -40,7 +40,7 @@ const Table = ({TOKEN, settings}) => {
                                 </tr>
                             </thead>
                             { tableData ?
-                            tableData.map(item => {
+                            tableData.map((item)=> {
                             return(
                                 <tbody>
                                     <tr>

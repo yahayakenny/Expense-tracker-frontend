@@ -5,6 +5,7 @@ import '../css/App.css'
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 
 const ExpenseSchema = Yup.object().shape({
     name: Yup.string().required('Error: The name is required'),
@@ -15,21 +16,23 @@ const ExpenseSchema = Yup.object().shape({
     category: Yup.string().required('The category is required')
   });
 
-const UpdateExpense = ({getExpense, TOKEN, settings}) => {
+const UpdateExpense = ({getExpense}) => {
     const history = useHistory();
     const [getCategories, setGetCategories] = useState({filtered : []})
+    let getUser = JSON.parse(localStorage.getItem('userInfo'));
+    const settings = useSelector(state => state.settings)
 
     useEffect(() => {
         axios.get(GET_CATEGORIES_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => 
             setGetCategories(res.data)  
         ).catch(error => console.log(error))
         return () => {}
-    },[TOKEN])
+    },[getUser.token])
 
     return (
         <div>
@@ -55,7 +58,7 @@ const UpdateExpense = ({getExpense, TOKEN, settings}) => {
                                         },
                                         {headers:{
                                             "Content-Type": 'application/json' ,
-                                            'Authorization':`Bearer ${TOKEN}`
+                                            'Authorization':`Bearer ${getUser.token}`
                                         }}
 
                                         ).then(res => 

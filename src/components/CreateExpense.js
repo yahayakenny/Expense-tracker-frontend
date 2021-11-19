@@ -6,6 +6,7 @@ import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router';
 import styled from "styled-components";
+import { useSelector } from 'react-redux';
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
@@ -20,21 +21,24 @@ const ExpenseSchema = Yup.object().shape({
     category: Yup.string().required('The category is required')
   });
 
-const CreateExpense = ({TOKEN, settings}) => {
+const CreateExpense = () => {
     const history = useHistory();
     const [getCategories, setGetCategories] = useState({filtered : []})
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
+    const settings = useSelector(state => state.settings)
+
     useEffect(() => {
         axios.get(GET_CATEGORIES_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => 
             setGetCategories(res.data)  
         ).catch(error => console.log(error))
 
         return () => {}
-    },[TOKEN])
+    },[getUser.token])
 
     return (
         <StyledApp>
@@ -60,7 +64,7 @@ const CreateExpense = ({TOKEN, settings}) => {
                                     },
                                     {headers:{
                                         "Content-Type": 'application/json' ,
-                                        'Authorization':`Bearer ${TOKEN}`
+                                        'Authorization':`Bearer ${getUser.token}`
                                     }}
 
                                     ).then(res => 

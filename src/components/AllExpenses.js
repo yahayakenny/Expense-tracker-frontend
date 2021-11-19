@@ -6,12 +6,13 @@ import Pagination from "./Pagination";
 import { Link } from 'react-router-dom';
 import {CSVLink} from 'react-csv'
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
     `;
 
-const AllExpenses = ({getExpense, TOKEN, settings}) => {
+const AllExpenses = ({getExpense}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(10)
     const indexOfLastData = currentPage * dataPerPage
@@ -21,7 +22,9 @@ const AllExpenses = ({getExpense, TOKEN, settings}) => {
     const csvLink = useRef() 
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
-   
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
+    const settings = useSelector(state => state.settings)
+    
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -29,19 +32,19 @@ const AllExpenses = ({getExpense, TOKEN, settings}) => {
         axios.get(ALL_EXPENSES_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => setTableData(res.data)  
         ).catch(error => console.log(error))
         history.push('/all-expenses')
         return () => {}
-    },[history, TOKEN])
+    },[history, getUser.token])
 
     const handleDelete = (id) => {
         axios.delete(`${BASE_URL}/expense/${id}/`, 
             {headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`
+                'Authorization':`Bearer ${getUser.token}`
             }}
             ).then(res => {
                 const filtered_data = tableData.filter((item) => item.id !== id);
@@ -49,7 +52,7 @@ const AllExpenses = ({getExpense, TOKEN, settings}) => {
                 setTableData(filtered_data)
             })
             .catch((error) => console.log(error)
-            )
+        )
     }
 
     // https://stackoverflow.com/questions/53504924/reactjs-download-csv-file-on-button-click
@@ -57,7 +60,7 @@ const AllExpenses = ({getExpense, TOKEN, settings}) => {
         axios.get(EXPORT_CSV_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => setCsv(res.data)  
         ).catch(error => console.log(error))
@@ -70,7 +73,7 @@ const AllExpenses = ({getExpense, TOKEN, settings}) => {
             {   responseType : 'blob',
                 headers:{
                     "Content-Type": 'application/json' ,
-                    'Authorization':`Bearer ${TOKEN}`}
+                    'Authorization':`Bearer ${getUser.token}`}
             }
             ).then(res =>{
             const url = window.URL.createObjectURL(new Blob([res.data]));
@@ -90,10 +93,9 @@ const AllExpenses = ({getExpense, TOKEN, settings}) => {
             {   responseType : 'blob',
                 headers:{
                     "Content-Type": 'application/json' ,
-                    'Authorization':`Bearer ${TOKEN}`}
+                    'Authorization':`Bearer ${getUser.token}`}
             }
             ).then(res =>{
-            console.log(res.data)
             const url = window.URL.createObjectURL(new Blob([res.data]));
             const a = document.createElement("a");
             a.href = url;
