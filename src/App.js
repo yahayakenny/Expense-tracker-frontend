@@ -36,17 +36,17 @@ const App = () => {
         theme === 'light' ? setTheme('dark') : setTheme('light');
     }
 
-    useEffect(() => {
-        let getUser = JSON.parse(localStorage.getItem('userInfo'))
-        if (getUser){
-            history.push('/dashboard')
-            getToken(getUser.token)
-            getName(getUser.name)
-        }
-        else {
-            history.push('/')
-        }
-    }, [history])
+    // useEffect(() => {
+    //     let getUser = JSON.parse(localStorage.getItem('userInfo'))
+    //     if (getUser){
+    //         history.push('/dashboard')
+    //         getToken(getUser.token)
+    //         getName(getUser.name)
+    //     }
+    //     else {
+    //         history.push('/')
+    //     }
+    // }, [history])
 
     useEffect (() => {
         axios.get(SETTINGS_URL, {

@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../css/App.css'
 
 //CARD NOT GETTING TOKEN
-const Card = ({TOKEN, getExpense, settings}) => {
+const Card = ({TOKEN, settings}) => {
     const [cardData, setCardData] = useState(''); 
    
     useEffect(() => {
@@ -21,8 +21,6 @@ const Card = ({TOKEN, getExpense, settings}) => {
         ).catch(error => console.log(error))
         return () => {}
     },[TOKEN, ])
-
-    // useEffect(() => {getExpense(cardData.expense) ; return () => {}},[cardData, getExpense] )
     
     return (
         <div className = "row"> 
