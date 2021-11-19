@@ -7,11 +7,7 @@ import '../css/App.css'
 import { FetchPolarAreaChart } from "./FetchPolarAreaChart";
 import Side from "./Side";
 import styled from "styled-components";
-<<<<<<< HEAD
-import { useState } from "react";
-=======
 import {useSelector, } from 'react-redux';
->>>>>>> 7ceffa0e43922ca69d66ae394071595d2f3eac2f
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
