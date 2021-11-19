@@ -1,22 +1,9 @@
-import axios from 'axios';
-import React, { useEffect, useState  } from 'react'
-import { NET_URL } from './utils';
+import React from 'react'
+import { useSelector } from 'react-redux';
 
-const Side = ({TOKEN}) => {
-    const [cardData, setCardData] = useState('');
-
-    useEffect(() => {
-        axios.get(NET_URL, {
-            headers:{
-                "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
-        }).then(
-            res => 
-            setCardData(res.data) 
-        ).catch(error => console.log(error))
-        return () => {setCardData({})}
-    },[TOKEN])
-
+const Side = () => {
+    const cardData = useSelector(state => state.card)
+    
     return (
         <div className = "row">
             <div className = "col-md-4">

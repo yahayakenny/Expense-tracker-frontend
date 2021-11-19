@@ -2,12 +2,14 @@ import {createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
 import {combineReducers, applyMiddleware} from 'redux';
-import AuthReducer from '../reducers/Reducers';
+import {AuthReducer, CardReducer, SettingsReducer} from '../reducers/Reducers';
 
 const composeEnhancers = composeWithDevTools({});
 
 const rootReducer = combineReducers({
-    auth: AuthReducer
+    auth: AuthReducer,
+    card: CardReducer,
+    settings: SettingsReducer,
 });
   
 const store = createStore(

@@ -3,15 +3,15 @@ import { LineChart } from './LineChart';
 import axios from 'axios';
 import { DAY_URL} from "./utils";
 
-//LINE GRAPH NOT USING TOKEN, ANOTHER JUSTIFICATION FOR REDUX
-export const FetchLineGraph = ({TOKEN}) => {
+export const FetchLineGraph = () => {
     const [lineChartData, setLineChartData] = useState({});
-  
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
+
     useEffect(() => {
         axios.get(DAY_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => 
             setLineChartData({
@@ -46,8 +46,8 @@ export const FetchLineGraph = ({TOKEN}) => {
                 ] 
             })
         ).catch(error => console.log(error))
-        return () => {}
-    },[TOKEN])
+        return () => {setLineChartData({})}
+    },[getUser.token])
 
     return (
         <div className="shadow-lg rounded">  

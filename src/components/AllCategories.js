@@ -10,7 +10,7 @@ const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}
     `;
 
-const AllCategory= ({getCategory, TOKEN}) => {
+const AllCategory= ({getCategory,}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(10)
     const indexOfLastData = currentPage * dataPerPage
@@ -18,30 +18,28 @@ const AllCategory= ({getCategory, TOKEN}) => {
     const [tableData, setTableData] = useState([]);
     const history = useHistory();
     const currentData = tableData.slice(indexOfFirstData, indexOfLastData)
-   
-    // Change page
+    let getUser = JSON.parse(localStorage.getItem('userInfo'))
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     useEffect(() => {
         axios.get(GET_CATEGORIES_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`}
+                'Authorization':`Bearer ${getUser.token}`}
     
         }).then(res => {
-            console.log(res.data.filtered)
             setTableData(res.data.filtered) 
         } 
         ).catch(error => console.log(error))
         return () => {}
        
-    },[history, TOKEN])
+    },[history, getUser.token])
 
     const handleDelete = (id) => {
         axios.delete(`${BASE_URL}/category/${id}/`, 
             {headers:{
                 "Content-Type": 'application/json' ,
-                'Authorization':`Bearer ${TOKEN}`
+                'Authorization':`Bearer ${getUser.token}`
             }}
             ).then(res => {
                 const filtered_data = tableData.filter((item) => item.id !== id);

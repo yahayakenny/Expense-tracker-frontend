@@ -124,14 +124,15 @@ td, th {
 
 }
 
-.card{
+.card-dashboard{
   height: 280px
 
 }
 
 .card-footer {
-  color:rgb(213, 126, 126)
+  color:rgb(213, 126, 126);
   /* color: white; */
+  font-weight: bolder;
 }
 
 

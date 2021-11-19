@@ -1,13 +1,10 @@
-import axios from "axios";
 import { useState} from "react";
 import { useHistory } from 'react-router';
-import { BASE_URL } from "./utils";
 import { AuthAction } from "../redux/actions/Actions";
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState(''); 
-    const [userData, setUserData] = useState('')
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -15,35 +12,10 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setLoading(true)
-        AuthAction(username, password, history)
+        AuthAction(username, password, history, setError)
         setLoading(false);
-
-        // axios.post(`${BASE_URL}/users/login`,
-        // {
-        //     username: username,
-        //     password: password,  
-        //     },
-        // ).then(res =>
-        //     {
-        //         setUserData(res.data)
-        //         localStorage.setItem('userInfo', JSON.stringify(res.data))
-        //     }
-        // )
-        // .catch((error) => {
-        //     if(error.response.status === 401){
-        //         setError('Error: Invalid Credentials')
-        //         }   
-        //     }  
-        // )
-
-        // if (userData){
-        //     history.push('/dashboard')
-        //     window.location.reload();
-        // } else {
-        //     setLoading(true)
-        // }
-        // setLoading(false);
     }
+    
     return (
         <div>
             <div className="container">
