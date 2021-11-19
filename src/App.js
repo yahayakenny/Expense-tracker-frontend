@@ -37,14 +37,13 @@ const App = () => {
 
     useEffect(() => {
         if (getUser){
-            history.push('/dashboard')
             CardAction()
             SettingsAction()
         }
         else {
             history.push('/')
         }
-    }, [history,getUser])
+    }, [history, getUser])
 
     const handleExpense = (id) => {
          axios.get(`${BASE_URL}/expense/${id}/`,{
