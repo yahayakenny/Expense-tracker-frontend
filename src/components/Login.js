@@ -32,10 +32,13 @@ const Login = () => {
                                 <input type="password" className="form-control mb-4"  onChange = {(e) => setPassword(e.target.value)} value = {password}/>
                             </div>
                             <button type="submit" className="btn btn-block  mb-2 mt-2" style={{ width: '100%', color: "white", backgroundColor: "rgb(213, 126, 126)"}}>
-                            {
+                            {/* {
                                 loading ? (<div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>
                                 </div>): 'Login'
+                            } */}
+                            {
+                            loading ? 'Loading...': 'Login'
                             }
                             </button>
                         </form>
