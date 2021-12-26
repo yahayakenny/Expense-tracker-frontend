@@ -3,7 +3,6 @@ import { BASE_URL, NET_URL, SETTINGS_URL } from '../../components/utils';
 import store from '../store/store'
 let getUser = JSON.parse(localStorage.getItem('userInfo'))
 
-
 export const AuthAction = (username, password, history, setError) => {
     axios.post(`${BASE_URL}/users/login`,
     {
@@ -59,11 +58,11 @@ export const CardAction = () => {
     ).catch(error => console.log(error))
     }
 
-    export const SettingsAction = () => {
-        axios.get(SETTINGS_URL, {
-        headers:{
-            "Content-Type": 'application/json' ,
-            'Authorization':`Bearer ${getUser.token}`}
+export const SettingsAction = () => {
+    axios.get(SETTINGS_URL, {
+    headers:{
+        "Content-Type": 'application/json' ,
+        'Authorization':`Bearer ${getUser.token}`}
     }).then(
         res => {
             let data =res.data[0]
@@ -75,8 +74,7 @@ export const CardAction = () => {
                 }
             })
         }
-      
+        
     ).catch(error => console.log(error))
-       
-    }
+}
     

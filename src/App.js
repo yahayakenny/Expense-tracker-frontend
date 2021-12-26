@@ -77,7 +77,6 @@ const App = () => {
         ).catch(error => console.log(error))
     }
 
-
     return(
         <ThemeProvider theme = {theme === 'light' ? lightTheme : darkTheme}>
             <GlobalStyles/>

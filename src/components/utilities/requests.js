@@ -29,6 +29,5 @@ export const requestSample = (id) => {
     request = BASE_CLIENT.get(ENDPOINTS.addCategory,
         {id}
     )
-
     return request
 }

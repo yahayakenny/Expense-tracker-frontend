@@ -8,7 +8,6 @@ export const AuthReducer = (state = {name: '', token: '', isAdmin: ''}, action) 
     }
 }
 
-
 export const CardReducer = (state = {income: '', expense: '', net: '', incomeCount: '', expenseCount: '', categoryCount: ''}, action) => {
     switch (action.type){
         case 'CARD_DATA': 
@@ -19,7 +18,6 @@ export const CardReducer = (state = {income: '', expense: '', net: '', incomeCou
     }
 }
 
-
 export const SettingsReducer = (state = {currency: '', limit: '',}, action) => {
     switch (action.type){
         case 'SETTINGS_DATA': 
@@ -29,4 +27,3 @@ export const SettingsReducer = (state = {currency: '', limit: '',}, action) => {
             return state
     }
 }
-
