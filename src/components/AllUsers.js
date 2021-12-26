@@ -33,6 +33,8 @@ const AllUsers = () => {
                                     <th scope="col">Admin</th>
                                 </tr>
                             </thead>
+                            {loading && <div>Loading...</div>}
+                            {error && <div>{error.message}</div>}
                             {data ?
                             data.map(item => {
                             return(
