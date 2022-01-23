@@ -1,5 +1,5 @@
-import axios from "axios";
 import { NET_URL } from "../../Components/utils";
+import axios from "axios";
 import store from "../store/Store";
 let getUser = JSON.parse(localStorage.getItem("userInfo"));
 

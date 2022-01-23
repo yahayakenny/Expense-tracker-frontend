@@ -1,11 +1,12 @@
-import { FetchLineGraph } from "../../Components/FetchLineGraph";
-import { FetchPieChart } from "../../Components/FetchPieChart";
-import Card from "../../Components/Card";
-import Table from "../../Components/Table";
-import { FetchMontlyExpenses } from "../../Components/FetchMonthlyExpenses";
 import "../../Styles/App.css";
+
+import Card from "../../Components/Card";
+import { FetchLineGraph } from "../../Components/FetchLineGraph";
+import { FetchMontlyExpenses } from "../../Components/FetchMonthlyExpenses";
+import { FetchPieChart } from "../../Components/FetchPieChart";
 import { FetchPolarAreaChart } from "../../Components/FetchPolarAreaChart";
 import Side from "../../Components/Side";
+import Table from "../../Components/Table";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 

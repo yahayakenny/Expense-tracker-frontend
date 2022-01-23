@@ -1,10 +1,12 @@
-import axios from "axios";
-import { ADD_CATEGORY_URL } from "../../Components/utils";
 import "../../Styles/App.css";
-import { Formik } from "formik";
+
 import * as Yup from "yup";
-import { useHistory } from "react-router";
+
+import { ADD_CATEGORY_URL } from "../../Components/utils";
+import { Formik } from "formik";
+import axios from "axios";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 
 const StyledApp = styled.div`
   color: ${(props) => props.theme.fontColor};

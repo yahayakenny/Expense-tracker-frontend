@@ -2,7 +2,7 @@ html,
 body {
   position: relative;
   overflow-x: hidden;
-  font-family: 'Nunito';
+  font-family: "Nunito";
 }
 
 .navbar-nav li a {
@@ -34,7 +34,7 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
 
 input {
@@ -47,11 +47,11 @@ input {
 
 .error {
   color: red;
-  font-size:  12px;
-  margin: 5px
+  font-size: 12px;
+  margin: 5px;
 }
 
-.hero-text h3{
+.hero-text h3 {
   font-family: Nunito;
   font-size: 2.75rem;
   font-style: normal;
@@ -64,7 +64,7 @@ input {
   -webkit-background-clip: text;
 }
 
-.hero-text h5{
+.hero-text h5 {
   font-family: Nunito;
   font-size: 1.5rem;
   font-style: normal;
@@ -76,10 +76,10 @@ input {
 
 .btn-toggle {
   position: relative;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   font-size: 11px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 1px;
   width: 20px;
   text-align: center;
@@ -99,14 +99,14 @@ input {
   margin-left: -20px !important;
   margin-top: -120%;
   opacity: 0;
-  transition: all 0.8s
+  transition: all 0.8s;
 }
 
 .btn-toggle:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
-  transition: 0s
+  transition: 0s;
 }
 
 .logo {
@@ -118,26 +118,24 @@ table {
   width: 100%;
 }
 
-td, th {
+td,
+th {
   text-align: left;
   padding: 8px;
-
 }
 
-.card-dashboard{
-  height: 280px
-
+.card-dashboard {
+  height: 280px;
 }
 
 .card-footer {
-  color:rgb(213, 126, 126);
+  color: rgb(213, 126, 126);
   /* color: white; */
   font-weight: bolder;
 }
 
-
-@media(max-width: 767px){
-  .expense { 
-      width: 100%;
+@media (max-width: 767px) {
+  .expense {
+    width: 100%;
   }
 }

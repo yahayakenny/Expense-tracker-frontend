@@ -1,10 +1,12 @@
-import axios from "axios";
-import React from "react";
-import { useHistory } from "react-router";
-import { Formik } from "formik";
-import * as Yup from "yup";
 import "../../Styles/App.css";
+
+import * as Yup from "yup";
+
 import { BASE_URL } from "../../Components/utils";
+import { Formik } from "formik";
+import React from "react";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 const CategorySchema = Yup.object().shape({
   name: Yup.string().required("Error: The name is required"),

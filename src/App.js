@@ -1,28 +1,29 @@
-import { FormData } from "./Pages/Search/FormData";
+import { GlobalStyles, darkTheme, lightTheme } from "./Components/Themes";
 import { Route, Switch } from "react-router-dom";
-import Dashboard from "./Pages/Dashboard/Dashboard";
-import NavBar from "./Routes/Routes";
-import CreateExpense from "./Pages/Expenses/CreateExpense";
+
+import AllCategory from "./Pages/Category/AllCategories";
 import AllExpenses from "./Pages/Expenses/AllExpenses";
 import AllIncome from "./Pages/Income/AllIncome";
-import UpdateExpense from "./Pages/Expenses/UpdateExpense";
-import { useState } from "react";
-import axios from "axios";
-import CreateIncome from "./Pages/Income/CreateIncome";
-import UpdateIncome from "./Pages/Income/UpdateIncome";
 import AllUsers from "./Pages/Profile/AllUsers";
-import { useHistory } from "react-router";
-import { useEffect } from "react";
-import CreateCategory from "./Pages/Category/CreateCategory";
-import AllCategory from "./Pages/Category/AllCategories";
-import UpdateCategory from "./Pages/Category/UpdateCategory";
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme, GlobalStyles } from "./Components/Themes";
 import { BASE_URL } from "./Components/utils";
-import Settings from "./Pages/Settings/Settings";
-import Login from "./Auth/Login";
-import { SettingsAction } from "./Redux/Actions/SettingsAction";
 import { CardAction } from "./Redux/Actions/CardAction";
+import CreateCategory from "./Pages/Category/CreateCategory";
+import CreateExpense from "./Pages/Expenses/CreateExpense";
+import CreateIncome from "./Pages/Income/CreateIncome";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import { FormData } from "./Pages/Search/FormData";
+import Login from "./Auth/Login";
+import NavBar from "./Routes/Routes";
+import Settings from "./Pages/Settings/Settings";
+import { SettingsAction } from "./Redux/Actions/SettingsAction";
+import { ThemeProvider } from "styled-components";
+import UpdateCategory from "./Pages/Category/UpdateCategory";
+import UpdateExpense from "./Pages/Expenses/UpdateExpense";
+import UpdateIncome from "./Pages/Income/UpdateIncome";
+import axios from "axios";
+import { useEffect } from "react";
+import { useHistory } from "react-router";
+import { useState } from "react";
 
 const App = () => {
   const history = useHistory();
