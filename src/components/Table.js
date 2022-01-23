@@ -18,7 +18,7 @@ const Table = ({ settings}) => {
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${getUser.token}`}
     
-        }).then(res => setTableData(res.data)  
+        }).then(res => setTableData(res.data.filtered)  
         ).catch(error => console.log(error))
         return () => {setTableData({})}
     },[getUser.token])

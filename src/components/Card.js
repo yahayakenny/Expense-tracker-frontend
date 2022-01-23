@@ -6,6 +6,8 @@ import {useSelector, } from 'react-redux';
 const Card = () => {
     const cardData = useSelector(state => state.card)
     const settings = useSelector(state => state.settings) 
+    console.log('card data', cardData)
+    console.log('settings',settings)
     return (
         <div className = "row"> 
             <div className= "col-md-4">

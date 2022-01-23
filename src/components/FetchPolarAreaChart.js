@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios';
-import { YEAR_URL } from "./utils";
+import { WEEK_URL } from "./utils";
 import { PolarAreaChart } from "./PolarAreaChart";
 
 
@@ -9,7 +9,7 @@ export const FetchPolarAreaChart = () => {
     let getUser = JSON.parse(localStorage.getItem('userInfo'))
    
     useEffect(() => {
-        axios.get(YEAR_URL, {
+        axios.get(WEEK_URL, {
             headers:{
                 "Content-Type": 'application/json' ,
                 'Authorization':`Bearer ${getUser.token}`}

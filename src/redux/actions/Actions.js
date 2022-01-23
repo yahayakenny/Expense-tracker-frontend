@@ -41,7 +41,8 @@ export const CardAction = () => {
             'Authorization':`Bearer ${getUser.token}`}
     }).then(
         res => {
-            let data = res.data
+            let data = res.data.filtered[0]
+            console.log('data from card', data)
             store.dispatch({
                 type: 'CARD_DATA',
                 data: {
