@@ -1,9 +1,25 @@
-export const AuthReducer = (
+export const LoginReducer = (
   state = { name: "", token: "", isAdmin: "" },
   action
 ) => {
   switch (action.type) {
     case "VALIDATE_LOGIN":
+      return action.data;
+
+    default:
+      return state;
+  }
+};
+export const SignupReducer = (
+  state = {
+    name: "",
+    token: "",
+    isAdmin: "",
+  },
+  action
+) => {
+  switch (action.type) {
+    case "VALIDATE_SIGNUP":
       return action.data;
 
     default:

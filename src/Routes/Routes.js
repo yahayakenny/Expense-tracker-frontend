@@ -17,10 +17,17 @@ function Route({ themeToggler, theme }) {
   return (
     <div>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <Link to="/dashboard">
-          {" "}
-          <img src={logo} className="logo " alt="" />
-        </Link>
+        {user ? (
+          <Link to="/dashboard">
+            {" "}
+            <img src={logo} className="logo " alt="" />
+          </Link>
+        ) : (
+          <Link to="">
+            {" "}
+            <img src={logo} className="logo " alt="" />
+          </Link>
+        )}
         <button
           type="button"
           className="navbar-toggler"
@@ -107,6 +114,7 @@ function Route({ themeToggler, theme }) {
                   Logout{" "}
                 </Link>
               </li>
+
               <li className="nav-item">
                 <button className="btn-toggle" onClick={() => themeToggler()}>
                   {theme === "dark" ? (
@@ -118,7 +126,9 @@ function Route({ themeToggler, theme }) {
               </li>
             </ul>
           ) : (
-            ""
+            <li className="nav-item ">
+              <Link to="/signup"> Register </Link>
+            </li>
           )}
         </div>
       </nav>
