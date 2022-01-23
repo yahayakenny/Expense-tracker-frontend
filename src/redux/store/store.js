@@ -1,7 +1,8 @@
 import {
-  AuthReducer,
   CardReducer,
+  LoginReducer,
   SettingsReducer,
+  SignupReducer,
 } from "../reducers/Reducers";
 import { applyMiddleware, combineReducers } from "redux";
 
@@ -12,7 +13,8 @@ import { createStore } from "redux";
 const composeEnhancers = composeWithDevTools({});
 
 const rootReducer = combineReducers({
-  auth: AuthReducer,
+  auth: LoginReducer,
+  signup: SignupReducer,
   card: CardReducer,
   settings: SettingsReducer,
 });

@@ -1,4 +1,4 @@
-import { AuthAction } from "../Redux/Actions/AuthAction";
+import { LoginAction } from "../Redux/Actions/LoginAction";
 import { useHistory } from "react-router";
 import { useState } from "react";
 
@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    AuthAction(username, password, history, setError);
+    LoginAction(username, password, history, setError);
     setLoading(false);
   };
 

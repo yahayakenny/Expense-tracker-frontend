@@ -16,6 +16,7 @@ import Login from "./Auth/Login";
 import NavBar from "./Routes/Routes";
 import Settings from "./Pages/Settings/Settings";
 import { SettingsAction } from "./Redux/Actions/SettingsAction";
+import SignUp from "./Auth/SignUp";
 import { ThemeProvider } from "styled-components";
 import UpdateCategory from "./Pages/Category/UpdateCategory";
 import UpdateExpense from "./Pages/Expenses/UpdateExpense";
@@ -119,6 +120,7 @@ const App = () => {
           />
           <Route path="/users" component={() => <AllUsers />} />
           <Route path="/settings" component={() => <Settings />} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/" component={Login} />
         </Switch>
       </div>
