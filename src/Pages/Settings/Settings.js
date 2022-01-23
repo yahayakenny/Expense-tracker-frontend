@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { useHistory } from 'react-router';
 import styled from "styled-components";
 import axios from 'axios';
-import { SETTINGS_URL } from './utils';
+import { SETTINGS_URL } from '../../Components/utils';
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}

@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef }  from "react"
-import { ALL_EXPENSES_URL, BASE_URL, commas,EXPORT_CSV_URL, EXPORT_EXCEL_URL, EXPORT_PDF_URL} from "./utils";
+import { ALL_EXPENSES_URL, BASE_URL,EXPORT_CSV_URL, EXPORT_EXCEL_URL, EXPORT_PDF_URL} from "../../Components/utils";
 import { useHistory } from 'react-router'
-import Pagination from "./Pagination";
+import Pagination from "../../Components/Pagination";
 import { Link } from 'react-router-dom';
 import {CSVLink} from 'react-csv'
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { commas } from "../../Helpers/Helpers";
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}

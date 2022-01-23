@@ -1,7 +1,7 @@
 import React from 'react';
-import { commas} from "./utils";
-import '../css/App.css';
+import '../Styles/App.css';
 import {useSelector, } from 'react-redux';
+import { commas } from '../Helpers/Helpers';
 
 const Card = () => {
     const cardData = useSelector(state => state.card)
