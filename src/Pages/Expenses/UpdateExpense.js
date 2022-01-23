@@ -1,7 +1,7 @@
 import React, { useState, useEffect}  from 'react';
 import axios from 'axios';
-import {BASE_URL, GET_CATEGORIES_URL } from './utils';
-import '../css/App.css'
+import {BASE_URL, GET_CATEGORIES_URL } from '../../Components/utils';
+import '../../Styles/App.css'
 import { Formik,} from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router';

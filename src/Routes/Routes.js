@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import logo from '../images/logo.png'
-import '../css/App.css'
-
-function NavBar({themeToggler, theme}) {
+import logo from '../../src/Assets/images/logo.png'
+import '../Styles/App.css'
+function Route({themeToggler, theme}) {
     const history = useHistory()
     let user = JSON.parse(localStorage.getItem('userInfo'))
    
@@ -105,4 +104,4 @@ function NavBar({themeToggler, theme}) {
     );
   };
 
-  export default NavBar
+  export default Route;

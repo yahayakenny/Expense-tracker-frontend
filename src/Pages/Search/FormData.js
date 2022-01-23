@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import axios from 'axios';
-import { FetchExpenses } from './FetchExpenses';
-import { commas, DATE_RANGE_URL} from './utils';
+import { FetchExpenses } from '../Expenses/FetchExpenses';
+import {  DATE_RANGE_URL} from '../../Components/utils';
 import styled from "styled-components";
 import { useSelector } from 'react-redux';
+import { commas } from '../../Helpers/Helpers';
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}

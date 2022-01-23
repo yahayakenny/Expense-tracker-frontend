@@ -1,8 +1,8 @@
-import '../css/App.css'
+import '../../Styles/App.css'
 import {  useState} from 'react'
-import Pagination from './Pagination'
-import { commas } from './utils';
+import Pagination from '../../Components/Pagination'
 import styled from "styled-components";
+import { commas } from '../../Helpers/Helpers';
 
 const StyledApp = styled.div`
         color: ${(props) => props.theme.fontColor}

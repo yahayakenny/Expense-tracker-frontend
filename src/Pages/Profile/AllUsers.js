@@ -1,6 +1,6 @@
 import { useAxios } from 'use-axios-client';
 import React from "react"
-import { ALL_USERS_URL } from "./utils";
+import { ALL_USERS_URL } from "../../Components/utils";
 import styled from "styled-components";
 
 const StyledApp = styled.div`

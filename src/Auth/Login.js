@@ -1,6 +1,6 @@
 import { useState} from "react";
 import { useHistory } from 'react-router';
-import { AuthAction } from "../redux/actions/Actions";
+import { AuthAction } from "../Redux/Actions/AuthAction";
 
 const Login = () => {
     const [username, setUsername] = useState('');
