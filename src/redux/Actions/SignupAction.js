@@ -1,6 +1,6 @@
 import { BASE_URL } from "../../Components/utils";
 import axios from "axios";
-import store from "../store/Store";
+import store from "../store/store";
 
 export const SignUpAction = (
   first_name,
@@ -30,7 +30,7 @@ export const SignUpAction = (
         },
       });
       alert("User successfully created");
-      history.push('/')
+      history.push("/");
     })
     .catch((error) => {
       if (error.response.status === 401) {

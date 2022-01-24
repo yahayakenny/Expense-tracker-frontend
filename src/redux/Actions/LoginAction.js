@@ -1,6 +1,6 @@
 import { BASE_URL } from "../../Components/utils";
 import axios from "axios";
-import store from "../store/Store";
+import store from "../store/store";
 
 export const LoginAction = (username, password, history, setError) => {
   axios

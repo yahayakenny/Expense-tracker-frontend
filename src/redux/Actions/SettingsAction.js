@@ -1,6 +1,6 @@
 import { SETTINGS_URL } from "../../Components/utils";
 import axios from "axios";
-import store from "../store/Store";
+import store from "../store/store";
 
 let getUser = JSON.parse(localStorage.getItem("userInfo"));
 export const SettingsAction = () => {

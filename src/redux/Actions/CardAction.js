@@ -1,6 +1,7 @@
 import { NET_URL } from "../../Components/utils";
 import axios from "axios";
-import store from "../store/Store";
+import store from "../store/store";
+
 let getUser = JSON.parse(localStorage.getItem("userInfo"));
 
 export const CardAction = () => {
@@ -13,7 +14,6 @@ export const CardAction = () => {
     })
     .then((res) => {
       let data = res.data.filtered[0];
-      console.log("data from card", data);
       store.dispatch({
         type: "CARD_DATA",
         data: {
