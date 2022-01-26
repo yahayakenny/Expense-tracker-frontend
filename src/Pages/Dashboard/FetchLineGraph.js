@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const FetchLineGraph = () => {
   const [lineChartData, setLineChartData] = useState({});
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const [error, setError] = useState("");
 
   useEffect(() => {

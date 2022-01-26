@@ -17,7 +17,7 @@ export const FormData = () => {
   const [select, setSelect] = useState("");
   const [data, setData] = useState({ filtered: [] });
   const [error, setError] = useState("");
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   const handleSubmit = (e) => {

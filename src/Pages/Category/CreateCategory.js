@@ -18,7 +18,7 @@ const CategorySchema = Yup.object().shape({
 
 const CreateCategory = ({ TOKEN }) => {
   const history = useHistory();
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   return (
     <StyledApp>
       <div className="container">
@@ -49,6 +49,7 @@ const CreateCategory = ({ TOKEN }) => {
 
                 alert("Category Successfully added");
                 history.push("/all-category");
+
               }}
             >
               {({ values, errors, touched, handleChange, handleSubmit }) => (

@@ -2,7 +2,7 @@ import { BASE_URL } from "../../Components/utils";
 import axios from "axios";
 import store from "../store/store";
 
-export const LoginAction = (username, password, history, setError) => {
+export const LoginAction = (username, password, history, setError, setLoading) => {
   axios
     .post(`${BASE_URL}/users/login`, {
       username: username,
@@ -18,10 +18,12 @@ export const LoginAction = (username, password, history, setError) => {
           isAdmin: data.isAdmin,
         },
       });
-      sessionStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("userInfo", JSON.stringify(data));
       if (data) {
-        history.push("dashboard/");
-        window.location.reload();
+        // history.push("dashboard/");
+        // window.location.reload();
+        setLoading(true)
+        window.location.href = 'dashboard/';
       }
     })
     .catch((error) => {

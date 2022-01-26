@@ -32,8 +32,8 @@ const App = () => {
   const [getIncome, setGetIncome] = useState({});
   const [getExpense, setGetExpense] = useState({});
   const [getCategory, setGetCategory] = useState({});
-  // let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  const [error, setError] = useState("");
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
 
   const themeToggler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
@@ -57,7 +57,11 @@ const App = () => {
         },
       })
       .then((res) => setGetExpense(res.data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setError("Error!");
+        }
+      });
   };
 
   const handleIncome = (id) => {
@@ -69,7 +73,11 @@ const App = () => {
         },
       })
       .then((res) => setGetIncome(res.data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setError("Error!");
+        }
+      });
   };
 
   const handleCategory = (id) => {
@@ -81,7 +89,11 @@ const App = () => {
         },
       })
       .then((res) => setGetCategory(res.data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setError("Error!");
+        }
+      });
   };
 
   return (
@@ -97,27 +109,39 @@ const App = () => {
           <Route path="/add-category" component={() => <CreateCategory />} />
           <Route
             path="/all-expenses"
-            component={() => <AllExpenses getExpense={handleExpense} />}
+            component={() => (
+              <AllExpenses getExpense={handleExpense} error={error} />
+            )}
           />
           <Route
             path="/all-income"
-            component={() => <AllIncome getIncome={handleIncome} />}
+            component={() => (
+              <AllIncome getIncome={handleIncome} error={error} />
+            )}
           />
           <Route
             path="/all-category"
-            component={() => <AllCategory getCategory={handleCategory} />}
+            component={() => (
+              <AllCategory getCategory={handleCategory} error={error} />
+            )}
           />
           <Route
             path="/update-expense"
-            component={() => <UpdateExpense getExpense={getExpense} />}
+            component={() => (
+              <UpdateExpense getExpense={getExpense} error={error} />
+            )}
           />
           <Route
             path="/update-income"
-            component={() => <UpdateIncome getIncome={getIncome} />}
+            component={() => (
+              <UpdateIncome getIncome={getIncome} error={error} />
+            )}
           />
           <Route
             path="/update-category"
-            component={() => <UpdateCategory getCategory={getCategory} />}
+            component={() => (
+              <UpdateCategory getCategory={getCategory} error={error} />
+            )}
           />
           <Route path="/users" component={() => <AllUsers />} />
           <Route path="/settings" component={() => <Settings />} />

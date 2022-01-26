@@ -13,7 +13,7 @@ const StyledApp = styled.div`
 
 const Table = ({ settings }) => {
   const [tableData, setTableData] = useState([]);
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
 
   useEffect(() => {
     axios

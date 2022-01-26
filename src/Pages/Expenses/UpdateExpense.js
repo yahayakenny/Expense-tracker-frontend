@@ -22,7 +22,7 @@ const ExpenseSchema = Yup.object().shape({
 const UpdateExpense = ({ getExpense }) => {
   const history = useHistory();
   const [getCategories, setGetCategories] = useState({ filtered: [] });
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   useEffect(() => {

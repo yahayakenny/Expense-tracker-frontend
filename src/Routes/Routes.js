@@ -2,16 +2,13 @@ import "../Styles/App.css";
 
 import { Link } from "react-router-dom";
 import logo from "../../src/Assets/images/logo.png";
-import { useHistory } from "react-router";
 
 function Route({ themeToggler, theme }) {
-  const history = useHistory();
-  let user = JSON.parse(sessionStorage.getItem("userInfo"));
+  let user = JSON.parse(localStorage.getItem("userInfo"));
 
   const handleLogout = () => {
-    sessionStorage.removeItem("userInfo");
-    history.push("/");
-    window.location.reload();
+    localStorage.removeItem("userInfo");
+    window.location.href = '/';
   };
 
   return (
@@ -126,10 +123,10 @@ function Route({ themeToggler, theme }) {
               </li>
             </ul>
           ) : (
-            // <li className="nav-item ">
-            //   <Link to="/signup"> Register </Link>
-            // </li>
-            ''
+            <li className="nav-item ">
+              <Link to="/signup"> Register </Link>
+            </li>
+            
           )}
         </div>
       </nav>

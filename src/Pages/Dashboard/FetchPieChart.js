@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const FetchPieChart = () => {
   const [pieChartData, setPieChartData] = useState({});
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const [error, setError] = useState("");
 
 

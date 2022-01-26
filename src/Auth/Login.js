@@ -11,8 +11,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    LoginAction(username, password, history, setError);
-    setLoading(true);
+    LoginAction(username, password, history, setError, setLoading);
   };
 
   return (

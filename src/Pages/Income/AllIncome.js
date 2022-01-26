@@ -21,7 +21,7 @@ const AllIncome = ({ getIncome }) => {
   const [tableData, setTableData] = useState([]);
   const history = useHistory();
   const currentData = tableData.slice(indexOfFirstData, indexOfLastData);
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   // Change page

@@ -19,8 +19,8 @@ const AllCategory = ({ getCategory }) => {
   const [tableData, setTableData] = useState([]);
   const history = useHistory();
   const currentData = tableData.slice(indexOfFirstData, indexOfLastData);
-  // let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  // let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

@@ -8,8 +8,6 @@ export const SignUpAction = (
   email,
   username,
   password,
-  setError,
-  history
 ) => {
   axios
     .post(`${BASE_URL}/users/register`, {
@@ -30,11 +28,6 @@ export const SignUpAction = (
         },
       });
       alert("User successfully created");
-      history.push("/");
+      window.location.href = '/';
     })
-    .catch((error) => {
-      if (error.response.status === 401) {
-        setError("Error: Invalid Credentials");
-      }
-    });
 };

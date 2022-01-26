@@ -24,7 +24,7 @@ const IncomeSchema = Yup.object().shape({
 
 const CreateIncome = () => {
   const history = useHistory();
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   return (

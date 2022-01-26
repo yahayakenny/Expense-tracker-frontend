@@ -20,17 +20,18 @@ const StyledApp = styled.div`
   color: ${(props) => props.theme.fontColor};
 `;
 
-const AllExpenses = ({ getExpense }) => {
+const AllExpenses = ({ getExpense, }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(10);
   const indexOfLastData = currentPage * dataPerPage;
   const indexOfFirstData = indexOfLastData - dataPerPage;
   const [tableData, setTableData] = useState([]);
+  const [error, setError] = useState("");
   const [csv, setCsv] = useState("");
   const csvLink = useRef();
   const history = useHistory();
   const currentData = tableData.slice(indexOfFirstData, indexOfLastData);
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   // Change page
@@ -45,7 +46,11 @@ const AllExpenses = ({ getExpense }) => {
         },
       })
       .then((res) => setTableData(res.data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setError("Error!");
+        }
+      });
     history.push("/all-expenses");
     return () => {};
   }, [history, getUser.token]);
@@ -226,7 +231,7 @@ const AllExpenses = ({ getExpense }) => {
                       </tbody>
                     );
                   })
-                : ""}
+                : error}
             </table>
             <br></br>
             <Pagination

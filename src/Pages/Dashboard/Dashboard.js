@@ -15,7 +15,7 @@ const StyledApp = styled.div`
 `;
 
 const Dashboard = () => {
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const cardData = useSelector((state) => state.card);
   const settings = useSelector((state) => state.settings);
 

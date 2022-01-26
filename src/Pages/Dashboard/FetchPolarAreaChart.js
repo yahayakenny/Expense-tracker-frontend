@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const FetchPolarAreaChart = () => {
   const [polarAreaData, setPolarAreaData] = useState({ filtered: [] });
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const [error, setError] = useState("");
 
   useEffect(() => {

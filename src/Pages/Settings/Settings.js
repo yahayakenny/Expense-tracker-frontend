@@ -18,7 +18,7 @@ const SettingsSchema = Yup.object().shape({
 });
 
 const Settings = () => {
-  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const history = useHistory();
   return (
     <StyledApp>
