@@ -1,14 +1,12 @@
-import "../Styles/App.css";
+import "../../Styles/App.css"
 
 import React from "react";
-import { commas } from "../Helpers/Helpers";
+import { commas } from "../../Helpers/Helpers";
 import { useSelector } from "react-redux";
 
 const Card = () => {
   const cardData = useSelector((state) => state.card);
   const settings = useSelector((state) => state.settings);
-  console.log("card data", cardData);
-  console.log("settings", settings);
   return (
     <div className="row">
       <div className="col-md-4">

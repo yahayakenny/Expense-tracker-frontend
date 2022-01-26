@@ -1,12 +1,12 @@
 import "../../Styles/App.css";
 
-import Card from "../../Components/Card";
-import { FetchLineGraph } from "../../Components/FetchLineGraph";
-import { FetchMontlyExpenses } from "../../Components/FetchMonthlyExpenses";
-import { FetchPieChart } from "../../Components/FetchPieChart";
-import { FetchPolarAreaChart } from "../../Components/FetchPolarAreaChart";
+import Card from "./Card";
+import { FetchLineGraph } from "./FetchLineGraph";
+import { FetchMontlyExpenses } from "./FetchMonthlyExpenses";
+import { FetchPieChart } from "./FetchPieChart";
+import { FetchPolarAreaChart } from "./FetchPolarAreaChart";
 import Side from "../../Components/Side";
-import Table from "../../Components/Table";
+import Table from "./Table";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
@@ -15,7 +15,7 @@ const StyledApp = styled.div`
 `;
 
 const Dashboard = () => {
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
   const cardData = useSelector((state) => state.card);
   const settings = useSelector((state) => state.settings);
 

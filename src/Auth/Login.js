@@ -11,9 +11,8 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
     LoginAction(username, password, history, setError);
-    setLoading(false);
+    setLoading(true);
   };
 
   return (
@@ -56,12 +55,13 @@ const Login = () => {
                   backgroundColor: "rgb(213, 126, 126)",
                 }}
               >
-                {/* {
-                                loading ? (<div class="spinner-border" role="status">
-                                <span class="sr-only">Loading...</span>
-                                </div>): 'Login'
-                            } */}
-                {loading ? "Loading..." : "Login"}
+                {loading ? (
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                ) : (
+                  "Login"
+                )}
               </button>
             </form>
             <h6 className="text-danger text-center mt-4">{error}</h6>

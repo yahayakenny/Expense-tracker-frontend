@@ -14,7 +14,7 @@ const CategorySchema = Yup.object().shape({
 
 const UpdateCategory = ({ getCategory }) => {
   const history = useHistory();
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
 
   return (
     <div>

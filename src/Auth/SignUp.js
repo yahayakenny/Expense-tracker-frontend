@@ -14,7 +14,7 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
+
     SignUpAction(
       first_name,
       last_name,
@@ -24,7 +24,7 @@ const SignUp = () => {
       history,
       setError
     );
-    setLoading(false);
+    setLoading(true);
   };
 
   return (

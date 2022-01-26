@@ -18,7 +18,7 @@ export const LoginAction = (username, password, history, setError) => {
           isAdmin: data.isAdmin,
         },
       });
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      sessionStorage.setItem("userInfo", JSON.stringify(data));
       if (data) {
         history.push("dashboard/");
         window.location.reload();

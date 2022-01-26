@@ -1,10 +1,10 @@
-import "../Styles/App.css";
+import "../../Styles/App.css"
 
 import { useEffect, useState } from "react";
 
-import { RECENT_EXPENSES_URL } from "./utils";
+import { RECENT_EXPENSES_URL } from "../../Components/utils";
 import axios from "axios";
-import { commas } from "../Helpers/Helpers";
+import { commas } from "../../Helpers/Helpers";
 import styled from "styled-components";
 
 const StyledApp = styled.div`
@@ -13,7 +13,7 @@ const StyledApp = styled.div`
 
 const Table = ({ settings }) => {
   const [tableData, setTableData] = useState([]);
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
 
   useEffect(() => {
     axios

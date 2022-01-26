@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 
-import { CATEGORY_URL } from "./utils";
-import { PieChart } from "./PieChart";
+import { CATEGORY_URL } from "../../Components/utils";
+import { PieChart } from "../../Components/PieChart";
 import axios from "axios";
 
 export const FetchPieChart = () => {
   const [pieChartData, setPieChartData] = useState({});
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  const [error, setError] = useState("");
+
 
   useEffect(() => {
     axios
@@ -22,7 +24,7 @@ export const FetchPieChart = () => {
           datasets: [
             {
               label: "Expenses for the month",
-              data: res.data.filtered.map((item) => item.amount),
+              data:res.data.filtered.map((item) => item.amount),
               backgroundColor: [
                 "rgb(198, 213, 126)",
                 "rgb(213, 126, 126)",
@@ -42,7 +44,11 @@ export const FetchPieChart = () => {
           ],
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setError("Error!");
+        }
+      });
     return () => {
       setPieChartData({});
     };
@@ -51,7 +57,7 @@ export const FetchPieChart = () => {
   return (
     <div className="shadow-lg rounded">
       <div className="container">
-        <PieChart chartData={pieChartData} />
+       {pieChartData ? <PieChart chartData={pieChartData} /> : error}
       </div>
     </div>
   );

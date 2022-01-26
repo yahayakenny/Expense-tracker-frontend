@@ -2,7 +2,9 @@ import { NET_URL } from "../../Components/utils";
 import axios from "axios";
 import store from "../store/store";
 
-let getUser = JSON.parse(localStorage.getItem("userInfo"));
+// let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+
 
 export const CardAction = () => {
   axios

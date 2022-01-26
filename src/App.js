@@ -32,7 +32,8 @@ const App = () => {
   const [getIncome, setGetIncome] = useState({});
   const [getExpense, setGetExpense] = useState({});
   const [getCategory, setGetCategory] = useState({});
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  // let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const themeToggler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");

@@ -18,7 +18,7 @@ const CategorySchema = Yup.object().shape({
 
 const CreateCategory = ({ TOKEN }) => {
   const history = useHistory();
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
   return (
     <StyledApp>
       <div className="container">

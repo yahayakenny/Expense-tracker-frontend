@@ -6,10 +6,10 @@ import { useHistory } from "react-router";
 
 function Route({ themeToggler, theme }) {
   const history = useHistory();
-  let user = JSON.parse(localStorage.getItem("userInfo"));
+  let user = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const handleLogout = () => {
-    localStorage.removeItem("userInfo");
+    sessionStorage.removeItem("userInfo");
     history.push("/");
     window.location.reload();
   };
@@ -126,9 +126,10 @@ function Route({ themeToggler, theme }) {
               </li>
             </ul>
           ) : (
-            <li className="nav-item ">
-              <Link to="/signup"> Register </Link>
-            </li>
+            // <li className="nav-item ">
+            //   <Link to="/signup"> Register </Link>
+            // </li>
+            ''
           )}
         </div>
       </nav>

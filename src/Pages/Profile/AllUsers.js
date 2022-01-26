@@ -8,7 +8,7 @@ const StyledApp = styled.div`
 `;
 
 const AllUsers = () => {
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const { data, error, loading } = useAxios({
     url: ALL_USERS_URL,

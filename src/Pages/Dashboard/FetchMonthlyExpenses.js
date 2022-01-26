@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { BarChart } from "./BarChart";
-import { MONTH_URL } from "./utils";
+import { BarChart } from "../../Components/BarChart";
+import { MONTH_URL } from "../../Components/utils";
 import axios from "axios";
 
 export const FetchMontlyExpenses = () => {
   const [barChartData, setBarChartData] = useState({ filtered: [] });
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -56,7 +57,11 @@ export const FetchMontlyExpenses = () => {
           ],
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setError("Error!");
+        }
+      });
     return () => {
       setBarChartData({});
     };
@@ -65,7 +70,7 @@ export const FetchMontlyExpenses = () => {
   return (
     <div className="shadow-lg rounded">
       <div className="container">
-        <BarChart chartData={barChartData} />
+        {barChartData ? <BarChart chartData={barChartData} /> : error}
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { DAY_URL } from "./utils";
-import { LineChart } from "./LineChart";
+import { DAY_URL } from "../../Components/utils";
+import { LineChart } from "../../Components/LineChart";
 import axios from "axios";
 
 export const FetchLineGraph = () => {
   const [lineChartData, setLineChartData] = useState({});
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -50,7 +51,11 @@ export const FetchLineGraph = () => {
           ],
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setError("Error!");
+        }
+      });
     return () => {
       setLineChartData({});
     };
@@ -59,7 +64,7 @@ export const FetchLineGraph = () => {
   return (
     <div className="shadow-lg rounded">
       <div className="container">
-        <LineChart chartData={lineChartData} />
+        { lineChartData ? <LineChart chartData={lineChartData}/> : error}
       </div>
     </div>
   );

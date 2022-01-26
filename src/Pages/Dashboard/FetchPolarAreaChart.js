@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { PolarAreaChart } from "./PolarAreaChart";
-import { WEEK_URL } from "./utils";
+import { PolarAreaChart } from "../../Components/PolarAreaChart";
+import { WEEK_URL } from "../../Components/utils";
 import axios from "axios";
 
 export const FetchPolarAreaChart = () => {
   const [polarAreaData, setPolarAreaData] = useState({ filtered: [] });
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
+  let getUser = JSON.parse(sessionStorage.getItem("userInfo"));
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -40,7 +41,11 @@ export const FetchPolarAreaChart = () => {
           ],
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setError("Error!");
+        }
+      });
     return () => {
       setPolarAreaData({});
     };
@@ -49,7 +54,7 @@ export const FetchPolarAreaChart = () => {
   return (
     <div className="shadow-lg rounded">
       <div className="container">
-        <PolarAreaChart chartData={polarAreaData} />
+        {polarAreaData ? <PolarAreaChart chartData={polarAreaData} /> : error}
       </div>
     </div>
   );
