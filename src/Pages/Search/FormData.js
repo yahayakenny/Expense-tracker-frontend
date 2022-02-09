@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-import { DATE_RANGE_URL } from "../../Components/utils";
+import ApiClient from "../../Components/api";
 import { FetchExpenses } from "../Expenses/FetchExpenses";
-import axios from "axios";
 import { commas } from "../../Helpers/Helpers";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -17,23 +16,17 @@ export const FormData = () => {
   const [select, setSelect] = useState("");
   const [data, setData] = useState({ filtered: [] });
   const [error, setError] = useState("");
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .get(DATE_RANGE_URL, {
-        params: {
-          from_date: from_date,
-          to_date: to_date,
-          select: select,
-        },
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient.get('/query-date-range/', {
+      params: {
+        from_date: from_date,
+        to_date: to_date,
+        select: select,
+      },
+    })
       .then((res) => {
         setData(res.data);
         if (res.data.filtered.length === 0) {

@@ -2,9 +2,8 @@ import "../../Styles/App.css";
 
 import * as Yup from "yup";
 
-import { ADD_CATEGORY_URL } from "../../Components/utils";
+import  ApiClient from "../../Components/api";
 import { Formik } from "formik";
-import axios from "axios";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 
@@ -18,7 +17,6 @@ const CategorySchema = Yup.object().shape({
 
 const CreateCategory = ({ TOKEN }) => {
   const history = useHistory();
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   return (
     <StyledApp>
       <div className="container">
@@ -31,25 +29,14 @@ const CreateCategory = ({ TOKEN }) => {
               }}
               validationSchema={CategorySchema}
               onSubmit={({ name }) => {
-                axios
-                  .post(
-                    ADD_CATEGORY_URL,
-                    {
-                      name: name,
-                    },
-                    {
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${getUser.token}`,
-                      },
-                    }
-                  )
+                ApiClient.post("/category/", {
+                  name: name,
+                })
                   .then((res) => console.log(res.data))
                   .catch((error) => console.log(error));
 
                 alert("Category Successfully added");
                 history.push("/all-category");
-
               }}
             >
               {({ values, errors, touched, handleChange, handleSubmit }) => (

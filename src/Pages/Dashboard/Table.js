@@ -2,8 +2,7 @@ import "../../Styles/App.css"
 
 import { useEffect, useState } from "react";
 
-import { RECENT_EXPENSES_URL } from "../../Components/utils";
-import axios from "axios";
+import ApiClient from "../../Components/api";
 import { commas } from "../../Helpers/Helpers";
 import styled from "styled-components";
 
@@ -13,22 +12,17 @@ const StyledApp = styled.div`
 
 const Table = ({ settings }) => {
   const [tableData, setTableData] = useState([]);
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
 
   useEffect(() => {
-    axios
-      .get(RECENT_EXPENSES_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/query-most-recent-expenses/'
+       )
       .then((res) => setTableData(res.data.filtered))
       .catch((error) => console.log(error));
     return () => {
       setTableData({});
     };
-  }, [getUser.token]);
+  }, []);
 
   return (
     <StyledApp>

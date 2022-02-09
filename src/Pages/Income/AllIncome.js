@@ -1,9 +1,8 @@
-import { ALL_INCOME_URL, BASE_URL } from "../../Components/utils";
 import React, { useEffect, useState } from "react";
 
+import ApiClient from "../../Components/api";
 import { Link } from "react-router-dom";
 import Pagination from "../../Components/Pagination";
-import axios from "axios";
 import { commas } from "../../Helpers/Helpers";
 import styled from "styled-components";
 import { useHistory } from "react-router";
@@ -21,35 +20,24 @@ const AllIncome = ({ getIncome }) => {
   const [tableData, setTableData] = useState([]);
   const history = useHistory();
   const currentData = tableData.slice(indexOfFirstData, indexOfLastData);
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    axios
-      .get(ALL_INCOME_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/income/')
       .then((res) => setTableData(res.data))
       .catch((error) => console.log(error));
     history.push("/all-income");
 
     return () => {};
-  }, [history, getUser.token]);
+  }, [history]);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`${BASE_URL}/income/${id}/`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .delete(`/income/${id}/`)
       .then((res) => {
         const filtered_data = tableData.filter((item) => item.id !== id);
         alert("item deleted successfully");

@@ -2,11 +2,10 @@ import "../../Styles/App.css";
 
 import * as Yup from "yup";
 
-import { ADD_EXPENSE_URL, GET_CATEGORIES_URL } from "../../Components/utils";
 import React, { useEffect, useState } from "react";
 
+import ApiClient from "../../Components/api";
 import { Formik } from "formik";
-import axios from "axios";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
@@ -27,22 +26,16 @@ const ExpenseSchema = Yup.object().shape({
 const CreateExpense = () => {
   const history = useHistory();
   const [getCategories, setGetCategories] = useState({ filtered: [] });
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   useEffect(() => {
-    axios
-      .get(GET_CATEGORIES_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/category/')
       .then((res) => setGetCategories(res.data))
       .catch((error) => console.log(error));
 
     return () => {};
-  }, [getUser.token]);
+  }, []);
 
   return (
     <StyledApp>
@@ -59,21 +52,15 @@ const CreateExpense = () => {
               }}
               validationSchema={ExpenseSchema}
               onSubmit={({ name, amount, description, category }) => {
-                axios
+                ApiClient
                   .post(
-                    ADD_EXPENSE_URL,
+                   '/expense/',
                     {
                       name: name,
                       amount: amount,
                       description: description,
                       category: category,
                     },
-                    {
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${getUser.token}`,
-                      },
-                    }
                   )
                   .then((res) => console.log(res.data))
                   .catch((error) => console.log(error));

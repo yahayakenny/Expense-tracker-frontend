@@ -2,11 +2,10 @@ import "../../Styles/App.css";
 
 import * as Yup from "yup";
 
-import { BASE_URL, GET_CATEGORIES_URL } from "../../Components/utils";
 import React, { useEffect, useState } from "react";
 
+import  ApiClient from "../../Components/api";
 import { Formik } from "formik";
-import axios from "axios";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 
@@ -22,21 +21,15 @@ const ExpenseSchema = Yup.object().shape({
 const UpdateExpense = ({ getExpense }) => {
   const history = useHistory();
   const [getCategories, setGetCategories] = useState({ filtered: [] });
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   useEffect(() => {
-    axios
-      .get(GET_CATEGORIES_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/category/')
       .then((res) => setGetCategories(res.data))
       .catch((error) => console.log(error));
     return () => {};
-  }, [getUser.token]);
+  }, []);
 
   return (
     <div>
@@ -53,21 +46,15 @@ const UpdateExpense = ({ getExpense }) => {
               }}
               validationSchema={ExpenseSchema}
               onSubmit={({ name, amount, description, category }) => {
-                axios
+                ApiClient
                   .put(
-                    `${BASE_URL}/expense/${getExpense.id}/`,
+                    `/expense/${getExpense.id}/`,
                     {
                       name: name,
                       amount: amount,
                       category: category,
                       description: description,
                     },
-                    {
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${getUser.token}`,
-                      },
-                    }
                   )
                   .then((res) => console.log(res.data))
                   .catch((error) => console.log(error));

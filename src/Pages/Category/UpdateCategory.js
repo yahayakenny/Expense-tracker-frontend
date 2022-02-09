@@ -2,10 +2,9 @@ import "../../Styles/App.css";
 
 import * as Yup from "yup";
 
-import { BASE_URL } from "../../Components/utils";
+import ApiClient from "../../Components/api";
 import { Formik } from "formik";
 import React from "react";
-import axios from "axios";
 import { useHistory } from "react-router";
 
 const CategorySchema = Yup.object().shape({
@@ -14,7 +13,6 @@ const CategorySchema = Yup.object().shape({
 
 const UpdateCategory = ({ getCategory }) => {
   const history = useHistory();
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
 
   return (
     <div>
@@ -28,18 +26,12 @@ const UpdateCategory = ({ getCategory }) => {
               }}
               validationSchema={CategorySchema}
               onSubmit={({ name }) => {
-                axios
+                ApiClient
                   .put(
-                    `${BASE_URL}/category/${getCategory.id}/`,
+                    `/category/${getCategory.id}/`,
                     {
                       name: name,
                     },
-                    {
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${getUser.token}`,
-                      },
-                    }
                   )
                   .then((res) => console.log(res.data))
                   .catch((error) => console.log(error));

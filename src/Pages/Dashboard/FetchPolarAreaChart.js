@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
 
+import  ApiClient from "../../Components/api";
 import { PolarAreaChart } from "../../Components/PolarAreaChart";
-import { WEEK_URL } from "../../Components/utils";
-import axios from "axios";
 
 export const FetchPolarAreaChart = () => {
   const [polarAreaData, setPolarAreaData] = useState({ filtered: [] });
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get(WEEK_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/query-week-graph/')
       .then((res) =>
         setPolarAreaData({
           labels: res.data.filtered.map((item) => item.week),
@@ -49,7 +42,7 @@ export const FetchPolarAreaChart = () => {
     return () => {
       setPolarAreaData({});
     };
-  }, [getUser.token]);
+  }, []);
 
   return (
     <div className="shadow-lg rounded">

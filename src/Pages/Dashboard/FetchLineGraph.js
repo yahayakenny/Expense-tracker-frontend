@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
 
-import { DAY_URL } from "../../Components/utils";
+import  ApiClient from "../../Components/api";
 import { LineChart } from "../../Components/LineChart";
-import axios from "axios";
 
 export const FetchLineGraph = () => {
   const [lineChartData, setLineChartData] = useState({});
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get(DAY_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/query-day-graph/')
       .then((res) =>
         setLineChartData({
           labels: res.data.filtered.map((item) => item.day),
@@ -59,7 +52,7 @@ export const FetchLineGraph = () => {
     return () => {
       setLineChartData({});
     };
-  }, [getUser.token]);
+  }, []);
 
   return (
     <div className="shadow-lg rounded">

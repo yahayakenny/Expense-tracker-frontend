@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
 
+import ApiClient from "../../Components/api";
 import { BarChart } from "../../Components/BarChart";
-import { MONTH_URL } from "../../Components/utils";
-import axios from "axios";
 
 export const FetchMontlyExpenses = () => {
   const [barChartData, setBarChartData] = useState({ filtered: [] });
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get(MONTH_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/query-month-graph/', )
       .then((res) =>
         setBarChartData({
           labels: res.data.filtered.map((item) => item.month),
@@ -65,7 +58,7 @@ export const FetchMontlyExpenses = () => {
     return () => {
       setBarChartData({});
     };
-  }, [getUser.token]);
+  }, []);
 
   return (
     <div className="shadow-lg rounded">

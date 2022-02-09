@@ -1,8 +1,7 @@
 import * as Yup from "yup";
 
+import ApiClient from "../../Components/api";
 import { Formik } from "formik";
-import { SETTINGS_URL } from "../../Components/utils";
-import axios from "axios";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 
@@ -18,7 +17,6 @@ const SettingsSchema = Yup.object().shape({
 });
 
 const Settings = () => {
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const history = useHistory();
   return (
     <StyledApp>
@@ -33,18 +31,12 @@ const Settings = () => {
               }}
               validationSchema={SettingsSchema}
               onSubmit={({ currency, limit }) => {
-                axios
+                ApiClient
                   .post(
-                    SETTINGS_URL,
+                    '/settings/',
                     {
                       currency: currency,
                       limit: limit,
-                    },
-                    {
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${getUser.token}`,
-                      },
                     }
                   )
                   .then((res) => console.log(res.data))

@@ -1,16 +1,9 @@
-import {
-  ALL_EXPENSES_URL,
-  BASE_URL,
-  EXPORT_CSV_URL,
-  EXPORT_EXCEL_URL,
-  EXPORT_PDF_URL,
-} from "../../Components/utils";
 import React, { useEffect, useRef, useState } from "react";
 
+import  ApiClient from "../../Components/api";
 import { CSVLink } from "react-csv";
 import { Link } from "react-router-dom";
 import Pagination from "../../Components/Pagination";
-import axios from "axios";
 import { commas } from "../../Helpers/Helpers";
 import styled from "styled-components";
 import { useHistory } from "react-router";
@@ -38,13 +31,8 @@ const AllExpenses = ({ getExpense, }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    axios
-      .get(ALL_EXPENSES_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/expense/')
       .then((res) => setTableData(res.data))
       .catch((error) => {
         if (error.response.status === 404) {
@@ -56,13 +44,8 @@ const AllExpenses = ({ getExpense, }) => {
   }, [history, getUser.token]);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`${BASE_URL}/expense/${id}/`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .delete(`/expense/${id}/`)
       .then((res) => {
         const filtered_data = tableData.filter((item) => item.id !== id);
         alert("item deleted successfully");
@@ -73,13 +56,8 @@ const AllExpenses = ({ getExpense, }) => {
 
   // https://stackoverflow.com/questions/53504924/reactjs-download-csv-file-on-button-click
   const handleCsv = () => {
-    axios
-      .get(EXPORT_CSV_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/expense/export-csv')
       .then((res) => setCsv(res.data))
       .catch((error) => console.log(error));
     csvLink.current.link.click();
@@ -87,14 +65,8 @@ const AllExpenses = ({ getExpense, }) => {
 
   // https://stackoverflow.com/questions/68356665/how-to-download-excel-file-with-axios-vuejs
   const handleExcel = () => {
-    axios
-      .get(EXPORT_EXCEL_URL, {
-        responseType: "blob",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/expense/export-excel')
       .then((res) => {
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const a = document.createElement("a");
@@ -109,13 +81,9 @@ const AllExpenses = ({ getExpense, }) => {
   };
 
   const handlePdf = () => {
-    axios
-      .get(EXPORT_PDF_URL, {
+   ApiClient
+      .get('/expense/export-pdf', {
         responseType: "blob",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
       })
       .then((res) => {
         const url = window.URL.createObjectURL(new Blob([res.data]));
