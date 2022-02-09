@@ -2,10 +2,9 @@ import "../../Styles/App.css";
 
 import * as Yup from "yup";
 
-import { ADD_INCOME_URL } from "../../Components/utils";
+import  ApiClient from "../../Components/api";
 import { Formik } from "formik";
 import React from "react";
-import axios from "axios";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
@@ -24,7 +23,6 @@ const IncomeSchema = Yup.object().shape({
 
 const CreateIncome = () => {
   const history = useHistory();
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const settings = useSelector((state) => state.settings);
 
   return (
@@ -41,20 +39,14 @@ const CreateIncome = () => {
               }}
               validationSchema={IncomeSchema}
               onSubmit={({ name, amount, description }) => {
-                axios
+                ApiClient
                   .post(
-                    ADD_INCOME_URL,
+                    '/income/',
                     {
                       name: name,
                       amount: amount,
                       description: description,
                     },
-                    {
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${getUser.token}`,
-                      },
-                    }
                   )
                   .then((res) => console.log(res.data))
                   .catch((error) => console.log(error));

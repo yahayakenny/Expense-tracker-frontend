@@ -5,7 +5,7 @@ import AllCategory from "./Pages/Category/AllCategories";
 import AllExpenses from "./Pages/Expenses/AllExpenses";
 import AllIncome from "./Pages/Income/AllIncome";
 import AllUsers from "./Pages/Profile/AllUsers";
-import { BASE_URL } from "./Components/utils";
+import ApiClient from "./Components/api";
 import { CardAction } from "./Redux/Actions/CardAction";
 import CreateCategory from "./Pages/Category/CreateCategory";
 import CreateExpense from "./Pages/Expenses/CreateExpense";
@@ -21,7 +21,6 @@ import { ThemeProvider } from "styled-components";
 import UpdateCategory from "./Pages/Category/UpdateCategory";
 import UpdateExpense from "./Pages/Expenses/UpdateExpense";
 import UpdateIncome from "./Pages/Income/UpdateIncome";
-import axios from "axios";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useState } from "react";
@@ -49,13 +48,8 @@ const App = () => {
   }, [history, getUser]);
 
   const handleExpense = (id) => {
-    axios
-      .get(`${BASE_URL}/expense/${id}/`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get(`/expense/${id}/`)
       .then((res) => setGetExpense(res.data))
       .catch((error) => {
         if (error.response.status === 404) {
@@ -65,13 +59,8 @@ const App = () => {
   };
 
   const handleIncome = (id) => {
-    axios
-      .get(`${BASE_URL}/income/${id}/`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get(`/income/${id}/`)
       .then((res) => setGetIncome(res.data))
       .catch((error) => {
         if (error.response.status === 404) {
@@ -81,13 +70,8 @@ const App = () => {
   };
 
   const handleCategory = (id) => {
-    axios
-      .get(`${BASE_URL}/category/${id}/`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get(`/category/${id}/`)
       .then((res) => setGetCategory(res.data))
       .catch((error) => {
         if (error.response.status === 404) {

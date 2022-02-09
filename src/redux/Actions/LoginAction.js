@@ -20,8 +20,6 @@ export const LoginAction = (username, password, history, setError, setLoading) =
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       if (data) {
-        // history.push("dashboard/");
-        // window.location.reload();
         setLoading(true)
         window.location.href = 'dashboard/';
       }

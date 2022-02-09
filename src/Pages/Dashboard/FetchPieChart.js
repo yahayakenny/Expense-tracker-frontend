@@ -1,23 +1,16 @@
 import { useEffect, useState } from "react";
 
-import { CATEGORY_URL } from "../../Components/utils";
+import ApiClient from "../../Components/api";
 import { PieChart } from "../../Components/PieChart";
-import axios from "axios";
 
 export const FetchPieChart = () => {
   const [pieChartData, setPieChartData] = useState({});
-  let getUser = JSON.parse(localStorage.getItem("userInfo"));
   const [error, setError] = useState("");
 
 
   useEffect(() => {
-    axios
-      .get(CATEGORY_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient
+      .get('/query-category/')
       .then((res) =>
         setPieChartData({
           labels: res.data.filtered.map((item) => item.category),
@@ -52,7 +45,7 @@ export const FetchPieChart = () => {
     return () => {
       setPieChartData({});
     };
-  }, [getUser.token]);
+  }, []);
 
   return (
     <div className="shadow-lg rounded">

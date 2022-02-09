@@ -1,9 +1,8 @@
-import { BASE_URL, GET_CATEGORIES_URL } from "../../Components/utils";
 import React, { useEffect, useState } from "react";
 
+import ApiClient from "../../Components/api";
 import { Link } from "react-router-dom";
 import Pagination from "../../Components/Pagination";
-import axios from "axios";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 
@@ -19,19 +18,12 @@ const AllCategory = ({ getCategory }) => {
   const [tableData, setTableData] = useState([]);
   const history = useHistory();
   const currentData = tableData.slice(indexOfFirstData, indexOfLastData);
-  // let getUser = JSON.parse(localStorage.getItem("userInfo"));
   let getUser = JSON.parse(localStorage.getItem("userInfo"));
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    axios
-      .get(GET_CATEGORIES_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient.get("/category/")
       .then((res) => {
         setTableData(res.data.filtered);
       })
@@ -40,13 +32,7 @@ const AllCategory = ({ getCategory }) => {
   }, [history, getUser.token]);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`${BASE_URL}/category/${id}/`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getUser.token}`,
-        },
-      })
+    ApiClient.delete(`/category/${id}/`)
       .then((res) => {
         const filtered_data = tableData.filter((item) => item.id !== id);
         alert("item deleted successfully");
